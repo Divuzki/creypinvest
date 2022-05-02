@@ -6,6 +6,7 @@ dj-database-url==0.5.0
 Django==4.0.4
 django-storages==1.12.3
 django-utils-six==2.0
+gunicorn==20.1.0
 jmespath==1.0.0
 psycopg2-binary==2.9.3
 pycodestyle==2.8.0
