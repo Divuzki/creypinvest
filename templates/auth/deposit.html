@@ -1,0 +1,267 @@
+{% extends 'base.html' %} {% load static %}
+<title>{% block title %}{% if type %}${% endif %}{{price}} Deposit{% if type == 'Deposited' %}ed{% else %}{% endif %}{% endblock title %}</title>
+{% block content %}
+
+<!-- deposit section -->
+{% if type %}
+<section class="contact_section deposit_body">
+  <div class="container-fluid">
+    <div class="row" style="justify-content: center">
+      <div class="p-5">
+        <div class="form_container w-full" style="background: none;padding: initial;display: flex;align-items: center;">
+            <div class="col-md-9 col-lg-10">
+              <div class="card" style="transform: none !important;">
+                <div class="card-body">
+                  <div class="plan-name"><h1>
+                    Deposit{% if type == 'Deposited' %}ed ${{price}} 
+                    </h1>
+                    (<span class="convert-value-btc" style="color: #326400;" data-btc-value="{{price}}">loading...</span>) 
+                    {% elif depositing == 'yes' %}ing ${{price}}
+                  </h1>
+                     (<span class="convert-value-btc" style="color: #326400;" data-btc-value="{{price}}">loading...</span>) 
+                     {% else %} Now
+                    {% endif %}
+                  </div>
+                  <div class="plan-description dp_container specs">
+                    {% if type %}
+                    {% if depositing == 'yes' %} Copy Your Deposit Bitcoin Address:
+                      <a
+                        href="#copy-btc-address"
+                        onclick="copyToClipboard(`bc1q48lwj0kv0zk4u8w2x54zxwr927jx9wcnvwakft`);"
+                        class="quote_btn copy_btn"
+                        style="text-transform: none"
+                      >
+                        bc1q48lwj0kv0zk4u8w2x54zxwr927jx9wcnvwakft <button class="mt-2" id="copyed_btn">copy</button></a
+                      >
+                      <style>
+                        @media (max-width: 425px) {
+                          .contact_section .form_container {
+                            transform: scale(0.7);
+                          }
+                        }
+                      </style>
+                    {% endif %}
+                      {% endif %}
+                  </div>
+                  <div class="plan-cta">
+                    <p>
+                      
+              <!-- HASH PROOF -->
+              <form action="/auth/deposit/{{price}}/" class="hash-form" method="POST">
+                {% csrf_token %}
+                {% if type == 'Deposited' %}
+                <div>
+                  <input
+                    type="text"
+                    name="hash"
+                    placeholder="Enter Your Bitcoin TX HASH ID"
+                    required
+                  />
+                  <div class="requirements">Enter Your Bitcoin To Confirm Payment Transactions.</div>
+                </div>
+                {% endif %}
+                {% if type %}
+                <div class="btn_box mt-3">
+                  <button type="submit" style="background-color: rgb(128, 255, 0)">
+                    {% if type == 'Deposited' %} Confirm {% elif type == 'Depositing' %} Sent It {% endif %}
+                  </button>
+                </div>
+                {% endif %}
+              </form>
+              <!-- END HASH PROOF -->
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .deposit_body .card .plan-description.specs {
+    min-height: 100px !important;
+    margin-bottom: 60px !important;
+    margin-top: 10px !important;
+    border-radius: 24px !important;
+}
+.deposit_body h1 {
+    padding-bottom: 0 !important;
+}
+.dp_container {
+    background-image: url(/static/images/contact-bg.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+</style>
+{% else %}
+<section class="contact_section deposit_body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="p-5" style="transform: scale(0.8)">
+        <h1 style="color-interpolation: linearRGB; color: aliceblue">
+          <center>PLANS</center>
+        </h1>
+        {% if depositing == 'no' %}
+        <ul class="errorlist">
+          <li style="text-align: center">Choose One Price Below</li>
+        </ul>
+        {% endif %}
+        <div class="row">
+          <!-- <div class="row"> -->
+
+          <!-- BRONZE PACK -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="plan-name">Bronze</div>
+                <div class="plan-description">
+                  <div class="plan-price month">$10,000<sub> / month</sub></div>
+                  <p>Double Bitcoin x2 by 10%.</p>
+                </div>
+                <div class="plan-description specs">
+                  50% off the Bitcoin Explorer<br />
+                  100% Free Bitcoin Miner<br />
+                  <strong>$300 Bonus For first Users</strong>
+                </div>
+                <div class="plan-cta">
+                  <p>
+                    <a
+                      class="button"
+                      href="/auth/deposit/10000/"
+                      data-open="get-pro-modal"
+                      aria-controls="get-pro-modal"
+                      aria-haspopup="true"
+                      tabindex="0"
+                      >Deposit $10,000</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SILVER PACK -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="plan-name">Sliver</div>
+                <div class="plan-description">
+                  <div class="plan-price month">
+                    $15,000<sub> / month</sub>
+                  </div>
+                  <p>Double Bitcoin x2 By 30%.</p>
+                </div>
+                <div class="plan-description specs">
+                  2+ Bitcoin Miner<br />
+                  30% off an Bitcoin Explorer <br />
+                  <strong>$300+ Bonus For New Users</strong>
+                </div>
+                <div class="plan-cta">
+                  <p>
+                    <a
+                      class="button"
+                      href="/auth/deposit/15000/"
+                      data-open="get-pro-modal"
+                      style="background-color: silver"
+                      aria-controls="get-pro-modal"
+                      aria-haspopup="true"
+                      tabindex="0"
+                      >Deposit $15,000</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GOLD PACK -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="plan-name">Gold</div>
+                <div class="plan-description">
+                  <div class="plan-price month">
+                    $20,000<sub> / month</sub>
+                  </div>
+                  <p>
+                    Double Bitcoin 3x By 35% with
+                    <strong>MONEY BACK GUARANTY</strong>
+                  </p>
+                </div>
+                <div class="plan-description specs">
+                  4+ Bitcoin Miner<br />
+                  1+ Complete Bitcoin Explorer<br />
+                  <strong>$450+ Bonus For New Users</strong>
+                </div>
+                <div class="plan-cta">
+                  <p>
+                    <a
+                      class="button"
+                      href="/auth/deposit/20000/"
+                      data-open="get-pro-modal"
+                      style="background-color: gold"
+                      aria-controls="get-pro-modal"
+                      aria-haspopup="true"
+                      tabindex="0"
+                      >Deposit $20,000</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIAMOND PACK -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="plan-name">Diamond</div>
+                <div class="plan-description">
+                  <div class="plan-price month">
+                    $25,000<sub> / month</sub>
+                  </div>
+                  <p>
+                   Having <b>10x</b> the benefit from bronze to gold then 
+                   topup with a professional neural networking mining mechnisms.
+                  </p>
+                </div>
+                <div class="plan-description specs">
+                  1-5 Bitcoin Miner<br />
+                  Full access to Bitcoin Explorer<br />
+                  <b>$500+ Bonus monthly</b>
+                </div>
+                <div class="plan-cta">
+                  <p>
+                    <a
+                      class="button"
+                      href="/auth/deposit/25000"
+                      data-open="get-pro-modal"
+                      aria-controls="get-pro-modal"
+                      aria-haspopup="true"
+                      tabindex="0"
+                      style="
+                        background: linear-gradient(45deg, black, #5bcf3cab);"
+                      >Deposit $25,000</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- end contact section -->
+
+
+
+{% endblock content %}

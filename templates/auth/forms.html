@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %}
+<title>{% block title %}Creyp | {{type}}{% endblock title %}</title>
+{% block content %}
+<style>
+  .box_btn a:hover {
+    color: #0cf1f1c7;
+  }
+</style>
+<!-- Login section -->
+<section class="contact_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 px-0">
+        <div class="form_container">
+          <div class="row">
+            <div class="col-lg-9 col-md-10 ml-auto">
+              <h2 style="text-transform: capitalize;text-align: center;margin-top: 10px;">{{type}} Now</h2>
+              {% if e %}
+                <p class="btn btn-danger">{{e}}</p>
+              {% endif %}
+              {% block form %}
+              {% endblock form %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 px-0 mobile-none">
+        <div class="img-box">
+          <img src="{% static 'images/contact-img.jpg' %}" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  var regex = /^(?:[13]{1}[a-km-zA-HJ-NP-Z1-9]{26,33}|bc1[a-z0-9]{39,59})$/;
+  var address = document.getElementById("btc_address").value;
+</script>
+<!-- end contact section -->
+
+{% endblock content %}

@@ -1,0 +1,375 @@
+{% extends 'base.html' %} {% load static %} {% block hcontent %}
+<!-- slider section -->
+<section class="slider_section">
+  <div class="container">
+    <div class="detail-box">
+      <h1>DOUBLE YOUR BITCOIN MONEY 2X</h1>
+      <h5 class="secondary_heading">$100 OF BTC BONUS</h5>
+      <div class="box_container">
+        <div class="box">
+          <div class="num-box">
+            <span id="countDay"> 0 </span>
+          </div>
+          <h5>DAY</h5>
+        </div>
+        <div class="box">
+          <div class="num-box">
+            <span id="countHour"> 0 </span>
+          </div>
+          <h5>Hours</h5>
+        </div>
+        <div class="box">
+          <div class="num-box">
+            <span id="countMin"> 0 </span>
+          </div>
+          <h5>Min</h5>
+        </div>
+        <div class="box">
+          <div class="num-box">
+            <span id="countSec"> 0 </span>
+          </div>
+          <h5>Sec</h5>
+        </div>
+      </div>
+      <a href="/auth/deposit/" class="btn2"> GET STARTED </a>
+    </div>
+  </div>
+</section>
+<!-- end slider section -->
+{% endblock hcontent %}
+<title>{% block title %}Creyp{% endblock title %}</title>
+{% block content %}
+<!-- subscribe section -->
+
+<section class="subscribe_section">
+  <div class="form_container">
+    <div class="mb-sm btc-val">
+      <div class="val-card">
+        <img src="{% static 'images/btc.png' %}" />
+        <div class="coin-data">
+          <p>Bitcoin (BTC)</p>
+          <p id="btc-value"></p>
+          <p class="btc-condition"></p>
+        </div>
+      </div>
+    </div>
+    <section id="graphBitcoin">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+          <div id="tradingview_54dd5" style="width: 100%;" onload='document.querySelector("#tradingview_ac5fc-wrapper>div").style.width = "100%"'></div>
+          <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/tv.js"
+          ></script>
+          <script type="text/javascript">
+            new TradingView.widget({
+              width: "100%",
+              height: 610,
+              symbol: "BTC",
+              interval: "D",
+              timezone: "Etc/UTC",
+              theme: "dark",
+              style: "1",
+              locale: "en",
+              toolbar_bg: "#f1f3f6",
+              enable_publishing: false,
+              allow_symbol_change: true,
+              container_id: "tradingview_54dd5",
+            });
+          </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </section>
+  </div>
+</section>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"
+  defer
+></script>
+
+<!-- end subscribe section -->
+
+<!-- process section -->
+
+<section class="process_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>Check Our Process</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-3">
+        <div class="box">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/p1.jpg' %}" alt="" />
+            </div>
+          </div>
+          <div class="detail-box">
+            <h5>Safe And Secure</h5>
+            <p>
+              Algorithm hashing of your information to avoid tracking from
+              third-party cookies
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="box">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/p2.jpg' %}" alt="" />
+            </div>
+          </div>
+          <div class="detail-box">
+            <h5>World Coverage</h5>
+            <p>
+              Allows anybody from any where in the world to multiply their money
+              with Us.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="box">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/p3.jpg' %}" alt="" />
+            </div>
+          </div>
+          <div class="detail-box">
+            <h5>Anonymus Payment</h5>
+            <p>
+              Third-party services sent by your bank will not be able to know
+              about Creyp
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="box">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/p4.jpg' %}" alt="" />
+            </div>
+          </div>
+          <div class="detail-box">
+            <h5>Instant Pay</h5>
+            <p>
+              Withdrawal will be well authorized, processed and cashed-out to
+              your bitcoin address
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end process section -->
+
+<!-- about section -->
+
+<section class="about_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 px-0">
+        <div class="img-box">
+          <img src="{% static 'images/about-img.jpg' %}" alt="" />
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="detail-box pl-0 pl-md-2">
+          <div class="heading_container">
+            <h2>About Us</h2>
+          </div>
+          <p>
+            Our product make cryptocurrencies like Bitcoin more accessible.
+            Individuals can buy, use, and store them securely with our digital
+            wallet and financial services. Businesses get access to the tools
+            they need to accept cryptocurrency payments.
+          </p>
+          <a href="/site/about"> Read More </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end about section -->
+<!-- innovative section -->
+
+<section class="invt_section layout_padding" style="background-color: #000;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="detail-box" style="color: #fff;">
+          <div class="heading_container">
+            <h2>Innovative Payment Network</h2>
+          </div>
+          <p>
+            Creyp has a 256bit 12-Stocktaking of Innovative Digital Payment
+            Mechanisms (GPFI) <strong>Innovative Payment Network</strong>, which
+            means that your money is secured (with incognito transactions) and
+            retrievable
+          </p>
+          <a
+            href="https://www.gpfi.org/sites/gpfi/files/documents/12-Stocktaking%20of%20Innovative%20Digital%20Payment%20Mechanisms%20Supporting....pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read More
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="img-box">
+          <img src="{% static 'images/innovative-img.jpg' %}" style="border-radius: 15px;" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end innovative section -->
+
+<!-- deposit section -->
+<section class="contact_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 px-0">
+        <div class="form_container">
+          <div class="row">
+            <div class="col-lg-9 col-md-10 ml-auto">
+              <h2>Deposit Now</h2>
+              <form action="/auth/register/" method="POST">
+                <div>
+                  {% csrf_token %}
+                </div>
+                <div>
+                  <input type="text" name="btc_address" maxlength="36" placeholder="BTC Address" />
+                </div>
+
+                <div>
+                  <input type="password" maxlength="4" name="pin" placeholder="PIN" />
+                </div>
+
+                <div class="btn_box">
+                  <button type="submit" name="login_btn">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 px-0">
+        <div class="img-box">
+          <img src="{% static 'images/contact-img.jpg' %}" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end contact section -->
+
+<!-- client section -->
+
+<section class="client_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>Testimonial</h2>
+        <hr />
+      </div>
+      <div
+        id="carouselExample2Controls"
+        class="carousel slide"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-lg-7 col-md-9 mx-auto">
+                <div class="client_container">
+                  <div class="img-box">
+                    <img src="{% static 'images/JeniferHolman.jpg' %}" alt="" />
+                  </div>
+                  <div class="detail-box">
+                    <h5>Jenifer Holman</h5>
+                    <p>
+                      Creyp changed my life, has at first i thought it was a scam but when i tried it i was amazed
+                    </p>
+                    <span>
+                      <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-lg-7 col-md-9 mx-auto">
+                <div class="client_container">
+                  <div class="img-box">
+                    <img src="{% static 'images/Lisa-Benjamin.jpg' %}" alt="" />
+                  </div>
+                  <div class="detail-box">
+                    <h5>Dr. Lisa Benjamin </h5>
+                    <p>
+                      Making your money work for you! is the aim of Creyp. So just put all your worries aside and change your life with the thier amazing programe!
+                    </p>
+                    <span>
+                      <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-lg-7 col-md-9 mx-auto">
+                <div class="client_container">
+                  <div class="img-box">
+                    <img src="{% static 'images/client-img.png' %}" alt="" />
+                  </div>
+                  <div class="detail-box">
+                    <h5>David Benson</h5>
+                    <p>
+                      I was a very broke person i will not lie, but went to the bank and took a loan, then boom! like that my life change.
+                    </p>
+                    <span>
+                      <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#carouselExample2Controls"
+          role="button"
+          data-slide="prev"
+        >
+          <span>
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carouselExample2Controls"
+          role="button"
+          data-slide="next"
+        >
+          <span>
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+<!-- end client section -->
+{% endblock content %}

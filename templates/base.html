@@ -1,0 +1,314 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <!-- Site Metas -->
+    <meta name="keywords" content="btc,bitcoin,money,double,trade,invest" />
+    <meta
+      name="description"
+      content="World's #1 Bitcoin Algorithmical Trading Platform which has an Innovative Digital Payment Mechanism"
+    />
+    <meta name="author" content="Creyp inc." />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'images/apple-touch-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'images/favicon-32x32.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'images/favicon-16x16.png' %}"
+    />
+    <link rel="manifest" href="{% static 'site.webmanifest' %}" />
+
+    <title>{% block title %} {% endblock title %}</title>
+
+    <!-- bootstrap core css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap.css' %}"
+    />
+
+    <!-- fonts style -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div
+      class="hero_area"
+      {% if show_counter %}
+      style="height: 100vh;"
+      {% endif %}
+    >
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="/">
+              <span
+                style="background-image: url({%static 'images/hero-bg.jpg' %})"
+              >
+                Creyp
+              </span>
+            </a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/site/about"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/site/process">Process </a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="/site/why">Why Us</a>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/auth/deposit/">Deposit Now</a>
+                </li>
+              </ul>
+              <div class="quote_btn-container">
+                <a class="" href="/auth/account/login"> Login</a>
+                <a href="/auth/account/signup" class="quote_btn"> Sign Up </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- MQ -->
+      <marquee class="mq" direction="left">
+        Attention: $100 will be ending by Mar 24, 2022. So hurry up, signup and
+        get your reward 😎. Check the Bitcoin Address well before you begin a
+        transaction. Note: <b>DONT SHARE YOUR TRANSACTION ID WITH ANYBODY</b>
+      </marquee>
+      <!-- end header section -->
+      {% block hcontent %} {% endblock hcontent %}
+    </div>
+    {% block content %} {% endblock content %}
+
+    <!-- footer section -->
+    <section class="foot_section">
+      <footer class="footer-section">
+        <div class="container">
+          <div class="footer-cta pt-5 pb-5">
+            <div class="row">
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="fa fa-map-pin"></i>
+                  <div class="cta-text">
+                    <h4>Find us</h4>
+                    <span>
+                      R. Rojas 347, J5402FSG San Juan, California
+                      <a
+                        href="https://goo.gl/maps/HQ3Wu8DjQnf6BtMd9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >↗</a
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="fa fa-phone"></i>
+                  <div class="cta-text">
+                    <h4>Call us</h4>
+                    <span>
+                      <a
+                        href="tel:+16506009939"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >+1 (650) 600-9939 ↗ </a
+                      >(California)</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="fa fa-envelope-open"></i>
+                  <div class="cta-text">
+                    <h4>Mail us</h4>
+                    <span>
+                      <a href="mailto:creypinvest@gmail.com">
+                        creypinvest@gmail.com ↗
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-content pt-5 pb-5">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 mb-50">
+                <div class="footer-widget">
+                  <div class="footer-logo">
+                    <a href="/"
+                      ><img
+                        src="{% static 'images/favicon.ico' %}"
+                        class="img-fluid"
+                        alt="logo"
+                    /></a>
+                  </div>
+                  <div class="footer-text">
+                    <p>
+                      World's #1 Bitcoin Algorithmical Trading Platform which
+                      has an Innovative Digital Payment Mechanism
+                    </p>
+                  </div>
+                  <!-- <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div> -->
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                    <h3>Useful Links</h3>
+                  </div>
+                  <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/site/process">How It Works ?</a></li>
+                    <li><a href="/site/about">About us</a></li>
+                    <li>
+                      <a
+                        href="mailto:support@creyp.com"
+                        title="Message will be answered after 3 work days"
+                        >Contact us</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                    <h3>Subscribe</h3>
+                  </div>
+                  <div class="footer-text mb-25">
+                    <p>
+                      Don’t miss to subscribe to our promotional updates, kindly
+                      fill the form below.
+                    </p>
+                  </div>
+                  <div class="subscribe-form">
+                    <form action="#">
+                      <input type="text" placeholder="Email Address" />
+                      <button><i class="fa fa-telegram"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright-area">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                <div class="copyright-text">
+                  <p>
+                    Copyright &copy; 2013-<sm id="displayYear">2022</sm>, All
+                    Right Reserved <a href="/">Creyp</a>
+                  </p>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                <div class="footer-menu">
+                  <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Policy</a></li>
+                    <li>
+                      <a
+                        href="mailto:creypinvest@gmail.com"
+                        title="Message will be answered after 3 work days"
+                        >Contact</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+    <!-- footer section -->
+    <!-- Start of txt.me widget code -->
+    <script
+      src="https://v2.txt.me/livechat/js/wrapper/f019e840816b491d9fdd77c868d76bcd"
+      async
+    ></script>
+    <noscript><a
+        href="https://txt.me/reviews/f019e840816b491d9fdd77c868d76bcd"
+        rel="nofollow"
+        >Rate Creyp customer support</a></noscript>
+
+    <!-- End of txt.me widget code -->
+    
+    <!-- jQuery -->
+    <script
+      type="text/javascript"
+      src="{% static 'js/jquery-3.4.1.min.js' %}"
+    ></script>
+    {% block js %}{% endblock js %}
+    <!-- bootstrap js -->
+    <script
+      type="text/javascript"
+      src="{% static 'js/bootstrap.js' %}"
+    ></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  </body>
+</html>

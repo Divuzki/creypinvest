@@ -1,0 +1,28 @@
+{% extends 'auth/forms.html' %}
+{% block form %}
+<form action="/auth/account/{{type|slugify}}/" method="POST">
+  {% csrf_token %}
+  {% for field in form %}
+  <p>
+    {{ field.label_tag }}<br>
+    {{ field }}
+    {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+    {% endfor %}
+  </p>
+{% endfor %}
+  <div class="btn_box">
+    <button>
+       Get Started
+    </button>
+  </div>
+  <div class="btn_box">
+    <a
+      href="/auth/account/login"
+      style="color: aqua; display: flex; justify-content: center"
+      class="mt-2"
+      >⬅ Login</a
+    >
+  </div>
+</form>
+{% endblock form %}

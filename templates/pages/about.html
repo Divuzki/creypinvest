@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Creyp | About Us{% endblock title %}</title>
+{% block content %}
+<!-- about section -->
+  <section class="about_section">
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img-box">
+            <img src="{% static 'images/about-img.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="detail-box pl-0 pl-md-2">
+            <div class="heading_container">
+              <h2>
+                About Us
+              </h2>
+            </div>
+            <p>
+              Our product makes Bitcoin more accessible and secured. 
+              Individuals can buy, use, and store them securely with our digital wallet and financial services. 
+              Businesses get access to the tools they need to accept cryptocurrency payments. 
+              Developers get support building technologies that promote financial inclusivity. 
+              Everyone who visits us can learn about the future of money from a trusted source.
+              To deliver on that promise, we have come to work every day since 2013 to create the simplest bitcoin financial service out there - 
+              spoken in a language you can understand, and backed by customer service you can count on.
+             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- end about section -->
+{% endblock content %}
