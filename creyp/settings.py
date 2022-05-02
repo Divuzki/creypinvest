@@ -34,13 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'core',
-    # 'site',
 ]
 if USE_S3:
     INSTALLED_APPS += 'storages'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
