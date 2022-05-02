@@ -34,9 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'core',
+    'storages',
 ]
-if USE_S3:
-    INSTALLED_APPS += 'storages'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
