@@ -1,105 +1,42 @@
-{% extends 'base.html' %} {% load static %}
-<title>{% block title %}Creyp | {{type}}{% endblock title %}</title>
-{% block content %}
-<style>
-  .box_btn a:hover {
-    color: #0cf1f1c7;
-  }
-</style>
-<!-- Login section -->
-<section class="contact_section">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 px-0">
-        <div class="form_container">
-          <div class="row">
-            <div class="col-lg-9 col-md-10 ml-auto">
-              <h2 style="text-transform: capitalize">{{type}} Now</h2>
-              {% if e %}
-                <p class="btn btn-danger">{{e}}</p>
-              {% endif %}
-              <form action="/auth/account/{{type|slugify}}/" method="POST">
-                {% csrf_token %}
-                <div>
-                  {% if type == 'Signup' %}
-                  <input type="text" name="uname" id="uname" placeholder="username">
-                  <input type="email" name="email" id="email" placeholder="email">
-                  {% else %}
-                  <input
-                    type="text"
-                    name="btc_address"
-                    id="btc_address"
-                    placeholder="Bitcoin Address"
-                    min="25"
-                    max="36"
-                    maxlength="36"
-                    minlength="25"
-                    required
-                    />
-                    <!-- pattern="/(?:[13]{1}[a-km-zA-HJ-NP-Z1-9]{26,36}|bc1[a-z0-9]{26,36})/" -->
-                  <div class="requirements">
-                    Must be a valid Bitcoin Address.
-                  </div>
-                </div>
-
-                <div class="none">
-                  <!-- <input
-                    type="text"
-                    name="pin"
-                    maxlength="4"
-                    minlength="4"
-                    max="4"
-                    min="4"
-                    placeholder="4 digit pin"
-                    required
-                  />
-                  <div class="requirements">
-                    Pin Must be 4 digits.
-                  </div> -->
-                </div>
-                {% endif %}
-                <div>
-                  <input type="password" name="password" id="password" placeholder="password">
-                </div>
-                <div class="btn_box">
-                  <button>
-                    {% if type == 'Login' %} Login {% else %} Get Started {% endif %}
-                  </button>
-                </div>
-                <div class="btn_box">
-                  {% if type == 'Login' %}
-                  <a
-                    href="/auth/account/signup"
-                    style="color: aqua; display: flex; justify-content: center"
-                    class="mt-2"
-                    >Signup ↗</a
-                  >
-                  {% else %}
-                  <a
-                    href="/auth/account/login"
-                    style="color: aqua; display: flex; justify-content: center"
-                    class="mt-2"
-                    >⬅ Login</a
-                  >
-                  {% endif %}
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 px-0">
-        <div class="img-box">
-          <img src="{% static 'images/contact-img.jpg' %}" alt="" />
-        </div>
-      </div>
+{% extends 'auth/forms.html' %}
+{% load static %}
+<title>{% block title %}{{type}}{% endblock title %}</title>
+{% block form %}
+<form class="card login-form inner-content" action="/auth/account/{{type|slugify}}/" method="POST">
+    <div class="card-body">
+    <div class="title">
+    <h3>Sign In Now</h3>
+    <p>Sign in by entering the information below.</p>
     </div>
-  </div>
-</section>
-<script>
-  var regex = /^(?:[13]{1}[a-km-zA-HJ-NP-Z1-9]{26,33}|bc1[a-z0-9]{39,59})$/;
-  var address = document.getElementById("btc_address").value;
-</script>
-<!-- end contact section -->
-
-{% endblock content %}
+    <div class="input-head">
+    <div class="form-group input-group">
+    <label><i class="lni lni-envelope"></i></label>
+    <input class="form-control" name="email" type="email" id="reg-email" placeholder="Enter your email" required>
+    </div>
+    <div class="form-group input-group">
+    <label><i class="lni lni-lock-alt"></i></label>
+    <input class="form-control" name="password1" type="password" id="reg-pass" placeholder="Enter your password" required>
+    </div>
+    </div>
+    <div class="d-flex none flex-wrap justify-content-between bottom-content">
+    <div class="form-check">
+    <input type="checkbox" class="form-check-input width-auto" id="exampleCheck1">
+    <label class="form-check-label">Remember me</label>
+    </div>
+    <a class="lost-pass" href="reset-password.html">Forgot password?</a>
+    </div>
+    <div class="button">
+    <button class="btn" type="submit">Sign In</button>
+    </div>
+    <div class="or"><span>Or</span></div>
+    <div class="alt-option">
+    <span class="small-title">Sign in with your work email</span>
+    <a href="javascript:void(0)" class="option-button"><img src="assets/images/account-login/google.png" alt="#">Sign
+    In With Google
+    </a>
+    </div>
+    <h4 class="create-account">Don't have an account? <a href="signup.html">Sign Up Here</a>
+    </h4>
+    </div>
+</form>
+{% endblock form %}

@@ -3,7 +3,7 @@ from .views import deposit, depositing, signup, login_view, activation_sent_view
 
 urlpatterns = [
     path("account/login/", login_view, name="login"),
-    path("register/", signup, name="login"),
+    path("register/", signup, name="register"),
     path("account/signup/", signup, name="signup"),
     path("deposit/", deposit, name="deposit"),
     path("deposit/<int:price>/", depositing, name="dp-price"),

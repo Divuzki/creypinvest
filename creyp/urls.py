@@ -8,7 +8,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('site/', include('core.urls')),
     path('', index, name="home"),
-    path('auth/', include('users.urls'))
+    path('auth/', include('users.urls')),
+    path('auth/account/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,375 +1,905 @@
-{% extends 'base.html' %} {% load static %} {% block hcontent %}
-<!-- slider section -->
-<section class="slider_section">
-  <div class="container">
-    <div class="detail-box">
-      <h1>DOUBLE YOUR BITCOIN MONEY 2X</h1>
-      <h5 class="secondary_heading">$100 OF BTC BONUS</h5>
-      <div class="box_container">
-        <div class="box">
-          <div class="num-box">
-            <span id="countDay"> 0 </span>
-          </div>
-          <h5>DAY</h5>
-        </div>
-        <div class="box">
-          <div class="num-box">
-            <span id="countHour"> 0 </span>
-          </div>
-          <h5>Hours</h5>
-        </div>
-        <div class="box">
-          <div class="num-box">
-            <span id="countMin"> 0 </span>
-          </div>
-          <h5>Min</h5>
-        </div>
-        <div class="box">
-          <div class="num-box">
-            <span id="countSec"> 0 </span>
-          </div>
-          <h5>Sec</h5>
-        </div>
-      </div>
-      <a href="/auth/deposit/" class="btn2"> GET STARTED </a>
-    </div>
-  </div>
-</section>
-<!-- end slider section -->
-{% endblock hcontent %}
-<title>{% block title %}Creyp{% endblock title %}</title>
+{% extends 'base.html' %} {% load static %} 
+<title>{% block title %}Home{% endblock title %}</title>
 {% block content %}
-<!-- subscribe section -->
 
-<section class="subscribe_section">
-  <div class="form_container">
-    <div class="mb-sm btc-val">
-      <div class="val-card">
-        <img src="{% static 'images/btc.png' %}" />
-        <div class="coin-data">
-          <p>Bitcoin (BTC)</p>
-          <p id="btc-value"></p>
-          <p class="btc-condition"></p>
-        </div>
-      </div>
-    </div>
-    <section id="graphBitcoin">
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container">
-          <div id="tradingview_54dd5" style="width: 100%;" onload='document.querySelector("#tradingview_ac5fc-wrapper>div").style.width = "100%"'></div>
-          <script
-            type="text/javascript"
-            src="https://s3.tradingview.com/tv.js"
-          ></script>
-          <script type="text/javascript">
-            new TradingView.widget({
-              width: "100%",
-              height: 610,
-              symbol: "BTC",
-              interval: "D",
-              timezone: "Etc/UTC",
-              theme: "dark",
-              style: "1",
-              locale: "en",
-              toolbar_bg: "#f1f3f6",
-              enable_publishing: false,
-              allow_symbol_change: true,
-              container_id: "tradingview_54dd5",
-            });
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-    </section>
-  </div>
-</section>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"
-  defer
-></script>
-
-<!-- end subscribe section -->
-
-<!-- process section -->
-
-<section class="process_section layout_padding">
+<section class="hero-area">
+  <img class="hero-shape" src="{% static 'images/hero/hero-shape.svg' %}" alt="#" />
   <div class="container">
-    <div class="heading_container heading_center">
-      <h2>Check Our Process</h2>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-3">
-        <div class="box">
-          <div class="img_container">
-            <div class="img-box">
-              <img src="{% static 'images/p1.jpg' %}" alt="" />
-            </div>
-          </div>
-          <div class="detail-box">
-            <h5>Safe And Secure</h5>
-            <p>
-              Algorithm hashing of your information to avoid tracking from
-              third-party cookies
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="box">
-          <div class="img_container">
-            <div class="img-box">
-              <img src="{% static 'images/p2.jpg' %}" alt="" />
-            </div>
-          </div>
-          <div class="detail-box">
-            <h5>World Coverage</h5>
-            <p>
-              Allows anybody from any where in the world to multiply their money
-              with Us.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="box">
-          <div class="img_container">
-            <div class="img-box">
-              <img src="{% static 'images/p3.jpg' %}" alt="" />
-            </div>
-          </div>
-          <div class="detail-box">
-            <h5>Anonymus Payment</h5>
-            <p>
-              Third-party services sent by your bank will not be able to know
-              about Creyp
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="box">
-          <div class="img_container">
-            <div class="img-box">
-              <img src="{% static 'images/p4.jpg' %}" alt="" />
-            </div>
-          </div>
-          <div class="detail-box">
-            <h5>Instant Pay</h5>
-            <p>
-              Withdrawal will be well authorized, processed and cashed-out to
-              your bitcoin address
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- end process section -->
-
-<!-- about section -->
-
-<section class="about_section">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 px-0">
-        <div class="img-box">
-          <img src="{% static 'images/about-img.jpg' %}" alt="" />
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="detail-box pl-0 pl-md-2">
-          <div class="heading_container">
-            <h2>About Us</h2>
-          </div>
-          <p>
-            Our product make cryptocurrencies like Bitcoin more accessible.
-            Individuals can buy, use, and store them securely with our digital
-            wallet and financial services. Businesses get access to the tools
-            they need to accept cryptocurrency payments.
+    <div class="row align-items-center">
+      <div class="col-lg-5 col-md-12 col-12">
+        <div class="hero-content">
+          <h4 class="wow fadeInUp" data-wow-delay=".2s">
+            Start Envesting & Earn Money
+          </h4>
+          <h1 class="wow fadeInUp" data-wow-delay=".4s">
+            Say goodbye to <br />idle
+            <span>
+              <img
+                class="text-shape"
+                src="{% static 'images/hero/text-shape.svg' %}"
+                alt="#"
+              />
+              money.
+            </span>
+          </h1>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            Invest your spare change in Bitcoin and save with<br />
+            crypto to e arn interest in real time.
           </p>
-          <a href="/site/about"> Read More </a>
+          <div class="button wow fadeInUp" data-wow-delay=".8s">
+            <a href="/about" class="btn">Discover More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 col-12">
+        <div class="hero-image">
+          <img
+            class="main-image"
+            src="{% static 'images/hero/home2-bg.png' %}"
+            alt="#"
+          />
+          <img
+            class="h2-move-1"
+            src="{% static 'images/hero/h2-bit-l.png' %}"
+            alt="#"
+          />
+          <img
+            class="h2-move-2"
+            src="{% static 'images/hero/h2-bit-m.png' %}"
+            alt="#"
+          />
+          <img
+            class="h2-move-3"
+            src="{% static 'images/hero/h2-bit-s.png' %}"
+            alt="#"
+          />
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- end about section -->
-<!-- innovative section -->
-
-<section class="invt_section layout_padding" style="background-color: #000;">
+<div class="feature section">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <div class="detail-box" style="color: #fff;">
-          <div class="heading_container">
-            <h2>Innovative Payment Network</h2>
-          </div>
-          <p>
-            Creyp has a 256bit 12-Stocktaking of Innovative Digital Payment
-            Mechanisms (GPFI) <strong>Innovative Payment Network</strong>, which
-            means that your money is secured (with incognito transactions) and
-            retrievable
+      <div class="col-12">
+        <div class="section-title">
+          <h3 class="wow zoomIn" data-wow-delay=".2s">Why choose us</h3>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">Our features</h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            There are many variations of passages of Lorem Ipsum available,
+            but the majority have suffered alteration in some form.
           </p>
-          <a
-            href="https://www.gpfi.org/sites/gpfi/files/documents/12-Stocktaking%20of%20Innovative%20Digital%20Payment%20Mechanisms%20Supporting....pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read More
-          </a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="img-box">
-          <img src="{% static 'images/innovative-img.jpg' %}" style="border-radius: 15px;" alt="" />
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- end innovative section -->
-
-<!-- deposit section -->
-<section class="contact_section">
-  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 px-0">
-        <div class="form_container">
-          <div class="row">
-            <div class="col-lg-9 col-md-10 ml-auto">
-              <h2>Deposit Now</h2>
-              <form action="/auth/register/" method="POST">
-                <div>
-                  {% csrf_token %}
-                </div>
-                <div>
-                  <input type="text" name="btc_address" maxlength="36" placeholder="BTC Address" />
-                </div>
-
-                <div>
-                  <input type="password" maxlength="4" name="pin" placeholder="PIN" />
-                </div>
-
-                <div class="btn_box">
-                  <button type="submit" name="login_btn">Login</button>
-                </div>
-              </form>
-            </div>
+      <div
+        class="col-lg-4 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".2s"
+      >
+        <div class="feature-box">
+          <div class="tumb">
+            <img src="{% static 'images/features/feature-icon-1.png' %}" alt="" />
           </div>
+          <h4 class="text-title">Instant Exchage</h4>
+          <p>
+            Invest in Bitcoin on the regular or save with one of the highest
+            interest rates on the market.
+          </p>
         </div>
-      </div>
-      <div class="col-md-6 px-0">
-        <div class="img-box">
-          <img src="{% static 'images/contact-img.jpg' %}" alt="" />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end contact section -->
-
-<!-- client section -->
-
-<section class="client_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>Testimonial</h2>
-        <hr />
       </div>
       <div
-        id="carouselExample2Controls"
-        class="carousel slide"
-        data-ride="carousel"
+        class="col-lg-4 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".4s"
       >
-        <div class="carousel-inner">
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-lg-7 col-md-9 mx-auto">
-                <div class="client_container">
-                  <div class="img-box">
-                    <img src="{% static 'images/JeniferHolman.jpg' %}" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h5>Jenifer Holman</h5>
-                    <p>
-                      Creyp changed my life, has at first i thought it was a scam but when i tried it i was amazed
-                    </p>
-                    <span>
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
+        <div class="feature-box">
+          <div class="tumb">
+            <img src="{% static 'images/features/feature-icon-2.png' %}" alt="" />
+          </div>
+          <h4 class="text-title">Safe & Secure</h4>
+          <p>
+            Your wallet are Stored with 256bit end-to-end encryption with only the rightful owner can access it.
+          </p>
+        </div>
+      </div>
+      <div
+        class="col-lg-4 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".6s"
+      >
+        <div class="feature-box">
+          <div class="tumb">
+            <img src="{% static 'images/features/feature-icon-3.png' %}" alt="" />
+          </div>
+          <h4 class="text-title">Instant Trading</h4>
+          <p>
+            Invest in Bitcoin on the regular or save with one of the highest
+            interest rates on the market.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="start-process section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3 class="wow zoomIn" data-wow-delay=".2s">
+            Ready to get started?
+          </h3>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">
+            3 Steps To Start
+          </h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            To get started here the important steps to follow 
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-12">
+      <div class="single-process">
+      <span class="serial">01</span>
+      <h3>Create Your Account & Wallet</h3>
+      <p>Firstly, create an account and verify your email<p>
+      </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-12">
+      <div class="single-process">
+      <span class="serial">02</span>
+      <h3>Make Payment</h3>
+      <p>Deposit your idle money, with our minimum as $500.</p>
+      </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-12">
+      <div class="single-process">
+      <span class="serial">03</span>
+      <h3>Invest</h3>
+      <p>CreypInvest trained Al will predict and trade your bitcoin in the stocks market</p>
+      </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+<section class="team section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3 class="wow zoomIn" data-wow-delay=".2s">Expert Team</h3>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">Meet Our Team</h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            This are the major people who made this "CreypInvest Inc." where it is now!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-lg-3 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".3s"
+      >
+        <div class="single-team">
+          <div class="team-image">
+            <img src="{% static 'images/team/team4.jpg' %}" alt="#" />
+          </div>
+          <div class="content">
+            <h4>
+              Deco Milan
+              <span>Founder</span>
+            </h4>
+            <ul class="social">
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-facebook-filled"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-twitter-original"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-linkedin-original"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-3 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".5s"
+      >
+        <div class="single-team">
+          <div class="team-image">
+            <img src="{% static 'images/team/team1.jpg' %}" alt="#" />
+          </div>
+          <div class="content">
+            <h4>
+              Liza Marko
+              <span>Developer</span>
+            </h4>
+            <ul class="social">
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-facebook-filled"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-twitter-original"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-linkedin-original"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-3 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".7s"
+      >
+        <div class="single-team">
+          <div class="team-image">
+            <img src="{% static 'images/team/team2.jpg' %}" alt="#" />
+          </div>
+          <div class="content">
+            <h4>
+              John Smith
+              <span>Designer</span>
+            </h4>
+            <ul class="social">
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-facebook-filled"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-twitter-original"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-linkedin-original"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-3 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".9s"
+      >
+        <div class="single-team">
+          <div class="team-image">
+            <img src="{% static 'images/team/team3.jpg' %}" alt="#" />
+          </div>
+          <div class="content">
+            <h4>
+              Amion Doe
+              <span>Co-Founder</span>
+            </h4>
+            <ul class="social">
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-facebook-filled"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-twitter-original"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="lni lni-linkedin-original"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="road-map section" style="background-image:url({% static 'images/road-map/bg.png' %})">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">Road Map</h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            There are many variations of passages of Lorem Ipsum available,
+            but the majority have suffered alteration in some form.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="top-row">
+      <div class="">
+        <div class="row road-map-slider">
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map down">
+              <span class="arrow"></span>
+              <h3>
+                Apr 10,2018
+                <span>Development Started</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map">
+              <span class="arrow"></span>
+              <h3>
+                May 15,2018
+                <span>Exchange Bitcontent to Bitcoin</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map down">
+              <span class="arrow"></span>
+              <h3>
+                Jan 05,2018
+                <span>BTCC mode of payment</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map">
+              <span class="arrow"></span>
+              <h3>
+                Mar 210,2019
+                <span>Send-Receive coin Bitconcent & mobile</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map down">
+              <span class="arrow"></span>
+              <h3>
+                Feb 25,2020
+                <span>Coin Marketcap, World Coin Index</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map">
+              <span class="arrow"></span>
+              <h3>
+                Dec 22,2020
+                <span>BTCC mode of payment in Bitcoin</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map down">
+              <span class="arrow"></span>
+              <h3>
+                Feb 25,2020
+                <span>Coin Marketcap, World Coin Index</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map">
+              <span class="arrow"></span>
+              <h3>
+                Jan 05,2018
+                <span>BTCC mode of payment</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map down">
+              <span class="arrow"></span>
+              <h3>
+                May 15,2018
+                <span>Exchange Bitcontent to Bitcoin</span>
+              </h3>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-12 p-0">
+            <div class="single-map">
+              <span class="arrow"></span>
+              <h3>
+                Dec 22,2020
+                <span>BTCC mode of payment in Bitcoin</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials style2 section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3 class="wow zoomIn" data-wow-delay=".2s">Customer Reviews</h3>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">
+            Our Testimonials
+          </h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            This are testimonals by verified members of Creyp Invest.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row testimonial-slider">
+      <div class="col-lg-6 col-12">
+        <div class="single-testimonial">
+          <div class="inner-content">
+            <div class="quote-icon">
+              <i class="lni lni-quotation"></i>
+            </div>
+            <div class="text">
+              <p>
+                “After a year of Trial and Error, Joy, Pain and £3000 hole in my account fate led me to Creyp Invest. 
+                After only 1 week being a member I feel like a real Trader for the very first time.”
+              </p>
+            </div>
+            <div class="author">
+              <img src="{% static 'images/testimonial/JeniferHolman.jpg' %}" alt="#" />
+              <h4 class="name">
+                Jenifer Holman
+                <span class="deg">Business Manager</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="single-testimonial">
+          <div class="inner-content">
+            <div class="quote-icon">
+              <i class="lni lni-quotation"></i>
+            </div>
+            <div class="text">
+              <p>
+                “If you are serious about becoming successful in trading, and transforming the way you approach the Crypto market forever,
+                 I can’t recommend Creyp's Team highly enough as a coach and mentor.”
+              </p>
+            </div>
+            <div class="author">
+              <img src="{% static 'images/testimonial/testi-2.png' %}" alt="#" />
+              <h4 class="name">
+                David Warner
+                <span class="deg">Business Analyst</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="single-testimonial">
+          <div class="inner-content">
+            <div class="quote-icon">
+              <i class="lni lni-quotation"></i>
+            </div>
+            <div class="text">
+              <p>
+                “I found Creyp Invest on Twitter and became interested in trying price action without all the lagging indicators. 
+                After trying everything else in this market for three years I decided to get serious and really pursue this form of trading.”
+              </p>
+            </div>
+            <div class="author">
+              <img src="{% static 'images/testimonial/testi-1.png' %}" alt="#" />
+              <h4 class="name">
+                Jems Gilario
+                <span class="deg">Business Man</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="single-testimonial">
+          <div class="inner-content">
+            <div class="quote-icon">
+              <i class="lni lni-quotation"></i>
+            </div>
+            <div class="text">
+              <p>
+                “Thanks Deco Milan [Founder] for providing such a great site. 
+                I can honestly say that the education I obtained after joining your site in 
+                just a few short months has drastically helped me to become a more successful trader.”
+              </p>
+            </div>
+            <div class="author">
+              <img src="{% static 'images/testimonial/Lisa-Benjamin.jpg' %}" alt="#" />
+              <h4 class="name">
+                Lisa Benjamin
+                <span class="deg">Business Woman</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="single-testimonial">
+          <div class="inner-content">
+            <div class="quote-icon">
+              <i class="lni lni-quotation"></i>
+            </div>
+            <div class="text">
+              <p>
+                “Since joining, my trading and most importantly - my realization of the "patience factor" has brought me to a completely new level of trading.
+                I am so glad that I have finally joined; after following Creyp for over a year now... and even when I get to the point of trading full time... I will never leave here either!”
+              </p>
+            </div>
+            <div class="author">
+              <img src="{% static 'images/testimonial/testi-3.png' %}" alt="#" />
+              <h4 class="name">
+                Jems Gilario
+                <span class="deg">Graphics Designer</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blog-section section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3 class="wow zoomIn" data-wow-delay=".2s">Blogs</h3>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Latest News</h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            There are many variations of passages of Lorem Ipsum available,
+            but the majority have suffered alteration in some form.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-lg-4 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".4s"
+      >
+        <div class="single-blog-grid">
+          <div class="blog-img">
+            <a href="blog-single.html">
+              <img src="{% static 'images/blog/blog-1.png' %}" alt="#" />
+            </a>
+          </div>
+          <div class="blog-content">
+            <div class="meta-info">
+              <a class="date" href="javascript:void(0)"
+                ><i class="lni lni-timer"></i> 10 June 2023
+              </a>
+              <a class="author" href="javascript:void(0)"
+                ><i class="lni lni-user"></i> Anjelio Joly
+              </a>
+            </div>
+            <h4>
+              <a href="blog-single.html"
+                >The Intersection Where Blockchain Meets Energy.</a
+              >
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet, adipscing elitr, sit gifted sed
+              diam nonumy eirmod tempor ividunt dolore.
+            </p>
+            <div class="button">
+              <a href="blog-single.html" class="btn">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-4 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".6s"
+      >
+        <div class="single-blog-grid">
+          <div class="blog-img">
+            <a href="blog-single.html">
+              <img src="{% static 'images/blog/blog-2.png' %}" alt="#" />
+            </a>
+          </div>
+          <div class="blog-content">
+            <div class="meta-info">
+              <a class="date" href="javascript:void(0)"
+                ><i class="lni lni-timer"></i> 5 Aug 2023
+              </a>
+              <a class="author" href="javascript:void(0)"
+                ><i class="lni lni-user"></i> Kumila ksusi
+              </a>
+            </div>
+            <h4>
+              <a href="blog-single.html"
+                >Pros & Cons of Premined Cryptocurrencies.</a
+              >
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet, adipscing elitr, sit gifted sed
+              diam nonumy eirmod tempor ividunt dolore.
+            </p>
+            <div class="button">
+              <a href="blog-single.html" class="btn">Read Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-4 col-md-6 col-12 wow fadeInUp"
+        data-wow-delay=".8s"
+      >
+        <div class="single-blog-grid">
+          <div class="blog-img">
+            <a href="blog-single.html">
+              <img src="{% static 'images/blog/blog-3.png' %}" alt="#" />
+            </a>
+          </div>
+          <div class="blog-content">
+            <div class="meta-info">
+              <a class="date" href="javascript:void(0)"
+                ><i class="lni lni-timer"></i> 25 Dec 2023
+              </a>
+              <a class="author" href="javascript:void(0)"
+                ><i class="lni lni-user"></i> Alex Jendro
+              </a>
+            </div>
+            <h4>
+              <a href="blog-single.html"
+                >How & Where To Market Your ICO Startup.</a
+              >
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet, adipscing elitr, sit gifted sed
+              diam nonumy eirmod tempor ividunt dolore.
+            </p>
+            <div class="button">
+              <a href="blog-single.html" class="btn">Read Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h3 class="wow zoomIn" data-wow-delay=".2s">Faq</h3>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">
+            frequently asked questions
+          </h2>
+          <p class="wow fadeInUp" data-wow-delay=".6s">
+            Here are some frequently asked questions we see our customers struggle with...
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-12">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading1">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse1"
+                aria-expanded="false"
+                aria-controls="collapse1"
+              >
+                <span class="title"
+                  >How can I Invest More Than The $25,000?</span
+                ><i class="lni lni-plus"></i>
+              </button>
+            </h2>
+            <div
+              id="collapse1"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading1"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <p>
+                  We will need your SSN or ID then submit it to use at <a href="mailto:creypinvest@gmail.com">support@crepyinvest.com</a>.
+                </p>
+                <p>
+                  After that your information will then undergo confirmation for at least 10days.
+                </p>
               </div>
             </div>
           </div>
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="col-lg-7 col-md-9 mx-auto">
-                <div class="client_container">
-                  <div class="img-box">
-                    <img src="{% static 'images/Lisa-Benjamin.jpg' %}" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h5>Dr. Lisa Benjamin </h5>
-                    <p>
-                      Making your money work for you! is the aim of Creyp. So just put all your worries aside and change your life with the thier amazing programe!
-                    </p>
-                    <span>
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading2">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse2"
+                aria-expanded="false"
+                aria-controls="collapse2"
+              >
+                <span class="title"
+                  >What cryptocurrencies can I Deposit?</span
+                ><i class="lni lni-plus"></i>
+              </button>
+            </h2>
+            <div
+              id="collapse2"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading2"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <p>
+                  Currently we only allow bitcoin for now because our ethereum wallet is undergoing development.
+                </p>
               </div>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-lg-7 col-md-9 mx-auto">
-                <div class="client_container">
-                  <div class="img-box">
-                    <img src="{% static 'images/client-img.png' %}" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h5>David Benson</h5>
-                    <p>
-                      I was a very broke person i will not lie, but went to the bank and took a loan, then boom! like that my life change.
-                    </p>
-                    <span>
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading3">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse3"
+                aria-expanded="false"
+                aria-controls="collapse3"
+              >
+                <span class="title"
+                  >Do I need an account to place an order?</span
+                ><i class="lni lni-plus"></i>
+              </button>
+            </h2>
+            <div
+              id="collapse3"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading3"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <p>
+                  Yes you need an account (<b>without an account you can use any of our services!</b>).
+                </p>
               </div>
             </div>
           </div>
         </div>
-        <a
-          class="carousel-control-prev"
-          href="#carouselExample2Controls"
-          role="button"
-          data-slide="prev"
-        >
-          <span>
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-          </span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#carouselExample2Controls"
-          role="button"
-          data-slide="next"
-        >
-          <span>
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </span>
-          <span class="sr-only">Next</span>
-        </a>
+      </div>
+      <div class="col-lg-6 col-md-12 col-12 xs-margin">
+        <div class="accordion" id="accordionExample2">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading11">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse11"
+                aria-expanded="false"
+                aria-controls="collapse11"
+              >
+                <span class="title">How Can I Withdraw My Bitcoin?</span
+                ><i class="lni lni-plus"></i>
+              </button>
+            </h2>
+            <div
+              id="collapse11"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading11"
+              data-bs-parent="#accordionExample2"
+            >
+              <div class="accordion-body">
+                <p>
+                  Go to Dashboard > Payments then click on the cash-out button.
+                </p>
+                <p>
+                  <b>Note:</b> You will need to set your wallet before the cash-out button will appear!.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading22">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse22"
+                aria-expanded="false"
+                aria-controls="collapse22"
+              >
+                <span class="title">How Long Does It Takes To Get My BitCoin?</span
+                ><i class="lni lni-plus"></i>
+              </button>
+            </h2>
+            <div
+              id="collapse22"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading22"
+              data-bs-parent="#accordionExample2"
+            >
+              <div class="accordion-body">
+                <p>
+                  Your Bitcoin will be recevied by the set wallet in the Payment Section in your Dashboard Within 3-24hrs.
+                </p>
+                <p>
+                  <b>Note:</b>Most times what causes payment delay it if there is an error with the set wallet so always input the correct details
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading33">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse33"
+                aria-expanded="false"
+                aria-controls="collapse33"
+              >
+                <span class="title"
+                  >Where To Get Direct Contact With The Support Team?</span
+                ><i class="lni lni-plus"></i>
+              </button>
+            </h2>
+            <div
+              id="collapse33"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading33"
+              data-bs-parent="#accordionExample2"
+            >
+              <div class="accordion-body">
+                <p>
+                  Currently the only way to get direct conversation with our support team is to click on the "<a href="javascript:void(0)" onclick="document.getElementById('txtmeLivechatTitle').click()">Need Help</a>?" button
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-<!-- end client section -->
+  </div>
+</section>
+
 {% endblock content %}

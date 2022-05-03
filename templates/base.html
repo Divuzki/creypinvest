@@ -14,36 +14,30 @@
     <meta name="keywords" content="btc,bitcoin,money,double,trade,invest" />
     <meta
       name="description"
-      content="World's #1 Bitcoin Algorithmical Trading Platform which has an Innovative Digital Payment Mechanism"
+      content="Make your money work for you!"
     />
-    <meta name="author" content="Creyp inc." />
+    <meta name="author" content="Creyp Invest inc." />
     <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{% static 'images/apple-touch-icon.png' %}"
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon.svg' %}"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="{% static 'images/favicon-32x32.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="{% static 'images/favicon-16x16.png' %}"
-    />
+    
     <link rel="manifest" href="{% static 'site.webmanifest' %}" />
 
-    <title>{% block title %} {% endblock title %}</title>
+    <title>CreypInvest - {% block title %} {% endblock title %}</title>
 
     <!-- bootstrap core css -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'css/bootstrap.css' %}"
+      href="{% static 'css/bootstrap.min.css' %}"
     />
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 
     <!-- fonts style -->
     <link
@@ -52,239 +46,118 @@
     />
 
     <!-- font awesome style -->
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f75233d904.js" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet" /> -->
     <!-- responsive style -->
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
   </head>
 
   <body>
-    <div
-      class="hero_area"
-      {% if show_counter %}
-      style="height: 100vh;"
-      {% endif %}
-    >
-      <!-- header section strats -->
-      <header class="header_section">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="/">
-              <span
-                style="background-image: url({%static 'images/hero-bg.jpg' %})"
-              >
-                Creyp
-              </span>
-            </a>
-
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/"
-                    >Home <span class="sr-only">(current)</span></a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/site/about"> About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/site/process">Process </a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="/site/why">Why Us</a>
-                </li> -->
-                <li class="nav-item">
-                  <a class="nav-link" href="/auth/deposit/">Deposit Now</a>
-                </li>
-              </ul>
-              <div class="quote_btn-container">
-                <a class="" href="/auth/account/login"> Login</a>
-                <a href="/auth/account/signup" class="quote_btn"> Sign Up </a>
-              </div>
-            </div>
-          </nav>
+    <!-- [if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif] -->
+      
+    <div class="preloader">
+      <div class="preloader-inner">
+        <div class="preloader-icon">
+          <span></span>
+          <span></span>
         </div>
-      </header>
-      <!-- MQ -->
-      <marquee class="mq" direction="left">
-        Attention: $100 will be ending by Mar 24, 2022. So hurry up, signup and
-        get your reward 😎. Check the Bitcoin Address well before you begin a
-        transaction. Note: <b>DONT SHARE YOUR TRANSACTION ID WITH ANYBODY</b>
-      </marquee>
-      <!-- end header section -->
-      {% block hcontent %} {% endblock hcontent %}
+      </div>
     </div>
+
+      <!-- header section -->
+      {% include 'components/navbar.html' %}
+      <!-- end header section -->
     {% block content %} {% endblock content %}
 
     <!-- footer section -->
-    <section class="foot_section">
-      <footer class="footer-section">
-        <div class="container">
-          <div class="footer-cta pt-5 pb-5">
-            <div class="row">
-              <div class="col-xl-4 col-md-4 mb-30">
-                <div class="single-cta">
-                  <i class="fa fa-map-pin"></i>
-                  <div class="cta-text">
-                    <h4>Find us</h4>
-                    <span>
-                      R. Rojas 347, J5402FSG San Juan, California
-                      <a
-                        href="https://goo.gl/maps/HQ3Wu8DjQnf6BtMd9"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >↗</a
-                      >
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-md-4 mb-30">
-                <div class="single-cta">
-                  <i class="fa fa-phone"></i>
-                  <div class="cta-text">
-                    <h4>Call us</h4>
-                    <span>
-                      <a
-                        href="tel:+16506009939"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >+1 (650) 600-9939 ↗ </a
-                      >(California)</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-md-4 mb-30">
-                <div class="single-cta">
-                  <i class="fa fa-envelope-open"></i>
-                  <div class="cta-text">
-                    <h4>Mail us</h4>
-                    <span>
-                      <a href="mailto:creypinvest@gmail.com">
-                        creypinvest@gmail.com ↗
-                      </a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="footer-content pt-5 pb-5">
-            <div class="row">
-              <div class="col-xl-4 col-lg-4 mb-50">
-                <div class="footer-widget">
-                  <div class="footer-logo">
-                    <a href="/"
-                      ><img
-                        src="{% static 'images/favicon.ico' %}"
-                        class="img-fluid"
-                        alt="logo"
-                    /></a>
-                  </div>
-                  <div class="footer-text">
-                    <p>
-                      World's #1 Bitcoin Algorithmical Trading Platform which
-                      has an Innovative Digital Payment Mechanism
-                    </p>
-                  </div>
-                  <!-- <div class="footer-social-icon">
-                                <span>Follow us</span>
-                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                            </div> -->
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                <div class="footer-widget">
-                  <div class="footer-widget-heading">
-                    <h3>Useful Links</h3>
-                  </div>
-                  <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/site/process">How It Works ?</a></li>
-                    <li><a href="/site/about">About us</a></li>
-                    <li>
-                      <a
-                        href="mailto:support@creyp.com"
-                        title="Message will be answered after 3 work days"
-                        >Contact us</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                <div class="footer-widget">
-                  <div class="footer-widget-heading">
-                    <h3>Subscribe</h3>
-                  </div>
-                  <div class="footer-text mb-25">
-                    <p>
-                      Don’t miss to subscribe to our promotional updates, kindly
-                      fill the form below.
-                    </p>
-                  </div>
-                  <div class="subscribe-form">
-                    <form action="#">
-                      <input type="text" placeholder="Email Address" />
-                      <button><i class="fa fa-telegram"></i></button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="copyright-area">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                <div class="copyright-text">
-                  <p>
-                    Copyright &copy; 2013-<sm id="displayYear">2022</sm>, All
-                    Right Reserved <a href="/">Creyp</a>
-                  </p>
-                </div>
-              </div>
-              <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                <div class="footer-menu">
-                  <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Policy</a></li>
-                    <li>
-                      <a
-                        href="mailto:creypinvest@gmail.com"
-                        title="Message will be answered after 3 work days"
-                        >Contact</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </section>
-    <!-- footer section -->
+    {% include 'components/footer.html' %}
+    <!-- end footer section -->
+    <a href="#" class="scroll-top">
+      <i class="lni lni-chevron-up"></i>
+    </a>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/tiny-slider.js' %}"></script>
+    <script src="{% static 'js/glightbox.min.js' %}"></script>
+    <script src="{% static 'js/count-up.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+      //========= Road Map
+      tns({
+        container: ".road-map-slider",
+        items: 1,
+        slideBy: "page",
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        nav: true,
+        controls: false,
+        responsive: {
+          0: {
+            items: 2,
+          },
+          540: {
+            items: 3,
+          },
+          768: {
+            items: 4,
+          },
+          992: {
+            items: 4,
+          },
+          1170: {
+            items: 6,
+          },
+        },
+      });
+
+      //========= testimonial
+      tns({
+        container: ".testimonial-slider",
+        items: 3,
+        slideBy: "page",
+        autoplay: true,
+        mouseDrag: true,
+        gutter: 0,
+        nav: true,
+        controls: false,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          540: {
+            items: 1,
+          },
+          768: {
+            items: 2,
+          },
+          992: {
+            items: 2,
+          },
+          1170: {
+            items: 3,
+          },
+        },
+      });
+
+      //====== counter up
+      var cu = new counterUp({
+        start: 0,
+        duration: 2000,
+        intvalues: true,
+        interval: 100,
+        append: " ",
+      });
+      cu.start();
+    </script>
     <!-- Start of txt.me widget code -->
     <script
       src="https://v2.txt.me/livechat/js/wrapper/f019e840816b491d9fdd77c868d76bcd"
@@ -302,13 +175,8 @@
       type="text/javascript"
       src="{% static 'js/jquery-3.4.1.min.js' %}"
     ></script>
-    {% block js %}{% endblock js %}
-    <!-- bootstrap js -->
-    <script
-      type="text/javascript"
-      src="{% static 'js/bootstrap.js' %}"
-    ></script>
     <!-- custom js -->
     <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    {% block js %}{% endblock js %}
   </body>
 </html>

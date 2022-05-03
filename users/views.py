@@ -15,17 +15,18 @@ from users.utils import send_activate_email
 def deposit(request):
     user = request.user
     if user.is_authenticated:
-        return render(request, "auth/deposit.html")
+        context = {"type":"Deposit Now", "crumbs":["Deposit Now"]}
+        return render(request, "auth/deposit.html", context)
     else:
         return redirect("/auth/account/login/")
 
 
 def login_view(request):
-    context = {"type": "Login"}
+    context = {"type": "Sign In"}
     if request.method == "GET":
         e = request.GET.get("e")
         if e:
-            context = {"type": "Login", "e": e}
+            context = {"type": "Sign In", "e": e, "crumbs": ["Sign In"]}
         return render(request, "auth/login.html", context)
 
     if request.method == "POST":
@@ -52,7 +53,9 @@ def login_view(request):
 def depositing(request, price):
     user = request.user
     if user.is_authenticated:
+        context = {"type":"Deposit Now", "crumbs":["Deposit Now"]}
         if price == 10000 or price == 15000 or price == 20000 or price == 25000:
+            context = {"type":f"Depositing ${str(price)}", "crumbs":["Deposit Now"]}
             if request.method == "POST":
                 context = {
                     "depositing": "yes",
@@ -75,7 +78,8 @@ def depositing(request, price):
 
 
 def activation_sent_view(request):
-    return render(request, 'auth/activation_sent.html')
+    context = {"type":"Your Activation Link Has Been Sent To Your Inbox", "crumbs":["email-activation"]}
+    return render(request, 'auth/activation_sent.html', context)
 
 
 def activate(request, uidb64, token):
@@ -126,7 +130,8 @@ def signup(request):
                         return redirect("/auth/deposit")
     context = {
         "form": form,
-        "type": "SignUp",
+        "type": "Sign Up",
+        "crumbs": ["Sign Up"],
         "nxt": nxt,
         "title": "Create A New Investor Account"
     }
