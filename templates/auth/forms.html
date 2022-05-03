@@ -1,7 +1,6 @@
 {% extends 'base.html' %} {% load static %}
 <title>{% block title %}{{type}}{% endblock title %}</title>
 {% block content %}
-{% include 'components/breadcrumbs.html' with crumbs=crumbs title=type %}
 <!-- Auth section -->
 <div class="account-login section">
   <div class="container">

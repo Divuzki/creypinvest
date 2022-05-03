@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 ]
+SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {'google':
-                           {'SCOPE': ['email'],
+                           {'SCOPE': ['profile', 'email'],
                             'AUTH_PARAMS': {'access_type': 'online'}
                             }
                            }

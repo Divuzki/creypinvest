@@ -14,8 +14,8 @@ from users.utils import send_activate_email
 
 def deposit(request):
     user = request.user
+    context = {"type": "Deposit Now", "crumbs": ["Deposit Now"]}
     if user.is_authenticated:
-        context = {"type":"Deposit Now", "crumbs":["Deposit Now"]}
         return render(request, "auth/deposit.html", context)
     else:
         return redirect("/auth/account/login/")
@@ -53,24 +53,29 @@ def login_view(request):
 def depositing(request, price):
     user = request.user
     if user.is_authenticated:
-        context = {"type":"Deposit Now", "crumbs":["Deposit Now"]}
+        # context = {"type":"Deposit Now", "crumbs":["Deposit Now"]}
         if price == 10000 or price == 15000 or price == 20000 or price == 25000:
-            context = {"type":f"Depositing ${str(price)}", "crumbs":["Deposit Now"]}
             if request.method == "POST":
                 context = {
                     "depositing": "yes",
                     "price": price,
-                    "type": "Deposited"
+                    "type": "Deposited",
+                    "dp": True,
+                    "crumbs": ["Deposit Now", "Depositing", "Deposited"]
                 }
             else:
                 context = {
                     "depositing": "yes",
                     "price": price,
-                    "type": "Depositing"
+                    "type": "Depositing",
+                    "dp": True,
+                    "crumbs": ["Deposit Now", "Depositing"]
                 }
         else:
             context = {
-                "depositing": "no"
+                "depositing": "no",
+                "type": "Deposit Now",
+                "crumbs": ["Deposit Now"]
             }
         return render(request, "auth/deposit.html", context)
     else:
@@ -78,7 +83,8 @@ def depositing(request, price):
 
 
 def activation_sent_view(request):
-    context = {"type":"Your Activation Link Has Been Sent To Your Inbox", "crumbs":["email-activation"]}
+    context = {"type": "Your Activation Link Has Been Sent To Your Inbox",
+               "crumbs": ["email-activation"]}
     return render(request, 'auth/activation_sent.html', context)
 
 

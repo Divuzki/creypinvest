@@ -1,9 +1,8 @@
 {% extends 'base.html' %} {% load static %}
 <title>{% block title %}{% if type %}${% endif %}{{price}} Deposit{% if type == 'Deposited' %}ed{% else %}{% endif %}{% endblock title %}</title>
 {% block content %}
-{% include 'components/breadcrumbs.html' with crumbs=crumbs title=type %}
 <!-- deposit section -->
-{% if type %}
+{% if dp %}
 <section class="deposit_body section">
   <div class="container-fluid">
     <div class="row" style="justify-content: center">

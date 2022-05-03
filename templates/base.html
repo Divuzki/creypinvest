@@ -75,6 +75,11 @@
       <!-- header section -->
       {% include 'components/navbar.html' %}
       <!-- end header section -->
+      {% if type %}
+      <!-- Breadcrumbs Section -->
+      {% include 'components/breadcrumbs.html' with crumbs=crumbs title=type %}
+      <!-- End Breadcrumbs Section -->
+      {% endif %}
     {% block content %} {% endblock content %}
 
     <!-- footer section -->
@@ -124,7 +129,7 @@
         container: ".testimonial-slider",
         items: 3,
         slideBy: "page",
-        autoplay: true,
+        autoplay: false,
         mouseDrag: true,
         gutter: 0,
         nav: true,
@@ -171,12 +176,10 @@
     <!-- End of txt.me widget code -->
     
     <!-- jQuery -->
-    <script
+    <!-- <script
       type="text/javascript"
       src="{% static 'js/jquery-3.4.1.min.js' %}"
-    ></script>
-    <!-- custom js -->
-    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    ></script> -->
     {% block js %}{% endblock js %}
   </body>
 </html>
