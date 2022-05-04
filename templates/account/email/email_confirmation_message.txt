@@ -1,4 +1,4 @@
-{% extends "account/email/base_message.txt" %}
+{% extends "account/email/base.html" %}
 {% load account %}
 {% load i18n %}
 
@@ -12,7 +12,6 @@
     <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
     <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     {% include 'email/style.html' %}
 </head>
 
