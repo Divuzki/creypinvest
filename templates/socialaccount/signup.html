@@ -12,11 +12,10 @@
     <div class="row align-items-center">
       <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
         <div class="breadcrumbs-content">
-          <h1 class="page-title">{% trans "Signing Up With Your Google Account" %}</h1>
+          <h1 class="page-title">{% trans "Create A New Account" %}</h1>
           <ul class="breadcrumb-nav">
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'account_signup' %}">{% trans "SignUp" %}</a></li>
-            <li>{% trans "Google Account" %}</li>
+            <li>{% trans "SignUp" %}</li>
           </ul>
         </div>
       </div>
@@ -29,16 +28,25 @@
       <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
         <form
           class="card login-form inner-content"
-          action="{% url 'socialaccount_signup' %}"
+          action="{% url 'account_signup' %}"
           method="POST"
         >
           {% csrf_token %}
           <div class="card-body">
             <div class="title">
-              <h3>{% trans 'Google Sign Up' %}</h3>
-              <p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
-                {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
+              <h3>{% trans 'Sign Up Now' %}</h3>
+              <p>{% trans 'Use the form below to create your new account.' %}</p>
             </div>
+            <div class="alt-option">
+              <span class="small-title">{% trans 'Sign up with your work email' %}</span>
+              <a href="{% provider_login_url 'google' %}" class="option-button"
+                ><img
+                  src="{% static 'images/account-login/google.png' %}"
+                  alt="#"
+                />{% trans 'Sign Up With Google' %}
+              </a>
+            </div>
+            <div class="or"><span>Or</span></div>
             <div class="form-errors">
               {% for field in form %}
               <div class="form-error">
@@ -50,19 +58,7 @@
             </div>
             <div class="input-head">
               <div class="row">
-                <div class="">
-                  <div class="form-group input-group">
-                    <label><i class="lni lni-envelope"></i></label>
-                    <input
-                      class="form-control"
-                      name="email"
-                      type="email"
-                      placeholder="Your email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="">
+                <div class="col-lg-6 col-12">
                   <div class="form-group input-group">
                     <label><i class="lni lni-user"></i></label>
                     <input
@@ -74,14 +70,43 @@
                     />
                   </div>
                 </div>
+                <div class="col-lg-6 col-12">
+                  <div class="form-group input-group">
+                    <label><i class="lni lni-envelope"></i></label>
+                    <input
+                      class="form-control"
+                      name="email"
+                      type="email"
+                      placeholder="Your email"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group input-group">
+                <label><i class="lni lni-lock-alt"></i></label>
+                <input
+                  class="form-control"
+                  name="password1"
+                  type="password"
+                  placeholder="Your password"
+                  required
+                />
+              </div>
+              <div class="form-group input-group">
+                <label><i class="lni lni-lock-alt"></i></label>
+                <input
+                  class="form-control"
+                  name="password2"
+                  type="password"
+                  placeholder="Confirm password"
+                  required
+                />
               </div>
             </div>
             <div class="button">
               <button class="btn" type="submit">{% trans 'Create Account' %}</button>
             </div>
-            <h4 class="create-account">
-              {% trans 'Already have an account?' %} <a href="{{ login_url }}">{% trans 'Sign In' %}</a>
-            </h4>
           </div>
         </form>
       </div>
