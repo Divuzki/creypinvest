@@ -13,6 +13,7 @@ def contact(request):
 
 
 def send_contact_email(request):
+    res = render(request, "pages/message_page.html", {"title":"Oops", "msg":"Sorry, something is wrong with the server but you can mail us at <a href='mailto:creypinvest@gmail.com'>creypinvest@gmail.com</a>"})
     if request.method == "POST":
         name = request.POST.get("name")
         phone = request.POST.get("phone")
@@ -22,6 +23,7 @@ def send_contact_email(request):
         try:
             send_contact_us_email(request, name, phone, email, subject, body, toAdmin=True)
             send_contact_us_email(request, name, phone, email, "Email Recieved!", "Your Email Has Been Received, We Will Get Back To You A Soon As Possible")
-            render(request, "pages/message_page.html", {"title":"Yay!", "msg":"Your mail has been sent to us"})
+            res = render(request, "pages/message_page.html", {"title":"Yay!", "msg":"Your mail has been sent to us"})
         except:
-            render(request, "pages/message_page.html", {"title":"Oops", "msg":"Sorry, something is wrong with the server but you can mail us at <a href='mailto:creypinvest@gmail.com'>creypinvest@gmail.com</a>"})
+            res = render(request, "pages/message_page.html", {"title":"Oops", "msg":"Sorry, something is wrong with the server but you can mail us at <a href='mailto:creypinvest@gmail.com'>creypinvest@gmail.com</a>"})
+    return res
