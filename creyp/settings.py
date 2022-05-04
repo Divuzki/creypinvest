@@ -20,7 +20,7 @@ DEBUG = config('DEBUG', cast=bool)
 USE_S3 = config('USE_S3', cast=bool)
 
 ALLOWED_HOSTS = ['localhost', 'creypinvest.herokuapp.com']
-LOGIN_URL = "/login"
+LOGIN_URL = "/auth/account/login"
 LOGIN_REDIRECT_URL = '/'
 
 # Application definition
