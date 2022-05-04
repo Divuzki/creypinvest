@@ -2,15 +2,10 @@ import os
 from django.conf import settings
 import string
 import random
-
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.template.loader import render_to_string
 from django.core.mail import send_mail
 import threading
 from django.utils.html import strip_tags
-from users.tokens import account_activation_token
+from django.template.loader import render_to_string
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,19 +43,23 @@ class EmailThread(threading.Thread):
         self.email.send()
 
 
-def send_activate_email(user, request, nxt="/"):
-    current_site = get_current_site(request)
-    email_subject = 'Activate Your New Investor Account.'
-    email_body = render_to_string('auth/activation_request.html', {
-        'user': user,
-        'domain': current_site.domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-        'nxt': nxt
+def send_contact_us_email(request, name=None, phone=None, user_email=None, subject=None, body=None, toAdmin=False):
+    email_subject = subject
+    email_body = render_to_string('account/email/contact_us_email_sent.html', {
+        'email_subject': email_subject,
+        'email': user_email,
+        'name': name,
+        'phone': phone,
+        'msg': body,
+        'toAdmin': toAdmin
     }, request)
-    text_content = strip_tags(email_body)
-    email = send_mail(
-        email_subject, text_content, ADMIN_EMAIL, [user.email], html_message=email_body)
+    text_content = strip_tags(email_subject)
+    if toAdmin == True:
+        email = send_mail(
+            email_subject, text_content, ADMIN_EMAIL, [ADMIN_EMAIL], html_message=email_body)
+    else:
+        email = send_mail(
+            email_subject, text_content, ADMIN_EMAIL, [user_email], html_message=email_body)
 
     if not settings.DEBUG:
         EmailThread(email).start()
