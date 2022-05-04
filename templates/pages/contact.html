@@ -28,7 +28,7 @@
   <div class="col-lg-6 col-12">
   <div class="contact-form">
   <h3 class="form-title">Leave a message here</h3>
-  <form class="form" method="post" action="{% url 'contact-us' %}">
+  <form class="form" method="post" action="{% url 'send_contact_email' %}">
     {% csrf_token %}
   <div class="row">
   <div class="col-lg-6 col-md-6 col-12">

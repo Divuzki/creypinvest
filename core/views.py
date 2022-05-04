@@ -9,6 +9,10 @@ def about(request):
     return render(request, "pages/about.html", {"type":"About CreypInvest Inc.", "crumbs":["About Us"]})
 
 def contact(request):
+    return render(request, "pages/contact.html", {"type":"Contact Support Team At CreypInvest Inc.", "crumbs":["Contact Us"]})
+
+
+def send_contact_email(request):
     if request.method == "POST":
         name = request.POST.get("name")
         phone = request.POST.get("phone")
@@ -21,4 +25,3 @@ def contact(request):
             render(request, "pages/message_page.html", {"title":"Yay!", "msg":"Your mail has been sent to us"})
         except:
             render(request, "pages/message_page.html", {"title":"Oops", "msg":"Sorry, something is wrong with the server but you can mail us at <a href='mailto:creypinvest@gmail.com'>creypinvest@gmail.com</a>"})
-    return render(request, "pages/contact.html", {"type":"Contact Support Team At CreypInvest Inc.", "crumbs":["Contact Us"]})
