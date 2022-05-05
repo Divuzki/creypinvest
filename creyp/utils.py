@@ -50,7 +50,7 @@ def send_contact_us_email(request, name=None, phone=None, user_email=None, subje
         'email': user_email,
         'name': name,
         'phone': phone,
-        'msg': body,
+        'body': body,
         'toAdmin': toAdmin
     }, request)
     text_content = strip_tags(email_subject)
