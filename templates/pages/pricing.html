@@ -26,12 +26,12 @@
             </div>
             <div class="description">
               <p><i class="lni lni-checkmark-circle"></i>10% Monthly Interests</p>
-              <p><i class="lni lni-checkmark-circle"></i>5 US Stocks</p>
+              <p><i class="lni lni-checkmark-circle"></i>5 US Stocks from $1,000</p>
               <p><i class="lni lni-close"></i>No Hidden Fees</p>
               <p><i class="lni lni-close"></i>Roundup Remains To Next Whole Number</p>
               <p><i class="lni lni-close"></i>Miner Tools</p>
             </div>
-            <div class="button"><a class="btn btn-success btn-2" href="/auth/deposit/starter/">Get Started</a></div>
+            <div class="button"><a class="btn btn-success btn-2" href="{% url 'deposit_amount' 'starter' %}">Get Started</a></div>
           </div>
         </div>
         <!-- Single Price Plan Area-->
@@ -55,7 +55,7 @@
               <p><i class="lni lni-checkmark-circle"></i>Roundup Remains To Next Whole Number</p>
               <p><i class="lni lni-close"></i>Miner Tools</p>
             </div>
-            <div class="button"><a class="btn btn-warning" href="/auth/deposit/etfs/">Get Started</a></div>
+            <div class="button"><a class="btn btn-warning" href="{% url 'deposit_amount' 'etfs' %}">Get Started</a></div>
           </div>
         </div>
         <!-- Single Price Plan Area-->
@@ -78,7 +78,7 @@
               <p><i class="lni lni-checkmark-circle"></i>Unlimited Stocks Insider Tips</p>
               <p><i class="lni lni-checkmark-circle"></i>Miner Tools</p>
             </div>
-            <div class="button"><a class="btn btn-info" href="/auth/deposit/expert-trader/">Get Started</a></div>
+            <div class="button"><a class="btn btn-info" href="{% url 'deposit_amount' 'expert-trader' %}">Get Started</a></div>
           </div>
         </div>
       </div>

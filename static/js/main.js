@@ -12,7 +12,7 @@ Author: Creyp Invest Inc.
     if (btcConvertValue) {
       for (var key in btcConvertValue) {
         var dollars = btcConvertValue[key].getAttribute("data-btc-value");
-        btcConvertValue[key].innerHTML = `₿${(
+        btcConvertValue[key].innerHTML = `${(
           dollars / bitcoin +
           0.0005
         ).toFixed(6)}`;

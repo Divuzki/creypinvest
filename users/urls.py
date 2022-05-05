@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import deposit, depositing
+from .views import deposit, deposit_amount, deposit_amount_auth
 
 urlpatterns = [
     path("deposit/", deposit, name="deposit"),
-    path("deposit/<int:price>/", depositing, name="dp-price"),
+    path("deposit/<str:pack>/", deposit_amount, name="deposit_amount"),
+    path("deposit/<str:pack>/auth/", deposit_amount_auth, name="deposit_amount_auth"),
+    # deposit_amount_auth
 ]

@@ -48,8 +48,9 @@
     <!-- font awesome style -->
     <script src="https://kit.fontawesome.com/f75233d904.js" crossorigin="anonymous"></script>
 
-    <!-- Custom styles for this template -->
-    <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet" /> -->
+    <!-- Custom styles -->
+    {% block css %}
+    {% endblock css %}
     <!-- responsive style -->
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
   </head>

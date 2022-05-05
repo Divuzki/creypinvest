@@ -36,7 +36,7 @@ class Wallet(models.Model):
         return f"{self.user.btn_address} | bal : {self.balance}"
 
 
-class Transactions(models.Model):
+class Transaction(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     amount = models.CharField(max_length=10)
     status = models.CharField(max_length=15, choices=STATUS)
@@ -45,6 +45,12 @@ class Transactions(models.Model):
 
     def __str__(self):
         return f"user has {self.wallet.balance} | TID: {self.transactionID}"
+class AdminWallet(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    btn_address = models.TextField(unique=True)
+
+    def __str__(self):
+        return f"{self.btn_address}"
 
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
