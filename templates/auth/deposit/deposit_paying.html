@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %}
-<title>{% block title %}Deposit - Copy Address{% endblock title %}</title>
+<title>{% block title %}${{price}} Deposit - Copy Address{% endblock title %}</title>
 {% block content %}
 <div class="maill-success">
     <div class="d-table">
@@ -8,22 +8,23 @@
     <div class="success-content">
         <h1>Copy Your Generated Deposit Address</h1>
         <p>*Transer Only Bitcoin To This Address*</p>
-        <form action="{% url 'deposit_amount_auth' pack %}" method="post" class="input-head">
+        <form action="#" method="post" class="input-head">
             {% csrf_token %}
             <p><small>Note: Creypinvest will not be responsible if the wrong coin is transfered to the wrong address</small></p>
             <p><small>Note: Click on 'Copy' to copy the following Bitcoin address</small></p>
             <div class="form-group input-group">
               <input
-                class="form-control"
+                class="form-control copy_btn"
                 name="price"
                 type="text"
+                onclick="copyToClipboard(`{{btc_address}}`);"
                 value="{{btc_address}}"
                 required
                 disabled
               />
             </div>
             <div class="button">
-                <button class="btn mt-2" name="action">Copy</button>
+                <button class="btn mt-2" style="text-transform: capitalize;" id="copyed_btn" name="action">Copy</button>
             </div>
             <div class="button show-paid">
                 <button type="submit" class="btn mt-2" name="action">I Have Paid</button>

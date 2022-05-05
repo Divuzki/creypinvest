@@ -65,6 +65,7 @@
         >
       </li>
     </ul>
+    <div class="text-center mb-5"><h4>Complete This Form</h4></div>
     <form action="#" method="POST">
       <div class="row">
         <div class="col-md-6">
@@ -85,27 +86,20 @@
             </div>
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4">
+            <span>Last Name</span>
+            <div class="inputWithIcon">
+              <input type="test" name="last_name" class="form-control" />
+              <span class="fas fa-pen"></span>
+            </div>
+          </div>
+        </div>
         <div class="col-12 px-md-5 px-4 mt-3">
           <div class="btn btn-primary w-100">Pay ${{display_price}}</div>
         </div>
       </div>
     </form>
-    <div class="px-md-5 px-md-0 px-4 mb-4 d-flex align-items-center">
-      <div
-        class="btn-group"
-        role="group"
-        aria-label="Basic radio toggle button group"
-      >
-        <a
-          href="#copy-btc-address"
-          onclick="copyToClipboard(`{{btc_address}}`);"
-          class="quote_btn copy_btn"
-          style="text-transform: none"
-        >
-          {{btc_address}}
-          <button class="mt-2 btn" id="copyed_btn">copy</button></a>
-      </div>
-    </div>
   </div>
 </div>
 {% endblock content %}
