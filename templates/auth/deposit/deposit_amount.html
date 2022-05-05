@@ -19,18 +19,17 @@ input[type=number]::-webkit-outer-spin-button {
         <h1>Enter Deposit Amount Above $25,000</h1>
         <form action="{% url 'deposit_amount_auth' pack %}" method="post" class="input-head">
             {% csrf_token %}
-            <div class="form-group input-group p-2 rounded-pill border m-auto">
+            <div class="form-group d-flex p-2 rounded-pill border m-auto" style="width: 150px;">
                 <label for="dollars">$</label>
               <input
-                class="px-2 border-none"
+                class="px-2 border-none w-100"
                 style="border: none;"
                 value="25000"
-                minlength="25000"
+                min="25000"
                 name="price"
                 type="number"
                 id="price"
                 placeholder="Enter Amount"
-                style="width: max-content;"
                 required
               />
             </div>
@@ -42,9 +41,9 @@ input[type=number]::-webkit-outer-spin-button {
         <h1>Select Deposit Amount</h1>
         <form action="{% url 'deposit_amount_auth' pack %}" method="post">
         {% csrf_token %}
-        <select name="price" id="" class="form-group form-control">
+        <select name="price" id="price" class="form-group p-2 border rounded-pill" style="width: 150px;">
             {% for price in price_list %}
-            <option value="{{price}}">{{price}}</option>
+            <option value="{{price}}">${{price}}</option>
             {% endfor %}
         </select>
         <div class="button">

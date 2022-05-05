@@ -4,18 +4,65 @@ Author: Creyp Invest Inc.
 
 (function () {
   //===== Prealoder
+  var btcConvertValue = document.getElementsByClassName("convert-value-btc");
+  var btcConvertValuefees =
+    document.getElementsByClassName("calculate-btc-fees");
+  var totalAmount = document.getElementsByClassName("total-price-value");
+  // Btc Converters
+  function calculateFees(amount) {
+    var initialAmount = parseFloat(amount);
+    var newAmount = initialAmount;
+    var feeAmount;
+    if (initialAmount <= 200) {
+      if (initialAmount <= 10) {
+        newAmount += 0.99;
+      } else if (initialAmount > 10 && initialAmount <= 25) {
+        newAmount += 1.49;
+      } else if (initialAmount > 25 && initialAmount <= 50) {
+        newAmount += 1.99;
+      } else {
+        newAmount += 2.99;
+      }
+    } else {
+      var amountCheck = newAmount * 0.015;
+      if (amountCheck < 0.55) {
+        newAmount += 0.55;
+      } else {
+        newAmount *= 1.015;
+      }
+    }
+    newAmount = Math.ceil(newAmount * 100) / 100;
+    feeAmount = newAmount - initialAmount;
+    feeAmount = Math.round(feeAmount * 100) / 100;
+    return [feeAmount, newAmount];
+  }
 
-    var btcConvertValue = document.getElementsByClassName("convert-value-btc");
-    
-  // Btc Converter 
+  function btcConversionFees() {
+    if (btcConvertValuefees) {
+      for (var key in btcConvertValuefees) {
+        var dollars = localStorage.getItem("raw_price");
+
+        fees = calculateFees(dollars);
+        btcConvertValuefees[key].innerHTML = `${fees[0]}`;
+        for (var price in totalAmount) {
+          var beforeText = totalAmount[price].getAttribute("data-before-text");
+          if (beforeText)
+            totalAmount[price].innerHTML = `${beforeText} ${fees[1]}`;
+          else totalAmount[price].innerHTML = `${fees[1]}`;
+        }
+      }
+    }
+  }
   function btcConversion(bitcoin) {
     if (btcConvertValue) {
       for (var key in btcConvertValue) {
         var dollars = btcConvertValue[key].getAttribute("data-btc-value");
+        localStorage.setItem("raw_price", dollars);
         btcConvertValue[key].innerHTML = `${(
           dollars / bitcoin +
           0.0005
         ).toFixed(6)}`;
+        btcConversionFees();
       }
     }
   }
