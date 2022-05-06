@@ -40,11 +40,22 @@
                 <li class="nav-item">
                     <a href="{% url 'deposit' %}"  aria-label="Toggle navigation"> Invest </a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a href="{% url 'account_logout' %}"  aria-label="Toggle navigation"> Logout </a>
+              </li>
+                {% endif %}
               </ul>
             </div>
+            {% if user.is_authenticated %}
+            <div class="button">
+              <a href="{% url 'dashboard-home' %}" class="btn">Dashboard</a>
+            </div>
+            {% else %}
             <div class="button">
               <a href="/auth/account/signup" class="btn">Get started</a>
             </div>
+            {% endif %}
           </nav>
         </div>
       </div>
