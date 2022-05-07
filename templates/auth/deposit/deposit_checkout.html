@@ -41,7 +41,7 @@
           ><span class="ps-2"> Plan:</span></span
         >
         <span class="ps-3"
-          >{% if plan == 'starter' %}Starter $500 - $5,000{% elif plan == 'etfs' %}Exchange-Traded Funds $10,000 - $15,000{% else %}Expert Trader
+          >{% if plan == 'starter' %}Starter $500 - $5,000{% elif plan == 'exchange-traded-funds' %}Exchange-Traded Funds $10,000 - $15,000{% else %}Expert Trader
           $25,000 and above{% endif %}</span
         >
       </div>
@@ -77,6 +77,7 @@
     <div class="text-center mb-5"><h4>Complete This Form</h4></div>
     <form action="#" method="POST">
       <div class="row">
+        {% if user.first_name %}
         <div class="col-md-6">
           <div class="d-flex flex-column ps-md-5 px-md-0 px-4 mb-4">
             <span>First<span class="ps-1">Name</span></span>
@@ -86,6 +87,8 @@
             </div>
           </div>
         </div>
+        {% endif %}
+        {% if user.last_name %}
         <div class="col-md-6">
           <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4">
             <span>Last Name</span>
@@ -95,6 +98,7 @@
             </div>
           </div>
         </div>
+        {% endif %}
         <div class="col-12">
           <div class="d-flex flex-column px-md-5 px-4 mb-4">
             <span>Set Pin</span>

@@ -80,7 +80,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="{% url 'dashboard-home' %}">
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -181,7 +181,7 @@
               <!-- User Profile-->
               <li class="sidebar-item">
                 <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Dashboard' %}active{% endif %}"
                   href="{% url 'dashboard-home' %}"
                   aria-expanded="false"
                   ><i class="me-3 las fa-home fa-fw" aria-hidden="true"></i
@@ -190,7 +190,7 @@
               </li>
               <li class="sidebar-item">
                 <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Profile' %}active{% endif %}"
                   href="{% url 'dashboard-profile' %}"
                   aria-expanded="false"
                 >
@@ -200,7 +200,7 @@
               </li>
               <li class="sidebar-item">
                 <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Payments' %}active{% endif %}"
                   href="table-basic.html"
                   aria-expanded="false"
                   ><i
@@ -213,7 +213,7 @@
 
               <li class="sidebar-item">
                 <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Referral' %}active{% endif %}"
                   href="{% url 'dashboard-referral' %}"
                   aria-expanded="false"
                   ><i class="me-3 fa fa-globe" aria-hidden="true"></i

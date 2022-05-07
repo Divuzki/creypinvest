@@ -43,12 +43,12 @@ Author: Creyp Invest Inc.
         var dollars = localStorage.getItem("raw_price");
 
         fees = calculateFees(dollars);
-        btcConvertValuefees[key].innerHTML = `${fees[0]}`;
+        btcConvertValuefees[key].innerHTML = `${(fees[0]).toFixed(2)}`;
         for (var price in totalAmount) {
           var beforeText = totalAmount[price].getAttribute("data-before-text");
           if (beforeText)
-            totalAmount[price].innerHTML = `${beforeText} ${fees[1]}`;
-          else totalAmount[price].innerHTML = `${fees[1]}`;
+            totalAmount[price].innerHTML = `${beforeText} ${(fees[1]).toFixed(2)}`;
+          else totalAmount[price].innerHTML = `${(fees[1]).toFixed(2)}`;
         }
       }
     }
@@ -58,9 +58,12 @@ Author: Creyp Invest Inc.
       for (var key in btcConvertValue) {
         var dollars = btcConvertValue[key].getAttribute("data-btc-value");
         localStorage.setItem("raw_price", dollars);
+        dollars = localStorage.getItem("raw_price");
+
+        dollars = calculateFees(dollars);
         btcConvertValue[key].innerHTML = `${(
-          dollars / bitcoin +
-          0.0005
+          dollars[1] / bitcoin +
+          0.009
         ).toFixed(6)}`;
         btcConversionFees();
       }

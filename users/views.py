@@ -41,15 +41,16 @@ def deposit_amount_auth(request, pack):
                           "Select Amount", "Checkout"], "type": "Checkout"}
     if request.method == "POST":
         price = request.POST.get("price")
+        checkprice = int(price.replace(",", ""))
         if pack == 'starter':
-            if int(price) < 500:
-                return redirect("deposit") 
+            if checkprice < 500:
+                return redirect("deposit")
         if pack == 'exchange-traded-funds':
-            if int(price) < 10_000:
-                return redirect("deposit") 
+            if checkprice < 10_000:
+                return redirect("deposit")
         if pack == 'expert-trader':
-            if int(price) < 10_000:
-                return redirect("deposit") 
+            if checkprice < 25_000:
+                return redirect("deposit")
         display_price = price
         price = str(price).replace("$", "").replace(",", "")
         admin_btc_address = AdminWallet.objects.all()
@@ -60,5 +61,5 @@ def deposit_amount_auth(request, pack):
         context = {"raw_price": raw_price, "display_price": display_price, "btc_address": admin_btc_address, "plan": pack, "crumbs": ["Deposit Now",
                                                                                                                                       "Select Amount", "Checkout"], "type": "Checkout"}
         return render(request, "auth/deposit/deposit_checkout.html", context)
-
-    return render(request, "auth/deposit/deposit_checkout.html", context)
+    else:
+        return redirect("deposit")
