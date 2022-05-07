@@ -5,12 +5,14 @@ botocore==1.25.4
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
+crispy-tailwind==0.5.0
 cryptography==37.0.1
 defusedxml==0.7.1
 dj-database-url==0.5.0
 Django==4.0.4
 django-allauth==0.50.0
 django-countries==7.3.2
+django-crispy-forms==1.14.0
 django-storages==1.12.3
 django-utils-six==2.0
 gunicorn==20.1.0

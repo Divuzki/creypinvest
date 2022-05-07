@@ -37,11 +37,16 @@ INSTALLED_APPS = [
     'dashboard',
 
     'storages',
+    "crispy_forms",
+    "crispy_tailwind",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
 SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {'google':
                            {'SCOPE': ['profile', 'email'],
