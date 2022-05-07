@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
-from creyp.utils import random_string_generator
+from creyp.utils import random_string_generator, file_cleanup
 
 from PIL import Image
 from django_countries.fields import CountryField
@@ -97,3 +97,8 @@ def update_profile_signal(sender, instance, created, **kwargs):
 def update_wallet_signal(sender, instance, created, **kwargs):
     if created:
         Wallet.objects.create(user=instance)
+
+
+post_delete.connect(
+    file_cleanup, sender=Image, dispatch_uid="profile.image.file_cleanup"
+)

@@ -6,11 +6,43 @@ from django.core.mail import send_mail
 import threading
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
+from django.core.files.storage import default_storage
+from django.db.models import FileField
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ADMIN_EMAIL = settings.EMAIL_HOST_USER
 
+def file_cleanup(sender, **kwargs):
+    """
+    File cleanup callback used to emulate the old delete
+    behavior using signals. Initially django deleted linked
+    files when an object containing a File/ImageField was deleted.
+
+    Usage:
+    >>> from django.db.models.signals import post_delete
+    >>> post_delete.connect(file_cleanup, sender=MyModel, dispatch_uid="mymodel.file_cleanup")
+    """
+    for fieldname in sender._meta.get_all_field_names():
+        try:
+            field = sender._meta.get_field(fieldname)
+        except:
+            field = None
+            if field and isinstance(field, FileField):
+                inst = kwargs["instance"]
+                f = getattr(inst, fieldname)
+                m = inst.__class__._default_manager
+                if (
+                    hasattr(f, "path")
+                    and os.path.exists(f.path)
+                    and not m.filter(
+                        **{"%s__exact" % fieldname: getattr(inst, fieldname)}
+                    ).exclude(pk=inst._get_pk_val())
+                ):
+                    try:
+                        default_storage.delete(f.path)
+                    except:
+                        pass
 
 def truncate_string(value, max_length=45, suffix="skt"):
     string_value = str(value)
