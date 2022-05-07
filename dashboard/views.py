@@ -48,29 +48,28 @@ def dashboard_profile_auth_view(request):
         if 'profile_image' in request.FILES:
             profile_image = request.FILES['profile_image']
         full_name = form.get("full_name")
-        if full_name:
-            full_name = full_name.split(" ")
         email = form.get("email")
         phone_number = form.get("phone_number")
         gender = form["gender"]
         country = form["country"]
-        print(country)
 
         user = request.user
         user_ = User.objects.filter(username=user.username).first()
         user_profile = Profile.objects.filter(user=user).first()
+        if full_name:
+            full_name = full_name.split(" ")
+            user_.first_name = full_name[0]
+            user_profile.first_name = full_name[0]
 
-        user_.first_name = full_name[0]
+        # 
         user_.last_name = full_name[1]
         user_.email = email
-        user_.save()
 
         # deleting old uploaded image.
         # image_path = user_profile.image
         # if os.path.exists(image_path):
         #     os.remove(image_path)
 
-        user_profile.first_name = full_name[0]
         user_profile.last_name = full_name[1]
         user_profile.email = email
         user_profile.image = profile_image
@@ -78,6 +77,7 @@ def dashboard_profile_auth_view(request):
         user_profile.gender = gender
         user_profile.country = country
 
+        user_.save()
         user_profile.save()
 
         return redirect("/dashboard/profile/?success=yes&msg=your+profile+has+been+updated")
