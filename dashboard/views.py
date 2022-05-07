@@ -48,7 +48,8 @@ def dashboard_profile_auth_view(request):
         if 'profile_image' in request.FILES:
             profile_image = request.FILES['profile_image']
         full_name = form.get("full_name")
-        full_name = full_name.split(" ")
+        if full_name:
+            full_name = full_name.split(" ")
         email = form.get("email")
         phone_number = form.get("phone_number")
         gender = form["gender"]
