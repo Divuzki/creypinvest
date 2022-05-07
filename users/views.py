@@ -21,7 +21,7 @@ def deposit_amount(request, pack):
         large = False
         if pack == "starter":
             price_list = starter
-        elif pack == "etfs":
+        elif pack == "exchange-traded-funds":
             price_list = etfs
         else:
             if price_list == None:
@@ -41,6 +41,15 @@ def deposit_amount_auth(request, pack):
                           "Select Amount", "Checkout"], "type": "Checkout"}
     if request.method == "POST":
         price = request.POST.get("price")
+        if pack == 'starter':
+            if int(price) < 500:
+                return redirect("deposit") 
+        if pack == 'exchange-traded-funds':
+            if int(price) < 10_000:
+                return redirect("deposit") 
+        if pack == 'expert-trader':
+            if int(price) < 10_000:
+                return redirect("deposit") 
         display_price = price
         price = str(price).replace("$", "").replace(",", "")
         admin_btc_address = AdminWallet.objects.all()
