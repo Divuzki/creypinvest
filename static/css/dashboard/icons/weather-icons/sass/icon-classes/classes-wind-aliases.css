@@ -1,0 +1,127 @@
+.wi-wind-towards-n {
+  transform: rotate(0deg);
+}
+
+.wi-wind-towards-nne {
+  transform: rotate(23deg);
+}
+
+.wi-wind-towards-ne {
+  transform: rotate(45deg);
+}
+
+.wi-wind-towards-ene {
+  transform: rotate(68deg);
+}
+
+.wi-wind-towards-e {
+  transform: rotate(90deg);
+}
+
+.wi-wind-towards-ese {
+  transform: rotate(113deg);
+}
+
+.wi-wind-towards-se {
+  transform: rotate(135deg);
+}
+
+.wi-wind-towards-sse {
+  transform: rotate(158deg);
+}
+
+.wi-wind-towards-s {
+  transform: rotate(180deg);
+}
+
+.wi-wind-towards-ssw {
+  transform: rotate(203deg);
+}
+
+.wi-wind-towards-sw {
+  transform: rotate(225deg);
+}
+
+.wi-wind-towards-wsw {
+  transform: rotate(248deg);
+}
+
+.wi-wind-towards-w {
+  transform: rotate(270deg);
+}
+
+.wi-wind-towards-wnw {
+  transform: rotate(293deg);
+}
+
+.wi-wind-towards-nw {
+  transform: rotate(313deg);
+}
+
+.wi-wind-towards-nnw {
+  transform: rotate(336deg);
+}
+
+.wi-wind-from-n {
+  transform: rotate(0deg);
+}
+
+.wi-wind-from-nne {
+  transform: rotate(23deg);
+}
+
+.wi-wind-from-ne {
+  transform: rotate(45deg);
+}
+
+.wi-wind-from-ene {
+  transform: rotate(68deg);
+}
+
+.wi-wind-from-e {
+  transform: rotate(90deg);
+}
+
+.wi-wind-from-ese {
+  transform: rotate(113deg);
+}
+
+.wi-wind-from-se {
+  transform: rotate(135deg);
+}
+
+.wi-wind-from-sse {
+  transform: rotate(158deg);
+}
+
+.wi-wind-from-s {
+  transform: rotate(180deg);
+}
+
+.wi-wind-from-ssw {
+  transform: rotate(203deg);
+}
+
+.wi-wind-from-sw {
+  transform: rotate(225deg);
+}
+
+.wi-wind-from-wsw {
+  transform: rotate(248deg);
+}
+
+.wi-wind-from-w {
+  transform: rotate(270deg);
+}
+
+.wi-wind-from-wnw {
+  transform: rotate(293deg);
+}
+
+.wi-wind-from-nw {
+  transform: rotate(313deg);
+}
+
+.wi-wind-from-nnw {
+  transform: rotate(336deg);
+}/*# sourceMappingURL=classes-wind-aliases.css.map */
