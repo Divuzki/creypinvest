@@ -63,11 +63,16 @@ def dashboard_profile_auth_view(request):
             if full_name[0]:
                 user_.first_name = full_name[0]
                 user_profile.first_name = full_name[0]
+            else:
+                user_.first_name = ""
+                user_profile.first_name = ""
+
             if full_name[1]:
                 user_.last_name = full_name[1]
                 user_profile.last_name = full_name[1]
             else:
-                pass
+                user_.last_name = ""
+                user_profile.last_name = ""
         else:
             user_.first_name = ""
             user_profile.first_name = ""
