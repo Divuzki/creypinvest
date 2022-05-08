@@ -3,11 +3,17 @@ from django.shortcuts import render
 from creyp.utils import send_contact_us_email
 
 # Error Code Page Views
+
+
 def error_404_view(request, exception):
     return render(request, "pages/errors/404.html")
+
+
 def index(request):
     return render(request, "pages/index.html")
 
+def referral_view(request):
+    return render(request, "pages/index.html")
 
 def about(request):
     return render(request, "pages/about.html", {"type": "About CreypInvest Inc.", "crumbs": ["About Us"]})
