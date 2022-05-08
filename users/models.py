@@ -38,6 +38,7 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15, blank=True)
     country = CountryField(blank=True)
     signup_confirmation = models.BooleanField(default=False)
+    deposit_before = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -75,6 +76,7 @@ class Transaction(models.Model):
     def save(self, *args, **kwargs):
         self.transactionId = random_string_generator(size=17)
         super().save(*args, **kwargs)
+
 
 class AdminWallet(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
