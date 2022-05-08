@@ -47,7 +47,11 @@ def dashboard_profile_auth_view(request):
         profile_image = form.get("profile_image")
         if 'profile_image' in request.FILES:
             profile_image = request.FILES['profile_image']
-        full_name = form.get("full_name")
+        full_name = form.get("full_name").strip()
+        full_name_list = full_name.split(" ")
+        full_name = []
+        for name in full_name_list:
+            full_name.append(name.strip())
         email = form.get("email").strip()
         phone_number = form.get("phone_number").strip()
         gender = form["gender"]
@@ -56,24 +60,18 @@ def dashboard_profile_auth_view(request):
         user = request.user
         user_ = User.objects.filter(username=user.username).first()
         user_profile = Profile.objects.filter(user=user).first()
-        if full_name:
-            full_name = full_name.split(" ")
-            for name in full_name:
-                full_name.append(name.strip())
+        try:
             if full_name[0]:
                 user_.first_name = full_name[0]
                 user_profile.first_name = full_name[0]
-            else:
-                user_.first_name = ""
-                user_profile.first_name = ""
 
-            if full_name[1]:
-                user_.last_name = full_name[1]
-                user_profile.last_name = full_name[1]
-            else:
-                user_.last_name = ""
-                user_profile.last_name = ""
-        else:
+                if full_name[1]:
+                    user_.last_name = full_name[1]
+                    user_profile.last_name = full_name[1]
+                else:
+                    user_.last_name = ""
+                    user_profile.last_name = ""
+        except:
             user_.first_name = ""
             user_profile.first_name = ""
 
