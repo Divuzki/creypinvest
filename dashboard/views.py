@@ -60,18 +60,15 @@ def dashboard_profile_auth_view(request):
         user = request.user
         user_ = User.objects.filter(username=user.username).first()
         user_profile = Profile.objects.filter(user=user).first()
-        try:
-            if full_name[0]:
-                user_.first_name = full_name[0]
-                user_profile.first_name = full_name[0]
+        if len(full_name) > 1:
+            user_.last_name = full_name[1]
+            user_profile.last_name = full_name[1]
 
-                if full_name[1]:
-                    user_.last_name = full_name[1]
-                    user_profile.last_name = full_name[1]
-                else:
-                    user_.last_name = ""
-                    user_profile.last_name = ""
-        except:
+        if len(full_name) > 0:
+            user_.first_name = full_name[0]
+            user_profile.first_name = full_name[0]
+            
+        else:
             user_.first_name = ""
             user_profile.first_name = ""
 
