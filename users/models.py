@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
-from creyp.utils import random_string_generator, file_cleanup
+from creyp.utils import random_string_generator, file_cleanup, image_resize
 
 from PIL import Image
 from django_countries.fields import CountryField
+from django.core.files.storage import default_storage as storage
 
 
 STATUS = (
@@ -44,11 +45,8 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         if self.image:
             super().save(*args, **kwargs)
-            img = Image.open(self.image.path)
-            if img.height > 200 or img.width > 200:
-                output_size = (200, 200)
-                img.thumbnail(output_size)
-                img.save(self.image.path)
+            if self.image.storage.exists(self.image.name):
+                image_resize(self.image, 200, 200)
 
 
 class Wallet(models.Model):

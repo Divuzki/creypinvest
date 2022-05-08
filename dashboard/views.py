@@ -48,8 +48,8 @@ def dashboard_profile_auth_view(request):
         if 'profile_image' in request.FILES:
             profile_image = request.FILES['profile_image']
         full_name = form.get("full_name")
-        email = form.get("email")
-        phone_number = form.get("phone_number")
+        email = form.get("email").strip()
+        phone_number = form.get("phone_number").strip()
         gender = form["gender"]
         country = form["country"]
 
@@ -58,11 +58,23 @@ def dashboard_profile_auth_view(request):
         user_profile = Profile.objects.filter(user=user).first()
         if full_name:
             full_name = full_name.split(" ")
-            user_.first_name = full_name[0]
-            user_profile.first_name = full_name[0]
+            for name in full_name:
+                full_name.append(name.strip())
+            if full_name[0]:
+                user_.first_name = full_name[0]
+                user_profile.first_name = full_name[0]
+            if full_name[1]:
+                user_.last_name = full_name[1]
+                user_profile.last_name = full_name[1]
+            else:
+                pass
+        else:
+            user_.first_name = ""
+            user_profile.first_name = ""
 
-        # 
-        user_.last_name = full_name[1]
+            user_.last_name = ""
+            user_profile.last_name = ""
+
         user_.email = email
 
         # deleting old uploaded image.
@@ -70,7 +82,6 @@ def dashboard_profile_auth_view(request):
         # if os.path.exists(image_path):
         #     os.remove(image_path)
 
-        user_profile.last_name = full_name[1]
         user_profile.email = email
         user_profile.image = profile_image
         user_profile.phone_number = phone_number

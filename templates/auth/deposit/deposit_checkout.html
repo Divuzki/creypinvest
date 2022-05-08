@@ -78,11 +78,11 @@
     <form action="#" method="POST">
       <div class="row">
         {% if not user.first_name %}
-        <div class="{% if user.first_name %}col-12{% else %}col-md-6{% endif %}">
-          <div class="{% if not user.first_name %}
-          d-flex flex-column pe-md-5 px-md-0 px-4 mb-4
-          {% else %}
+        <div class="{% if not user.last_name %}col-12{% else %}col-md-6{% endif %}">
+          <div class="{% if not user.last_name %}
           d-flex flex-column px-md-5 px-4 mb-4
+          {% else %}
+          d-flex flex-column pe-md-5 px-md-0 px-4 mb-4
           {% endif %}">
             <span>First<span class="ps-1">Name</span></span>
             <div class="inputWithIcon">
@@ -92,13 +92,13 @@
           </div>
         </div>
         {% endif %}
-        {% if user.last_name %}
-        <div class="{% if user.first_name %}col-12{% else %}col-md-6{% endif %}">
+        {% if not user.last_name %}
+        <div class="{% if not user.first_name %}col-12{% else %}col-md-6{% endif %}">
           <div class="
           {% if not user.first_name %}
-          d-flex flex-column pe-md-5 px-md-0 px-4 mb-4
-          {% else %}
           d-flex flex-column px-md-5 px-4 mb-4
+          {% else %}
+          d-flex flex-column pe-md-5 px-md-0 px-4 mb-4
           {% endif %}
           ">
             <span>Last Name</span>
