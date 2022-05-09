@@ -4,6 +4,7 @@ import string
 import random
 from django.core.mail import send_mail
 import threading
+from django.http import HttpResponse
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.core.files.storage import default_storage
@@ -17,6 +18,12 @@ from django.core.files import File
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ADMIN_EMAIL = settings.EMAIL_HOST_USER
+
+
+def set_cookie_function(key, value, max_age=None, response=None):
+    response.set_cookie(str(key), value, max_age=max_age)
+    return response
+
 
 def file_cleanup(sender, **kwargs):
     """
@@ -48,6 +55,8 @@ def file_cleanup(sender, **kwargs):
                         default_storage.delete(f.path)
                     except:
                         pass
+
+
 image_types = {
     "jpg": "JPEG",
     "jpeg": "JPEG",
@@ -102,6 +111,8 @@ rot13trans = str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 def rot13_encrypt(text):
     return text.translate(rot13trans)
 # Account Section
+
+
 class EmailThread(threading.Thread):
 
     def __init__(self, email):

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from multiprocessing import context
+from django.shortcuts import redirect, render
 
-from creyp.utils import send_contact_us_email
+from creyp.utils import send_contact_us_email, set_cookie_function
 
 # Error Code Page Views
 
@@ -12,8 +13,44 @@ def error_404_view(request, exception):
 def index(request):
     return render(request, "pages/index.html")
 
-def referral_view(request):
-    return render(request, "pages/index.html")
+
+def referral_view(request, username):
+    cookie = request.COOKIES.get("_refered_by", None) == None
+    user = request.user
+    is_user = str(request.user.username) == str(username)
+    context = {}
+    if not user.is_authenticated:
+        if cookie == True:
+            context = {
+                "username": username,
+                "title": "Congratulation",
+                "message": f"You have been referred by {username}, now signup and get your $100 welcoming gift! when you deposit above $1,000",
+                "btn": "signup"
+            }
+            res = render(request, "pages/referral.html", context)
+            set_cookie_function("_refered_by", str(username),
+                                max_age=500*1900, response=res)
+        else:
+            context = {
+                "username": username,
+                "title": "Hey!",
+                "message": "You were already been referred, just login deposit above $1,000 and get your $100 welcoming gift!",
+                "btn": "signup"
+            }
+            res = render(request, "pages/referral.html", context)
+    elif user.is_authenticated:
+        if is_user:
+            context = {
+                "username": username,
+                "title": f"Sorry {user.username}",
+                "message": "You can not refer yourself",
+                "btn": "back"
+            }
+            res = render(request, "pages/referral.html", context)
+        else:
+            return redirect("dashboard-home")
+    return res
+
 
 def about(request):
     return render(request, "pages/about.html", {"type": "About CreypInvest Inc.", "crumbs": ["About Us"]})
