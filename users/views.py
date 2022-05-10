@@ -80,7 +80,16 @@ def deposit_window(request):
         last_name = request.POST.get("last_name")
         pin1 = request.POST.get("pin1")
         pin2 = request.POST.get("pin")
+
         price = request.POST.get("price")
+        price_btc = request.POST.get("price_btc")
+
+        price_fees = request.POST.get("price_fees")
+        price_fees_btc = request.POST.get("price_fees_btc")
+
+        price_total = request.POST.get("price_total")
+        price_total_btc = request.POST.get("price_total_btc")
+
         profile = Profile.objects.filter(user=user).first()
         wallet = Wallet.objects.filter(user=profile).first()
         user_ = User.objects.filter(username=user.username).first()
@@ -89,6 +98,11 @@ def deposit_window(request):
 
         context = {
             "price": price,
+            "price_btc": price_btc,
+            "price_fees": price_fees,
+            "price_fees_btc": price_fees_btc,
+            "price_total": price_total,
+            "price_total_btc": price_total_btc,
             "btc_address": admin_btc_address
         }
 
@@ -104,6 +118,11 @@ def deposit_window(request):
         if error:
             context = {
                 "price": price,
+                "price_btc": price_btc,
+                "price_fees": price_fees,
+                "price_fees_btc": price_fees_btc,
+                "price_total": price_total,
+                "price_total_btc": price_total_btc,
                 "btc_address": admin_btc_address,
                 "error": error
             }

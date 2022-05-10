@@ -1,11 +1,11 @@
-$blue: #24126a;
+$purple: #24126a;
 $green: #86b360;
 $grey: #eeeeee;
 $light-grey: #f5f7f9;
 $eee: #eeeeee;
 $ccc: #3a4542;
 $black: #595959;
-$send: #8cca6a;
+$send: #26145A;
 
 .make-default {
   padding-top: 10px;
@@ -19,7 +19,7 @@ $send: #8cca6a;
       content: "By selecting this checkbox, the bitcoin address you a enter here will be your current bitcoin address";
       position: absolute;
       margin-left: 5px;
-      background: darken($blue, 25%);
+      background: darken($purple, 25%);
       color: white;
       padding: 5px;
       border-radius: 3px;
@@ -36,7 +36,7 @@ $send: #8cca6a;
 }
 .note-msg {
   color: $ccc;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 12px;
 }
 
@@ -75,7 +75,7 @@ textarea {
         content: "Fees are given to the miners who verify your transaction on the blockchain";
         position: absolute;
         margin-left: 5px;
-        background: darken($blue, 25%);
+        background: darken($purple, 25%);
         color: white;
         padding: 5px;
         border-radius: 3px;
@@ -90,7 +90,7 @@ textarea {
   border-top: 2px solid RGBA(4, 4, 4, 0.1);
   border-radius: 3px;
   p {
-    color: $blue;
+    color: $purple;
   }
 }
 
@@ -163,7 +163,7 @@ ul {
 }
 
 .label {
-  color: $blue;
+  color: $purple;
   margin-bottom: 15px;
   font-size: 14px;
   font-weight: 400;
@@ -206,7 +206,7 @@ ul {
     margin: 0 10px;
     color: $ccc;
     &.active {
-      color: $blue;
+      color: $purple;
       font-weight: 700;
     }
     &:hover {
@@ -303,7 +303,7 @@ ul {
 }
 
 .form-title {
-  color: $blue;
+  color: $purple;
   padding: 1em 2em;
   h5 {
     font-weight: 500;
@@ -358,7 +358,7 @@ input[type="number"]::-webkit-outer-spin-button {
 html,
 body {
   height: 100%;
-  background: $blue;
+  background: $purple;
   display: flex;
   align-items: center;
   justify-content: center;

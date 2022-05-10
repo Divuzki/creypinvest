@@ -8,6 +8,10 @@ Author: Creyp Invest Inc.
   var btcConvertValuefees =
     document.getElementsByClassName("calculate-btc-fees");
   var totalAmount = document.getElementsByClassName("total-price-value");
+  var hiddenBtcAmount = document.getElementsByClassName("btc-hidden-value");
+  var hiddenFeesAmount = document.getElementsByClassName("price-fees-hidden-value");
+  var hiddenFeesBtcAmount = document.getElementsByClassName("btc-fees-hidden-value");
+
   var totalHiddenAmount = document.getElementsByClassName(
     "total-price-hidden-value"
   );
@@ -21,20 +25,20 @@ Author: Creyp Invest Inc.
     var feeAmount;
     if (initialAmount <= 200) {
       if (initialAmount <= 10) {
-        newAmount += 0.99;
+        newAmount += 0.05;
       } else if (initialAmount > 10 && initialAmount <= 25) {
-        newAmount += 1.49;
+        newAmount += 0.99;
       } else if (initialAmount > 25 && initialAmount <= 50) {
-        newAmount += 1.99;
+        newAmount += 0.49;
       } else {
-        newAmount += 2.99;
+        newAmount += 1.99;
       }
     } else {
-      var amountCheck = newAmount * 0.015;
+      var amountCheck = newAmount * 0.005;
       if (amountCheck < 0.55) {
-        newAmount += 0.55;
+        newAmount += 0.15;
       } else {
-        newAmount *= 1.015;
+        newAmount *= 1.005;
       }
     }
     newAmount = Math.ceil(newAmount * 100) / 100;
@@ -51,6 +55,9 @@ Author: Creyp Invest Inc.
         fees = calculateFees(dollars);
         for (var p in totalHiddenAmount) {
           totalHiddenAmount[p].value = `${fees[1].toFixed(2)}`;
+        }
+        for (var p in hiddenFeesAmount) {
+          hiddenFeesAmount[p].value = `${fees[0].toFixed(2)}`;
         }
         btcConvertValuefees[key].innerHTML = `${fees[0].toFixed(2)}`;
         for (var price in totalAmount) {
@@ -72,12 +79,20 @@ Author: Creyp Invest Inc.
         dollars = localStorage.getItem("raw_price");
 
         dollars = calculateFees(dollars);
+        for (var p in hiddenBtcAmount) {
+          price_in_btc = `${(btcConvertValue[key].getAttribute("data-btc-value") / bitcoin + 0.0009).toFixed(6)}`;
+          hiddenBtcAmount[p].value = price_in_btc;
+        }
+        for (var p in hiddenFeesBtcAmount) {
+          price_in_btc = `${(dollars[0] / bitcoin + 0.0009).toFixed(6)}`;
+          hiddenFeesBtcAmount[p].value = price_in_btc;
+        }
         for (var p in totalHiddenBtcAmount) {
           price_in_btc = `${(dollars[1] / bitcoin + 0.0009).toFixed(6)}`;
           totalHiddenBtcAmount[p].value = price_in_btc;
         }
         price_in_btc = `${(dollars[1] / bitcoin + 0.0009).toFixed(6)}`;
-        localStorage.setItem("price_in_btc", price_in_btc);
+        localStorage.setItem("price_total_in_btc", price_in_btc);
         btcConvertValue[key].innerHTML = price_in_btc;
         btcConversionFees();
       }

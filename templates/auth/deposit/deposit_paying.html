@@ -1,9 +1,9 @@
 {% extends 'auth/deposit/base.html' %} {% load static %}
 <title>{% block title %}${{price}} Deposit{% endblock title %}</title>
 {% block content %}
-<div class="form-wrapper">
+<form class="form-wrapper">
     <p class="step">Step 1 of 2</p>
-    <form class="step-1">
+    <div class="step-1">
       <div class="form-title">
         <div class="header">
           <img src="{% static 'images/logo/logo.png' %}" />
@@ -13,7 +13,7 @@
       </div>
       <div class="control-group to-field">
         <ul class="send-by">
-          <li class="active by-bitcoin" onclick="copyToClipboard('#generated-address')"><i class="lab la-bitcoin"></i>{{price_btc}}</li>
+          <li class="active by-bitcoin" onclick="copyToClipboard('#generated-address')"><i class="lab la-bitcoin"></i>{{price_total_btc}}</li>
         </ul>      
         <div class="btc">
           <label for="btc">You Pay <i class="las la-long-arrow-alt-right"></i></label>
@@ -25,8 +25,8 @@
       <div class="control-group amount-fields">
         <p class="available">Send Only Bitcoin to <span onclick="copyToClipboard('#generated-address')">({{btc_address}})</span></p>
       </div>
-    </form>
-    <form class="step-2 hide">
+    </div>
+    <div class="step-2 hide">
       <div class="form-title">
         <div class="header">
           <h2>Confirm Send</h2>
@@ -41,38 +41,44 @@
         <ul class="total-amounts">
           <li class="amount-item">
             <p>Amount:</p>
-            <p>1.00000 BTC</p>
+            <p>{{price_btc}} BTC</p>
             <p>${{price}} USD </p>
           </li>
           <li class="amount-item">
             <p>Fee:</p>
-            <p>0.0001 BTC</p>
-            <p>$0.05 USD <span> why? </span></p>
+            <p>{{price_fees_btc}} BTC</p>
+            <p>${{price_fees}} USD <span> why? </span></p>
           </li>
           <li class="amount-item total-item">
             <p>Total:</p>
-            <p>1.0001 BTC</p>
-            <p>$225.05 USD</p>
+            <p>{{price_total_btc}} BTC</p>
+            <p>${{price_total}} USD</p>
           </li>
         </ul>
       </div>
       <div class="control-group default-note">
         <div class="default-note-group">
           <label>Your Bitcoin Address:</label>
-          <input type="text" name="user_bitcoin_address" placeholder="Your Bitcoin address" id="user_btc" required />
+          <input type="hidden" name="total_price" value="{{price_total}}" required />
+          <input type="text" name="user_bitcoin_address" value="{{ user.profile.wallet.btc_address }}" placeholder="Enter the bitcoin address you are transfering from" id="user_btc" required />
           <div class="make-default note-msg">
             <label for="defualt" class="why-default">Make Default<span>?</span></label>
             <input type="checkbox" id="default" name="make_default"/>
           </div>
         </div>
       </div>
-    </form>
+    </div>
     <div class="actions">
-      <button class="cancel">Cancel</button>
-      <button class="next">
+      <button class="cancel cancel_">Cancel</button>
+      <button class="cancel back hide">Back</button>
+      <button class="next next_">
         Next
         <i class="fa fa-chevron-right"></i>
       </button>
+      <button type="submit" class="next sent hide">
+        Done
+        <i class="las la-check-double"></i>
+      </button>
     </div>
-  </div>
+  </form>
 {% endblock content %}

@@ -25,7 +25,7 @@
 
 .note-msg {
   color: #3a4542;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 12px;
 }
 
@@ -132,7 +132,7 @@ input[readonly=readonly] {
 }
 .actions .next.send {
   padding: 12px 36px;
-  background: #8cca6a;
+  background: #26145A;
 }
 .actions .next.send:hover {
   text-decoration: none;

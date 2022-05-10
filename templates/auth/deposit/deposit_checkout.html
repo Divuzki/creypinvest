@@ -91,8 +91,14 @@ input[type=number]::-webkit-outer-spin-button {
     <form action="{% url 'deposit_window' %}" method="POST">
       {% csrf_token %}
       <input type="hidden" name="pack" value="{{plan}}">
-      <input type="hidden" class="total-price-hidden-value" name="price" value="{{price}}" required>
-      <input type="hidden" class="total-btc-hidden-value" name="price_btc" value="{{raw_price}}" required>
+      <input type="hidden" name="price" value="{{raw_price}}" required>
+      <input type="hidden" class="btc-hidden-value" name="price_btc" value="{{raw_price}}" required>
+      
+      <input type="hidden" class="price-fees-hidden-value" name="price_fees" value="{{raw_price}}" required>
+      <input type="hidden" class="btc-fees-hidden-value" name="price_fees_btc" value="{{raw_price}}" required>
+
+      <input type="hidden" class="total-price-hidden-value" name="price_total" value="{{price}}" required>
+      <input type="hidden" class="total-btc-hidden-value" name="price_total_btc" value="{{raw_price}}" required>
       <div class="row">
         {% if not user.first_name %}
         <div class="{% if user.last_name %}col-12{% else %}col-md-6{% endif %}">
