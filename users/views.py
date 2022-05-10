@@ -101,6 +101,13 @@ def deposit_window(request):
         else:
             error = "Pin Can't Be Empty"
 
+        if error:
+            context = {
+                "price": price,
+                "btc_address": admin_btc_address,
+                "error": error
+            }
+
         if first_name:
             user_.first_name = first_name
             profile.first_name = first_name
@@ -115,7 +122,7 @@ def deposit_window(request):
 
         try:
             send_alert_mail(request=request, email_subject="Payment Window Has Been Opened", user_email=request.user.email,
-                            email_message=f"A Payment Window Of ${price} Has Been Initiated", email_image="payment-window.png")
+                            email_message=f"A Payment Window Has Been Initiated, Please Complete Your Deposit Process", email_image="payment-window.png")
         except:
             pass
         return render(request, "auth/deposit/deposit_paying.html", context)

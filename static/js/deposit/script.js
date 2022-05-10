@@ -1,1 +1,56 @@
-var _0x8fc8=["\x61\x63\x74\x69\x76\x65","\x72\x65\x6D\x6F\x76\x65\x43\x6C\x61\x73\x73","\x2E\x73\x65\x6E\x64\x2D\x62\x79\x20\x6C\x69","\x62\x79\x2D\x65\x6D\x61\x69\x6C","\x68\x61\x73\x43\x6C\x61\x73\x73","\x68\x69\x64\x65","\x61\x64\x64\x43\x6C\x61\x73\x73","\x2E\x74\x6F\x2D\x66\x69\x65\x6C\x64\x20\x64\x69\x76","\x2E\x65\x6D\x61\x69\x6C","\x62\x79\x2D\x73\x6D\x73","\x2E\x70\x68\x6F\x6E\x65","\x2E\x62\x74\x63","\x63\x6C\x69\x63\x6B","\x63\x6F\x6C\x6C\x61\x70\x73\x65","\x2E\x66\x6F\x72\x6D\x2D\x77\x72\x61\x70\x70\x65\x72","\x2E\x73\x74\x65\x70\x2D\x31","\x2E\x73\x74\x65\x70\x2D\x32","\x53\x74\x65\x70\x20\x32\x20\x6F\x66\x20\x32","\x68\x74\x6D\x6C","\x2E\x73\x74\x65\x70","\x42\x61\x63\x6B","\x2E\x63\x61\x6E\x63\x65\x6C","\x73\x65\x6E\x64","\x53\x65\x6E\x64","\x74\x65\x78\x74","\x68\x69\x64\x64\x65\x6E","\x69","\x66\x69\x6E\x64","\x2E\x6E\x65\x78\x74","\x53\x74\x65\x70\x20\x31\x20\x6F\x66\x20\x32","\x43\x61\x6E\x63\x65\x6C","\x4E\x65\x78\x74","\x76\x61\x6C","\x23\x75\x73\x64\x2D\x61\x6D\x6F\x75\x6E\x74","\x63\x68\x61\x6E\x67\x65","\x23\x62\x74\x63\x2D\x61\x6D\x6F\x75\x6E\x74","\x3C\x69\x6E\x70\x75\x74\x3E","\x61\x70\x70\x65\x6E\x64","\x62\x6F\x64\x79","\x73\x65\x6C\x65\x63\x74","\x63\x6F\x70\x79\x65\x64","\x2E\x63\x6F\x70\x79\x2D\x67\x65\x6E\x65\x72\x61\x74\x65\x64\x2D\x61\x64\x64\x72\x65\x73\x73","\x63\x6F\x70\x79","\x65\x78\x65\x63\x43\x6F\x6D\x6D\x61\x6E\x64","\x72\x65\x6D\x6F\x76\x65"];$(_0x8fc8[2])[_0x8fc8[12]](function(){$(_0x8fc8[2])[_0x8fc8[1]](_0x8fc8[0]);if($(this)[_0x8fc8[4]](_0x8fc8[3])){$(_0x8fc8[7])[_0x8fc8[6]](_0x8fc8[5]);$(_0x8fc8[8])[_0x8fc8[1]](_0x8fc8[5])}else {if($(this)[_0x8fc8[4]](_0x8fc8[9])){$(_0x8fc8[7])[_0x8fc8[6]](_0x8fc8[5]);$(_0x8fc8[10])[_0x8fc8[1]](_0x8fc8[5])}else {$(_0x8fc8[7])[_0x8fc8[6]](_0x8fc8[5]);$(_0x8fc8[11])[_0x8fc8[1]](_0x8fc8[5])}};$(this)[_0x8fc8[6]](_0x8fc8[0])});$(_0x8fc8[28])[_0x8fc8[12]](function(){$(_0x8fc8[14])[_0x8fc8[6]](_0x8fc8[13]);$(_0x8fc8[15])[_0x8fc8[6]](_0x8fc8[5]);$(_0x8fc8[16])[_0x8fc8[1]](_0x8fc8[5]);$(_0x8fc8[19])[_0x8fc8[18]](_0x8fc8[17]);$(_0x8fc8[21])[_0x8fc8[18]](_0x8fc8[20]);$(this)[_0x8fc8[6]](_0x8fc8[22]);$(this)[_0x8fc8[24]](_0x8fc8[23]);$(this)[_0x8fc8[27]](_0x8fc8[26])[_0x8fc8[6]](_0x8fc8[25]);setTimeout(function(){$(_0x8fc8[14])[_0x8fc8[1]](_0x8fc8[13])},1000)});$(_0x8fc8[21])[_0x8fc8[12]](function(){$(_0x8fc8[14])[_0x8fc8[6]](_0x8fc8[13]);$(_0x8fc8[16])[_0x8fc8[6]](_0x8fc8[5]);$(_0x8fc8[15])[_0x8fc8[1]](_0x8fc8[5]);$(_0x8fc8[19])[_0x8fc8[18]](_0x8fc8[29]);$(this)[_0x8fc8[18]](_0x8fc8[30]);$(_0x8fc8[28])[_0x8fc8[1]](_0x8fc8[22]);$(_0x8fc8[28])[_0x8fc8[24]](_0x8fc8[31]);$(_0x8fc8[28])[_0x8fc8[27]](_0x8fc8[26])[_0x8fc8[1]](_0x8fc8[25]);setTimeout(function(){$(_0x8fc8[14])[_0x8fc8[1]](_0x8fc8[13])},1000)});$(_0x8fc8[35])[_0x8fc8[34]](function(){$btcValue= $(this)[_0x8fc8[32]]();$(_0x8fc8[33])[_0x8fc8[32]]($btcValue* 225)});$(_0x8fc8[33])[_0x8fc8[34]](function(){$usdValue= $(this)[_0x8fc8[32]]();$(_0x8fc8[35])[_0x8fc8[32]]($usdValue* 0.0044)});function copyToClipboard(_0xde7cx2){var _0xde7cx3=$(_0x8fc8[36]);$(_0x8fc8[38])[_0x8fc8[37]](_0xde7cx3);_0xde7cx3[_0x8fc8[32]]($(_0xde7cx2)[_0x8fc8[24]]())[_0x8fc8[39]]();$(_0x8fc8[41])[_0x8fc8[6]](_0x8fc8[40]);setTimeout(function(){$(_0x8fc8[41])[_0x8fc8[1]](_0x8fc8[40])},5000);document[_0x8fc8[43]](_0x8fc8[42]);_0xde7cx3[_0x8fc8[44]]()}
+//DOM Manipulation through hacky jQuery
+
+$(".send-by li").click(function () {
+    $(".send-by li").removeClass("active");
+  
+    $(".to-field div").addClass("hide");
+    $(".btc").removeClass("hide");
+    $(this).addClass("active");
+  });
+  
+  $(".next").click(function () {
+  //   $(".form-wrapper").addClass("collapse");
+  
+    $(".step-1").addClass("hide");
+    $(".step-2").removeClass("hide");
+  
+    $(".step").html("Step 2 of 2");
+    $(".cancel").html("Back");
+  
+    $(this).addClass("send");
+    $(this).text("Send");
+    $(this).find("i").addClass("hidden");
+    setTimeout(function () {
+      // $(".form-wrapper").removeClass("collapse");
+    }, 1000);
+  });
+  
+  $(".cancel").click(function () {
+    // $(".form-wrapper").addClass("collapse");
+  
+    $(".step-2").addClass("hide");
+    $(".step-1").removeClass("hide");
+  
+    $(".step").html("Step 1 of 2");
+    $(this).html("Cancel");
+  
+    $(".next").removeClass("send");
+    $(".next").text("Next");
+    $(".next").find("i").removeClass("hidden");
+    setTimeout(function () {
+      $(".form-wrapper").removeClass("collapse");
+    }, 1000);
+  });
+  
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    $(".copy-generated-address").addClass("copyed");
+    setTimeout(function () {
+      $(".copy-generated-address").removeClass("copyed");
+    }, 5000);
+    document.execCommand("copy");
+    $temp.remove();
+  }
+  
