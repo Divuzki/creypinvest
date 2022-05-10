@@ -39,7 +39,7 @@ def update_user_ip(function):
                         if not qs_ip_address == js_user_ip:
                             try:
                                 if sent_mail_before == True:
-                                    rest_url = request.build_absolute_uri('/auth/account/reset-password?next=/dashboard/profile/')
+                                    rest_url = request.build_absolute_uri('/auth/account/password/change/?next=/dashboard/profile/')
                                     html_msg = f'<small class="mr-1">Not You? <small><a href="{rest_url}" class="btn btn-primary border">Change Password</a>'
                                     send_alert_mail(request=request, email_subject="Alert - New Device Login", user_email=request.user.email,
                                                     email_message="A new device (or new IP Address) just accessed your account", html_message=html_msg)
