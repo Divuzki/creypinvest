@@ -47,7 +47,7 @@
             				<h2>{{email_subject}}</h2>
                             <h3>{{email_message}}</h3>
                             {% if html_message %}
-                            <p>{{html_message}}</p>
+                            <p class="btn e-btn">{{html_message|safe}}</p>
                             {% endif %}
             			</div>
             		</td>
