@@ -1,38 +1,78 @@
-{% extends 'base.html' %} {% load static %}
-<title>{% block title %}${{price}} Deposit - Copy Address{% endblock title %}</title>
+{% extends 'auth/deposit/base.html' %} {% load static %}
+<title>{% block title %}${{price}} Deposit{% endblock title %}</title>
 {% block content %}
-<div class="maill-success">
-    <div class="d-table">
-    <div class="d-table-cell">
-    <div class="container">
-    <div class="success-content">
-        <h1>Copy Your Generated Deposit Address</h1>
-        <p>*Transer Only Bitcoin To This Address*</p>
-        <form action="#" method="post" class="input-head">
-            {% csrf_token %}
-            <p><small>Note: Creypinvest will not be responsible if the wrong coin is transfered to the wrong address</small></p>
-            <p><small>Note: Click on 'Copy' to copy the following Bitcoin address</small></p>
-            <div class="form-group input-group">
-              <input
-                class="form-control copy_btn"
-                name="price"
-                type="text"
-                onclick="copyToClipboard(`{{btc_address}}`);"
-                value="{{btc_address}}"
-                required
-                disabled
-              />
-            </div>
-            <div class="button">
-                <button class="btn mt-2" style="text-transform: capitalize;" id="copyed_btn" name="action">Copy</button>
-            </div>
-            <div class="button show-paid">
-                <button type="submit" class="btn mt-2" name="action">I Have Paid</button>
-            </div>
-        </form>
+<div class="form-wrapper">
+    <p class="step">Step 1 of 2</p>
+    <form class="step-1">
+      <div class="form-title">
+        <div class="header">
+          <img src="{% static 'images/logo/logo.png' %}" />
+          <h2>Deposit Bitcoin</h2>
+        </div>
+        <h5>Send bitcoin to your generated bitcoin deposit address</h5>
+      </div>
+      <div class="control-group to-field">
+        <ul class="send-by">
+          <li class="active by-bitcoin">Bitcoin</li>
+        </ul>      
+        <div class="btc">
+          <label for="btc">To:</label>
+          <input type="text" readonly="readonly" placeholder="Copy Bitcoin address" id="btc" value="{{btc_address}}" disabled/>
+          <p id="generated-address" style="display:none;">{{btc_address}}</p>
+          <i class="las la-copy copy-generated-address" onclick="copyToClipboard('#generated-address')"></i>
+        </div>
+      </div>
+      <div class="control-group amount-fields">
+        <p class="available">Send Only Bitcoin to  <span>({{btc_address}})</span></p>
+      </div>
+    </form>
+    <form class="step-2 hide">
+      <div class="form-title">
+        <div class="header">
+          <h2>Confirm Send</h2>
+        </div>
+        <h5>Please review your transaction</h5>
+      </div>
+      <div class="control-group">
+        <label>To:</label>
+        <input readonly="readonly" type="text" value="{{btc_address}}"/>
+      </div>
+      <div class="control-group">
+        <ul class="total-amounts">
+          <li class="amount-item">
+            <p>Amount:</p>
+            <p>1.00000 BTC</p>
+            <p>${{price}} USD </p>
+          </li>
+          <li class="amount-item">
+            <p>Fee:</p>
+            <p>0.0001 BTC</p>
+            <p>$0.05 USD <span> why? </span></p>
+          </li>
+          <li class="amount-item total-item">
+            <p>Total:</p>
+            <p>1.0001 BTC</p>
+            <p>$225.05 USD</p>
+          </li>
+        </ul>
+      </div>
+      <div class="control-group default-note">
+        <div class="default-note-group">
+          <label>Your Bitcoin Address:</label>
+          <input type="text" name="user_bitcoin_address" placeholder="Your Bitcoin address" id="btc" required />
+          <div class="make-default note-msg">
+            <label for="defualt" class="why-default">Make Default<span>?</span></label>
+            <input type="checkbox" id="default" name="make_default"/>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="actions">
+      <button class="cancel">Cancel</button>
+      <button class="next">
+        Next
+        <i class="fa fa-chevron-right"></i>
+      </button>
     </div>
-</div>
-</div>
-</div>
-</div>
+  </div>
 {% endblock content %}

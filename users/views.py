@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from users.models import AdminWallet
+from django.contrib.auth.models import User
+
+from users.models import AdminWallet, Profile, Wallet
 from users.decorators import update_user_ip
 
 starter = ["5,000", "4,000", "3,000", "2,000", "1,000", "500"]
 etfs = ["15,000", "14,000", "13,000", "12,000", "11,000", "10,000"]
+
 
 @update_user_ip
 def deposit(request):
@@ -13,6 +16,7 @@ def deposit(request):
         return render(request, "auth/deposit/deposit.html", context)
     else:
         return redirect("/auth/account/login/?next=/auth/deposit/")
+
 
 @update_user_ip
 def deposit_amount(request, pack):
@@ -35,6 +39,7 @@ def deposit_amount(request, pack):
         return render(request, "auth/deposit/deposit_amount.html", context)
     else:
         return redirect("/auth/account/login/?next=/auth/deposit/" + str(pack) + "/")
+
 
 @update_user_ip
 def deposit_amount_auth(request, pack):
@@ -64,7 +69,48 @@ def deposit_amount_auth(request, pack):
         return render(request, "auth/deposit/deposit_checkout.html", context)
     else:
         return redirect("deposit")
-        
+
+
 @update_user_ip
 def deposit_window(request):
-    return render(request, "auth/deposit/deposit_paying.html")
+    user = request.user
+    if request.method == "POST" and user.is_authenticated:
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        pin1 = request.POST.get("pin1")
+        pin2 = request.POST.get("pin")
+        price = request.POST.get("price")
+        profile = Profile.objects.filter(user=user).first()
+        wallet = Wallet.objects.filter(user=profile).first()
+        user_ = User.objects.filter(username=user.username).first()
+        admin_btc_address = AdminWallet.objects.all()
+        admin_btc_address = admin_btc_address.first()
+
+        context = {
+            "price": price,
+            "btc_address": admin_btc_address
+        }
+
+        if pin1 and pin2:
+            if pin1 == pin2:
+                wallet.pin = pin2
+                wallet.save()
+            else:
+                error = "Pins Must Be The Same"
+        else:
+            error = "Pin Can't Be Empty"
+
+        if first_name:
+            user_.first_name = first_name
+            profile.first_name = first_name
+            user_.save()
+            profile.save()
+
+        if last_name:
+            user_.last_name = last_name
+            profile.last_name = last_name
+            user_.save()
+            profile.save()
+        return render(request, "auth/deposit/deposit_paying.html", context)
+    else:
+        return redirect("deposit")

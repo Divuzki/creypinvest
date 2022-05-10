@@ -82,9 +82,13 @@ input[type=number]::-webkit-outer-spin-button {
         >
       </li>
     </ul>
+    {% if not user.first_name or not user.last_name or not user.profile.wallet.pin %}
     <div class="text-center mb-5"><h4>Complete This Form</h4></div>
+    {% endif %}
     <form action="{% url 'deposit_window' %}" method="POST">
+      {% csrf_token %}
       <input type="hidden" name="pack" value="{{plan}}">
+      <input type="hidden" class="total-price-hidden-value" name="price" value="{{price}}" required>
       <div class="row">
         {% if not user.first_name %}
         <div class="{% if user.last_name %}col-12{% else %}col-md-6{% endif %}">
@@ -126,6 +130,7 @@ input[type=number]::-webkit-outer-spin-button {
               <input
                 class="form-control text-uppercase"
                 type="number"
+                name="pin"
                 max="6"
                 min="6"
                 placeholder="6 digit pin"
@@ -154,7 +159,7 @@ input[type=number]::-webkit-outer-spin-button {
         </div>
         {% endif %}
         <div class="col-12 px-md-5 px-4 mt-3">
-          <div class="btn btn-primary w-100"><span class="total-price-value" data-before-text="Pay $">Pay ${{display_price}}</span></div>
+          <button type="submit" name="action" class="btn btn-primary w-100"><span class="total-price-value" data-before-text="Pay $">Pay ${{display_price}}</span></button>
         </div>
       </div>
     </form>
