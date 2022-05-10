@@ -92,6 +92,7 @@ input[type=number]::-webkit-outer-spin-button {
       {% csrf_token %}
       <input type="hidden" name="pack" value="{{plan}}">
       <input type="hidden" class="total-price-hidden-value" name="price" value="{{price}}" required>
+      <input type="hidden" class="total-btc-hidden-value" name="price_btc" value="{{raw_price}}" required>
       <div class="row">
         {% if not user.first_name %}
         <div class="{% if user.last_name %}col-12{% else %}col-md-6{% endif %}">

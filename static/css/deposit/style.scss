@@ -169,7 +169,6 @@ ul {
   font-weight: 400;
 }
 
-.usd-amount,
 .btc-amount {
   border-bottom: 1px solid $ccc;
   display: flex;
@@ -232,22 +231,30 @@ ul {
   }
 }
 
-.btc,
-.email,
-.phone {
+.btc {
   display: flex;
   flex-direction: column;
 }
+#btc {
+  border-bottom: 1px solid !important;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  border: 1px solid;
+  padding-left: 10px;
+  border-radius: 24px 0px 0px 24px;
+  margin-left: 0 !important;
+}
 .copy-generated-address {
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  right: 33px;
-  top: 50px;
-  background: #fdfdfd;
-  border: 1px solid #e5e5e5;
-  padding: 5px;
-  font-size: 21px;
+    height: 21px;
+    width: 22px;
+    position: absolute;
+    right: 29px;
+    top: 50px;
+    background: #fdfdfd;
+    border: 1px solid #5757ab;
+    border-radius: 0px 5px 5px 0px;
+    padding: 5px;
+    font-size: 21px;
   &:hover {
     cursor: pointer;
     background: #efefef;
@@ -265,7 +272,7 @@ ul {
       z-index: 10000;
     }
   }
-  &.copyed:hover:after{
+  &.copyed:hover:after {
     content: "Copyed";
   }
 }
@@ -329,8 +336,8 @@ form {
   position: relative;
   margin: 1em;
 
-  @media screen and (max-width: 768px) {
-    transform: scale(0.8);
+  @media screen and (max-width: 425px) {
+    transform: scale(0.83);
   }
 }
 

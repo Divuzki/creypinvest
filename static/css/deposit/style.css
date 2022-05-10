@@ -159,24 +159,20 @@ ul {
   font-weight: 400;
 }
 
-.usd-amount,
 .btc-amount {
   border-bottom: 1px solid #3a4542;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.usd-amount label,
 .btc-amount label {
   margin: 0;
   color: black !important;
 }
-.usd-amount input,
 .btc-amount input {
   border: none;
   background: transparent;
 }
-.usd-amount input:focus,
 .btc-amount input:focus {
   outline: none;
 }
@@ -227,21 +223,30 @@ ul {
   margin-bottom: 15px;
 }
 
-.btc,
-.email,
-.phone {
+.btc {
   display: flex;
   flex-direction: column;
 }
 
+#btc {
+  border-bottom: 1px solid !important;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  border: 1px solid;
+  padding-left: 10px;
+  border-radius: 24px 0px 0px 24px;
+  margin-left: 0 !important;
+}
+
 .copy-generated-address {
-  height: 20px;
-  width: 20px;
+  height: 21px;
+  width: 22px;
   position: absolute;
-  right: 33px;
+  right: 29px;
   top: 50px;
   background: #fdfdfd;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #5757ab;
+  border-radius: 0px 5px 5px 0px;
   padding: 5px;
   font-size: 21px;
 }
@@ -329,9 +334,9 @@ form {
   position: relative;
   margin: 1em;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .form-wrapper {
-    transform: scale(0.8);
+    transform: scale(0.83);
   }
 }
 

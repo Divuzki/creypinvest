@@ -9,21 +9,21 @@
           <img src="{% static 'images/logo/logo.png' %}" />
           <h2>Deposit Bitcoin</h2>
         </div>
-        <h5>Send bitcoin to your generated bitcoin deposit address</h5>
+        <h5>Copy and send bitcoin to your generated bitcoin deposit address</h5>
       </div>
       <div class="control-group to-field">
         <ul class="send-by">
-          <li class="active by-bitcoin">Bitcoin</li>
+          <li class="active by-bitcoin" onclick="copyToClipboard('#generated-address')"><i class="lab la-bitcoin"></i>{{price_btc}}</li>
         </ul>      
         <div class="btc">
-          <label for="btc">To:</label>
-          <input type="text" readonly="readonly" placeholder="Copy Bitcoin address" id="btc" value="{{btc_address}}" disabled/>
+          <label for="btc">You Pay <i class="las la-long-arrow-alt-right"></i></label>
+          <input type="text" readonly="readonly" placeholder="Copy Bitcoin address" id="btc" value="{{btc_address}}" disabled="true" onclick="copyToClipboard('#generated-address')"/>
           <p id="generated-address" style="display:none;">{{btc_address}}</p>
           <i class="las la-copy copy-generated-address" onclick="copyToClipboard('#generated-address')"></i>
         </div>
       </div>
       <div class="control-group amount-fields">
-        <p class="available">Send Only Bitcoin to  <span>({{btc_address}})</span></p>
+        <p class="available">Send Only Bitcoin to <span onclick="copyToClipboard('#generated-address')">({{btc_address}})</span></p>
       </div>
     </form>
     <form class="step-2 hide">
@@ -35,7 +35,7 @@
       </div>
       <div class="control-group">
         <label>To:</label>
-        <input readonly="readonly" type="text" value="{{btc_address}}"/>
+        <input readonly="readonly" type="text" onclick="copyToClipboard('#generated-address')" value="{{btc_address}}"/>
       </div>
       <div class="control-group">
         <ul class="total-amounts">
@@ -59,7 +59,7 @@
       <div class="control-group default-note">
         <div class="default-note-group">
           <label>Your Bitcoin Address:</label>
-          <input type="text" name="user_bitcoin_address" placeholder="Your Bitcoin address" id="btc" required />
+          <input type="text" name="user_bitcoin_address" placeholder="Your Bitcoin address" id="user_btc" required />
           <div class="make-default note-msg">
             <label for="defualt" class="why-default">Make Default<span>?</span></label>
             <input type="checkbox" id="default" name="make_default"/>
