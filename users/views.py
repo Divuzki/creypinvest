@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from users.models import AdminWallet, Profile, Wallet
 from users.decorators import update_user_ip
+from creyp.utils import send_alert_mail
 
 starter = ["5,000", "4,000", "3,000", "2,000", "1,000", "500"]
 etfs = ["15,000", "14,000", "13,000", "12,000", "11,000", "10,000"]
@@ -111,6 +112,12 @@ def deposit_window(request):
             profile.last_name = last_name
             user_.save()
             profile.save()
+
+        try:
+            send_alert_mail(request=request, email_subject="Payment Window Has Been Opened", user_email=request.user.email,
+                            email_message=f"A Payment Window Of ${price} Has Been Initiated", email_image="payment-window.png")
+        except:
+            pass
         return render(request, "auth/deposit/deposit_paying.html", context)
     else:
         return redirect("deposit")
