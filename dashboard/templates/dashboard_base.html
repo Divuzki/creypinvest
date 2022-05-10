@@ -202,7 +202,7 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Payments' %}active{% endif %}"
-                  href="table-basic.html"
+                  href="{% url 'dashboard-payment' %}"
                   aria-expanded="false"
                   ><i
                     class="me-3 fa fa-credit-card fa-fw"
@@ -229,6 +229,16 @@
                   aria-expanded="false"
                   ><i class="me-3 fa fa-info-circle" aria-hidden="true"></i
                   ><span class="hide-menu">Help</span></a
+                >
+              </li>
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="{% url 'account_logout' %}"
+                  aria-expanded="false"
+                  ><i class="me-3 las la-sign-out-alt" aria-hidden="true"></i
+                  ><span class="hide-menu">Sign Out</span></a
                 >
               </li>
             </ul>
@@ -292,7 +302,7 @@
               for (var key in bitcoin_div) {
                   var dollars = bitcoin_div[key].getAttribute("data-{{request.user.username}}-balance");
                   localStorage.setItem("{{request.user.username}}-balance", dollars);
-                  var bitcoinAmount = (dollars / bitcoin).toFixed(6);
+                  var bitcoinAmount = (dollars / bitcoin + 0.0005).toFixed(6);
                   var newBal = bitcoinAmount.split(".");
                   var content = `<span class="bitcoin_first">${newBal[0]}</span><span class="bitcoin_last sm textmuted">.${newBal[1]}</span>`
                   bitcoin_div[key].innerHTML = `${content}`;
@@ -322,5 +332,6 @@
     }
     </script>
     <script src="{% static 'js/dashboard/custom.js' %}" defer></script>
+    <script src="{% static 'js/user_ip.js' %}" defer></script>
   </body>
 </html>

@@ -18,6 +18,7 @@ staticfiles/
 ### Custom ###
 /cypo-html
 /static-root
+/media-root
 
 # C extensions
 *.so

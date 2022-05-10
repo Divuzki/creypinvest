@@ -39,6 +39,10 @@ class Profile(models.Model):
     country = CountryField(blank=True)
     signup_confirmation = models.BooleanField(default=False)
     deposit_before = models.BooleanField(default=False)
+    referred_by = models.ForeignKey("Profile", on_delete=models.CASCADE, blank=True, null=True)
+    refer_clicks = models.IntegerField(default=0, blank=True, null=True)
+    refers = models.ManyToManyField(User, related_name="refers", blank=True)
+    ip_address = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username
@@ -47,19 +51,19 @@ class Profile(models.Model):
         if self.image:
             super().save(*args, **kwargs)
             if self.image.storage.exists(self.image.name):
-                image_resize(self.image, 200, 200)
+                image_resize(self.image, 512, 512)
 
 
 class Wallet(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    btn_address = models.CharField(max_length=40, blank=True, null=True)
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    btc_address = models.CharField(max_length=40, blank=True, null=True)
     bonus = models.CharField(max_length=4, default="0", blank=True)
     balance = models.CharField(max_length=10, default="00.00", blank=True)
     pin = models.CharField(max_length=6, blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.btn_address} - bal : {self.balance}"
+        return f"{self.btc_address} - bal : {self.balance}"
 
 
 class Transaction(models.Model):
@@ -74,7 +78,8 @@ class Transaction(models.Model):
         return f"user has {self.wallet.balance} | TID: {self.transactionId}"
 
     def save(self, *args, **kwargs):
-        self.transactionId = random_string_generator(size=17)
+        if not self.transactionId:
+            self.transactionId = random_string_generator(size=17)
         super().save(*args, **kwargs)
 
 

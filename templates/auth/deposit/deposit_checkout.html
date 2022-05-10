@@ -3,7 +3,15 @@
 {% block css %}<link
   rel="stylesheet"
   href="{% static 'css/checkout.css' %}"
-/>{% endblock css %} {% block content %}
+/>
+<style>
+    input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+</style>
+{% endblock css %} {% block content %}
 <div class="checkout-container bg-light d-md-flex align-items-center">
   <div class="card box1 shadow-sm p-md-5 p-md-5 p-4">
     <div class="fw-bolder mb-4">
@@ -75,40 +83,42 @@
       </li>
     </ul>
     <div class="text-center mb-5"><h4>Complete This Form</h4></div>
-    <form action="#" method="POST">
+    <form action="{% url 'deposit_window' %}" method="POST">
+      <input type="hidden" name="pack" value="{{plan}}">
       <div class="row">
         {% if not user.first_name %}
-        <div class="{% if not user.last_name %}col-12{% else %}col-md-6{% endif %}">
+        <div class="{% if user.last_name %}col-12{% else %}col-md-6{% endif %}">
           <div class="{% if not user.last_name %}
-          d-flex flex-column px-md-5 px-4 mb-4
+          d-flex flex-column ps-md-5 px-4 mb-4
           {% else %}
           d-flex flex-column pe-md-5 px-md-0 px-4 mb-4
           {% endif %}">
             <span>First<span class="ps-1">Name</span></span>
             <div class="inputWithIcon">
-              <input type="text" name="first_name" class="form-control" />
+              <input type="text" name="first_name" class="form-control" required />
               <span class="far fa-user"></span>
             </div>
           </div>
         </div>
         {% endif %}
         {% if not user.last_name %}
-        <div class="{% if not user.first_name %}col-12{% else %}col-md-6{% endif %}">
+        <div class="{% if user.first_name %}col-12{% else %}col-md-6{% endif %}">
           <div class="
           {% if not user.first_name %}
-          d-flex flex-column px-md-5 px-4 mb-4
-          {% else %}
           d-flex flex-column pe-md-5 px-md-0 px-4 mb-4
+          {% else %}
+          d-flex flex-column px-md-5 px-4 mb-4
           {% endif %}
           ">
             <span>Last Name</span>
             <div class="inputWithIcon">
-              <input type="test" name="last_name" class="form-control" />
+              <input type="test" name="last_name" class="form-control" required />
               <span class="fas fa-pen"></span>
             </div>
           </div>
         </div>
         {% endif %}
+        {% if not user.profile.wallet.pin %}
         <div class="col-12">
           <div class="d-flex flex-column px-md-5 px-4 mb-4">
             <span>Set Pin</span>
@@ -119,8 +129,9 @@
                 max="6"
                 min="6"
                 placeholder="6 digit pin"
+                required
               />
-              <span class="far fa-lock"></span>
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
@@ -135,11 +146,13 @@
                 max="6"
                 min="6"
                 placeholder="confirm pin"
+                required
               />
-              <span class="far fa-lock"></span>
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+        {% endif %}
         <div class="col-12 px-md-5 px-4 mt-3">
           <div class="btn btn-primary w-100"><span class="total-price-value" data-before-text="Pay $">Pay ${{display_price}}</span></div>
         </div>

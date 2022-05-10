@@ -14,6 +14,7 @@ from pathlib import Path
 from PIL import Image
 from io import BytesIO
 from django.core.files import File
+from django.http import HttpResponse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +22,8 @@ ADMIN_EMAIL = settings.EMAIL_HOST_USER
 
 
 def set_cookie_function(key, value, max_age=None, response=None):
+    if response == None:
+        response = HttpResponse("sorry, you are not allowed here, please go back <a href='javascript:history.back()'>BACK!</a>")
     response.set_cookie(str(key), value, max_age=max_age)
     return response
 
@@ -140,6 +143,30 @@ def send_contact_us_email(request, name=None, phone=None, user_email=None, subje
     else:
         email = send_mail(
             email_subject, text_content, ADMIN_EMAIL, [user_email], html_message=email_body)
+
+    if not settings.DEBUG:
+        EmailThread(email).start()
+
+def send_alert_mail(request, email_subject, user_email, email_message, email_image="alert.png", html_message=None, email_ip=None, email_user=None):
+    email_subject = email_subject
+    try:
+        if not email_user == None:
+            user_email = email_user.email
+    except:
+        user_email = user_email
+    email_body = render_to_string('account/email/alert_email.html', {
+        'email_subject': email_subject,
+        'user_email': user_email,
+        'email_message': email_message,
+        'html_message': html_message,
+        'email_image': email_image,
+        'email_ip': email_ip
+    }, request)
+    text_content = strip_tags(html_message)
+    if email_message:
+        text_content = strip_tags(email_message)
+    email = send_mail(
+        email_subject, text_content, ADMIN_EMAIL, [user_email], html_message=email_body)
 
     if not settings.DEBUG:
         EmailThread(email).start()

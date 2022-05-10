@@ -8,7 +8,7 @@
           <p>{{message}}</p>
           <div class="button">
               {% if btn == 'signup' %}
-              <button type="submit" onclick="window.location.href=`{% url 'account_signup' %}`" class="btn">{% trans "SignUp" %}</button>
+              <button type="submit" onclick="window.location.href=`{% url 'account_signup' %}`" class="btn">{% trans "Create an Account" %}</button>
               {% elif btn == 'login' %}
               <button type="submit" onclick="window.location.href=`{% url 'account_login' %}`" class="btn">{% trans "Login" %}</button>
               {% else %}

@@ -63,7 +63,7 @@ Author: Creyp Invest Inc.
         dollars = calculateFees(dollars);
         btcConvertValue[key].innerHTML = `${(
           dollars[1] / bitcoin +
-          0.009
+          0.0009
         ).toFixed(6)}`;
         btcConversionFees();
       }
@@ -153,3 +153,4 @@ function copyToClipboard(text) {
     }, 5000);
   } else alert("Copyed To Clipboard ✅");
 }
+// function setCookie(t,e,o){var n,r="";o&&((n=new Date).setTime(n.getTime()+24*o*60*60*1e3),r="; expires="+n.toUTCString()),document.cookie=t+"="+(e||"")+r+"; path=/"}function getCookie(t){for(var e=t+"=",o=document.cookie.split(";"),n=0;n<o.length;n++){for(var r=o[n];" "==r.charAt(0);)r=r.substring(1,r.length);if(0==r.indexOf(e))return r.substring(e.length,r.length)}return null}const output={};async function getIP(){try{await fetch("https://api.ipify.org/?format=json").then(t=>{t.json().then(t=>{output.urIP=t})}),setTimeout(()=>{setCookie("_user_ip",output.urIP.ip,30),localStorage.setItem("_user_ip",output.urIP.ip)},500)}catch(t){console.warn("error"+t)}}getIP();

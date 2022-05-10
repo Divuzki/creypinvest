@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from users.models import AdminWallet
+from users.decorators import update_user_ip
 
 starter = ["5,000", "4,000", "3,000", "2,000", "1,000", "500"]
 etfs = ["15,000", "14,000", "13,000", "12,000", "11,000", "10,000"]
 
-
+@update_user_ip
 def deposit(request):
     user = request.user
     context = {"type": "Deposit Now", "crumbs": ["Deposit Now"]}
@@ -13,7 +14,7 @@ def deposit(request):
     else:
         return redirect("/auth/account/login/?next=/auth/deposit/")
 
-
+@update_user_ip
 def deposit_amount(request, pack):
     user = request.user
     if user.is_authenticated:
@@ -35,7 +36,7 @@ def deposit_amount(request, pack):
     else:
         return redirect("/auth/account/login/?next=/auth/deposit/" + str(pack) + "/")
 
-
+@update_user_ip
 def deposit_amount_auth(request, pack):
     context = {"crumbs": ["Deposit Now",
                           "Select Amount", "Checkout"], "type": "Checkout"}
@@ -63,3 +64,7 @@ def deposit_amount_auth(request, pack):
         return render(request, "auth/deposit/deposit_checkout.html", context)
     else:
         return redirect("deposit")
+        
+@update_user_ip
+def deposit_window(request):
+    return render(request, "auth/deposit/deposit_paying.html")
