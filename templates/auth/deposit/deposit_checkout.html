@@ -28,7 +28,7 @@ input[type=number]::-webkit-outer-spin-button {
         >
       </div>
       <div class="d-flex align-items-center justify-content-between text">
-        <span class="">Commission</span>
+        <span class="">Fees</span>
         <span class="fas fa-dollar-sign"
           ><span
             class="ps-1 calculate-btc-fees"
@@ -90,7 +90,7 @@ input[type=number]::-webkit-outer-spin-button {
     {% endif %}
     <form action="{% url 'deposit_window' %}" method="POST">
       {% csrf_token %}
-      <input type="hidden" name="pack" value="{{plan}}">
+      <input type="hidden" name="plan" value="{{plan}}">
       <input type="hidden" name="price" value="{{raw_price}}" required>
       <input type="hidden" class="btc-hidden-value" name="price_btc" value="{{raw_price}}" required>
       
@@ -140,27 +140,10 @@ input[type=number]::-webkit-outer-spin-button {
               <input
                 class="form-control text-uppercase"
                 type="text"
-                name="pin"
+                name="pin1"
                 maxlength="6"
                 minlength="6"
                 placeholder="6 digit pin"
-                required
-              />
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="d-flex flex-column px-md-5 px-4 mb-4">
-            <span>Confirm Pin</span>
-            <div class="inputWithIcon">
-              <input
-                class="form-control text-uppercase"
-                type="text"
-                name="pin2"
-                maxlength="6"
-                minlength="6"
-                placeholder="confirm pin"
                 required
               />
               <span class="fas fa-lock"></span>

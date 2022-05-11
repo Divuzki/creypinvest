@@ -79,7 +79,8 @@ def deposit_window(request):
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
         pin1 = request.POST.get("pin1")
-        pin2 = request.POST.get("pin")
+
+        plan = request.POST.get("plan")
 
         price = request.POST.get("price")
         price_btc = request.POST.get("price_btc")
@@ -97,6 +98,7 @@ def deposit_window(request):
         admin_btc_address = admin_btc_address.first()
 
         context = {
+            "plan": plan,
             "price": price,
             "price_btc": price_btc,
             "price_fees": price_fees,
@@ -105,25 +107,21 @@ def deposit_window(request):
             "price_total_btc": price_total_btc,
             "btc_address": admin_btc_address
         }
-
-        if pin1 and pin2:
-            if pin1 == pin2:
-                wallet.pin = pin2
-                wallet.save()
-            else:
-                error = "Pins Must Be The Same"
-        else:
+        error = None
+        if not pin1:
             error = "Pin Can't Be Empty"
 
-        if error:
+        if pin1:
+            wallet.pin = pin1
+            wallet.save()
+
+        if not error == None:
             context = {
-                "price": price,
-                "price_btc": price_btc,
-                "price_fees": price_fees,
-                "price_fees_btc": price_fees_btc,
-                "price_total": price_total,
-                "price_total_btc": price_total_btc,
+                "plan": plan,
+                "raw_price": price,
+                "display_price": price,
                 "btc_address": admin_btc_address,
+                "crumbs": ["Deposit Now", "Select Amount", "Checkout"], "type": "Checkout",
                 "error": error
             }
 

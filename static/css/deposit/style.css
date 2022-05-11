@@ -131,11 +131,14 @@ input[readonly=readonly] {
   font-size: 12px;
 }
 .actions .next.send {
+  cursor: pointer;
   padding: 12px 36px;
-  background: #26145A;
+  background: linear-gradient(90deg, #26145A, #2b3cff);
+  transition: all 500ms ease;
 }
 .actions .next.send:hover {
   text-decoration: none;
+  background: linear-gradient(270deg, #26145A, #2b3cff);
 }
 
 button:focus {
@@ -258,7 +261,9 @@ ul {
   content: "Copy";
   position: absolute;
   left: -6px;
-  bottom: 28px;
+  -webkit-animation: swipeUp 0.5s ease;
+          animation: swipeUp 0.5s ease;
+  bottom: 34px;
   background: rgba(12, 11, 11, 0.7882352941);
   color: white;
   padding: 5px;
@@ -268,6 +273,16 @@ ul {
   min-width: max-content;
   font-size: 13px;
   z-index: 10000;
+}
+@-webkit-keyframes swipeUp {
+  50% {
+    bottom: 38px;
+  }
+}
+@keyframes swipeUp {
+  50% {
+    bottom: 38px;
+  }
 }
 .copy-generated-address.copyed:hover:after {
   content: "Copyed";

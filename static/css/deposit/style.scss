@@ -139,10 +139,13 @@ input[readonly="readonly"] {
     font-size: 12px;
   }
   .next.send {
+    cursor: pointer;
     padding: 12px 36px;
-    background: $send;
+    background: linear-gradient(90deg, $send, #2b3cff);
+    transition: all 500ms ease;
     &:hover {
       text-decoration: none;
+      background: linear-gradient(270deg, $send, #2b3cff);
     }
   }
 }
@@ -262,7 +265,8 @@ ul {
       content: "Copy";
       position: absolute;
       left: -6px;
-      bottom: 28px;
+      animation: swipeUp .5s ease;
+      bottom: 34px;
       background: #0c0b0bc9;
       color: white;
       padding: 5px;
@@ -270,6 +274,12 @@ ul {
       min-width: max-content;
       font-size: 13px;
       z-index: 10000;
+
+      @keyframes swipeUp {
+          50%{
+            bottom: 38px;
+          }
+      }
     }
   }
   &.copyed:hover:after {

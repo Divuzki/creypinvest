@@ -60,11 +60,17 @@
         <div class="default-note-group">
           <label>Your Bitcoin Address:</label>
           <input type="hidden" name="total_price" value="{{price_total}}" required />
-          <input type="text" name="user_bitcoin_address" value="{{ user.profile.wallet.btc_address }}" placeholder="Enter the bitcoin address you are transfering from" id="user_btc" required />
+          <input type="text" name="user_bitcoin_address" 
+          {% if user.profile.wallet.btc_address %}
+          value="{{ user.profile.wallet.btc_address }}" 
+          {% endif %}
+          placeholder="Enter the bitcoin address you are transfering from" id="user_btc" required />
+          {% if not user.profile.wallet.btc_address %}
           <div class="make-default note-msg">
             <label for="defualt" class="why-default">Make Default<span>?</span></label>
             <input type="checkbox" id="default" name="make_default"/>
           </div>
+          {% endif %}
         </div>
       </div>
     </div>

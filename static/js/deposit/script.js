@@ -8,7 +8,8 @@ $(".send-by li").click(function () {
   $(this).addClass("active");
 });
 
-$(".next_").click(function () {
+$(".next_").click(function (e) {
+  e.preventDefault();
   //   $(".form-wrapper").addClass("collapse");
 
   $(".step-1").addClass("hide");
@@ -34,13 +35,15 @@ $(".sent").click(function () {
   }, 1000);
 });
 
-$(".cancel_").click(function () {
+$(".cancel_").click(function (e) {
+  e.preventDefault();
   setTimeout(function () {
     window.location.href = "javascript:history.back()";
   }, 1000);
 });
 
-$(".back").click(function () {
+$(".back").click(function (e) {
+  e.preventDefault();
   $(".step-2").addClass("hide");
   $(".step-1").removeClass("hide");
 
