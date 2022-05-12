@@ -104,7 +104,7 @@ class AdminTransaction(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.btc_address} transfered {self.amount}"
+        return f"{self.wallet.btc_address} transfered {self.amount}"
 
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):

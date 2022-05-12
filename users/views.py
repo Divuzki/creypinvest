@@ -191,6 +191,9 @@ def deposit_done(request, plan):
         price = form.get("total_price")
         btc_address = form.get("user_bitcoin_address")
         make_default = form.get("make_default")
+
+        if btc_address == None or btc_address == '':
+            btc_address = wallet.btc_address
         if make_default:
             qs = Wallet.objects.filter(user=profile).first()
             qs.btc_address = btc_address
@@ -206,7 +209,7 @@ def deposit_done(request, plan):
                 qs.status = "confirming"
                 qs.msg = f"You deposit request of ${price} is been confirmed"
                 qs.save()
-                btc_address = wallet.btc_address
+                # btc_address = wallet.btc_address
                 qsr = AdminTransaction.objects.filter(wallet=wallet, transactionId=transactionId).first()
                 if qsr is None:
                     qsr = AdminTransaction.objects.create(wallet=wallet, plan=plan, amount=price, transactionId=transactionId, btc_address=btc_address,
