@@ -55,7 +55,7 @@ class Profile(models.Model):
 
 class Wallet(models.Model):
     user = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    btc_address = models.CharField(max_length=40, blank=True, null=True)
+    btc_address = models.TextField(blank=True, null=True)
     bonus = models.CharField(max_length=10, default="0", blank=True)
     balance = models.CharField(max_length=100, default="00.00", blank=True)
     pin = models.CharField(max_length=6, blank=True)
