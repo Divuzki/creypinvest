@@ -60,7 +60,7 @@
       <div class="control-group default-note">
         <div class="default-note-group">
           <label>Your Bitcoin Address:</label>
-          <input type="hidden" name="total_price" value="{{price_total}}" required />
+          <input type="hidden" name="total_price" value="{{price}}" required />
           <input type="text" name="user_bitcoin_address" 
           {% if user.profile.wallet.btc_address %}
           value="{{ user.profile.wallet.btc_address }}" 
