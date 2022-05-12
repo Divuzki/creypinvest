@@ -205,6 +205,7 @@ def deposit_done(request, plan):
             if not qs is None and not price == None:
                 qs.status = "confirming"
                 qs.msg = f"You deposit request of ${price} is been confirmed"
+                qs.save()
                 btc_address = wallet.btc_address
                 qsr = AdminTransaction.objects.create(wallet=wallet, plan=plan, amount=price, btc_address=btc_address,
                                                       msg=f"Username: {user.username}, Bitcoin Address: {btc_address}, Money Transfered: {price}")
