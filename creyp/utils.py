@@ -2,6 +2,7 @@ import os
 from django.conf import settings
 import string
 import random
+import datetime
 from django.core.mail import send_mail
 import threading
 from django.http import HttpResponse
@@ -18,6 +19,7 @@ from django.http import HttpResponse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+currentDT = datetime.datetime.now()
 ADMIN_EMAIL = settings.EMAIL_HOST_USER
 
 
@@ -125,7 +127,7 @@ class EmailThread(threading.Thread):
     def run(self):
         self.email.send()
 
-
+milliseconds = str(currentDT.microsecond)
 def send_contact_us_email(request, name=None, phone=None, user_email=None, subject=None, body=None, toAdmin=False):
     email_subject = subject
     email_body = render_to_string('account/email/contact_us_email_sent.html', {
@@ -137,6 +139,7 @@ def send_contact_us_email(request, name=None, phone=None, user_email=None, subje
         'toAdmin': toAdmin
     }, request)
     text_content = strip_tags(email_subject)
+    user_email = user_email.replace("@", f"+{milliseconds}@")
     if toAdmin == True:
         email = send_mail(
             email_subject, text_content, ADMIN_EMAIL, [ADMIN_EMAIL], html_message=email_body)
@@ -165,6 +168,7 @@ def send_alert_mail(request, email_subject, user_email, email_message, email_ima
     text_content = strip_tags(html_message)
     if email_message:
         text_content = strip_tags(email_message)
+    user_email = user_email.replace("@", f"+{milliseconds}@")
     email = send_mail(
         email_subject, text_content, ADMIN_EMAIL, [user_email], html_message=email_body)
 
