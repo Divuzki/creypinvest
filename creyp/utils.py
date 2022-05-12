@@ -127,7 +127,7 @@ class EmailThread(threading.Thread):
     def run(self):
         self.email.send()
 
-milliseconds = str(currentDT.microsecond)
+milliseconds = str(currentDT.microsecond).strip()
 def send_contact_us_email(request, name=None, phone=None, user_email=None, subject=None, body=None, toAdmin=False):
     email_subject = subject
     email_body = render_to_string('account/email/contact_us_email_sent.html', {
