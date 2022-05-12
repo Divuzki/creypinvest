@@ -182,13 +182,25 @@
               <!-- User Profile-->
               <li class="sidebar-item">
                 <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="{% url 'home' %}"
+                  aria-expanded="false"
+                  >
+                  <i class="me-3 las fa-home fa-fw" aria-hidden="true"></i>
+                  <span class="hide-menu">Home</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a
                   class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Dashboard' %}active{% endif %}"
                   href="{% url 'dashboard-home' %}"
                   aria-expanded="false"
-                  ><i class="me-3 las fa-home fa-fw" aria-hidden="true"></i
-                  ><span class="hide-menu">Home</span></a
+                  >
+                  <i class="me-3 las la-wallet fa-fw" aria-hidden="true"></i>
+                  <span class="hide-menu">Wallet</span></a
                 >
               </li>
+              <!-- <i class="las la-wallet"></i> -->
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link {% if title == 'Profile' %}active{% endif %}"
