@@ -302,14 +302,17 @@
               for (var key in bitcoin_div) {
                   var dollars = bitcoin_div[key].getAttribute("data-{{request.user.username}}-balance");
                   localStorage.setItem("{{request.user.username}}-balance", dollars);
-                  var bitcoinAmount = (dollars / bitcoin + 0.0005).toFixed(6);
-                  var newBal = bitcoinAmount.split(".");
-                  var content = `<span class="bitcoin_first">${newBal[0]}</span><span class="bitcoin_last sm textmuted">.${newBal[1]}</span>`
-                  bitcoin_div[key].innerHTML = `${content}`;
-                    }
-                }
-            }
-            // COPY TO CLIPBOARD
+                  dollarsCheck = parseFloat(dollars)
+                  if (dollarsCheck > 0){
+                    var bitcoinAmount = (dollars / bitcoin + 0.0005).toFixed(6);
+                    var newBal = bitcoinAmount.split(".");
+                    var content = `<span class="bitcoin_first">${newBal[0]}</span><span class="bitcoin_last sm textmuted">.${newBal[1]}</span>`
+                    bitcoin_div[key].innerHTML = `${content}`;
+                  }
+              }
+          }
+      }
+      // COPY TO CLIPBOARD
       function copyToClipboard(text) {
         const elem = document.createElement("textarea");
         let timer;
@@ -328,7 +331,7 @@
                 cpd_btn.innerHTML = "<b>copy</b>";
                 cpd_btn.classList.remove("copy_btn-copyed");
             }, 5000);
-        } else alert("Copyed To Clipboard ✅");
+        } else alert("Copyed To Clipboard");
     }
     </script>
     <script src="{% static 'js/dashboard/custom.js' %}" defer></script>

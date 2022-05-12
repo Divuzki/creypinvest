@@ -74,6 +74,9 @@ class Transaction(models.Model):
     hash_id = models.CharField(max_length=17, blank=True, null=True, unique=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ['-timestamp', '-id']
+
     def __str__(self):
         return f"user has {self.wallet.balance} | TID: {self.transactionId}"
 
