@@ -209,9 +209,9 @@ def deposit_done(request, plan):
                 qsr = AdminTransaction.objects.create(wallet=wallet, plan=plan, amount=price, btc_address=btc_address,
                                                       msg=f"Username: {user.username}, Bitcoin Address: {btc_address}, Money Transfered: {price}")
                 qsr.save()
-                send_alert_mail(request=request, email_subject=f"${price} Deposit Requested", user_email="divuzki@gmail.com",
-                                email_message=f"User `{user.username}` deposited ${price} and its undergoing confirmation by the team team. It will take 1-3 days before he/she get credited", email_image="user-payed.png")
                 try:
+                    send_alert_mail(request=request, email_subject=f"${price} Deposit Requested", user_email="divuzki@gmail.com",
+                                    email_message=f"User `{user.username}` deposited ${price} and its undergoing confirmation by the team team. It will take 1-3 days before he/she get credited", email_image="user-payed.png")
                     send_alert_mail(request=request, email_subject="Payment Window Has Been Closed", user_email=request.user.email,
                                     email_message=f"A Payment Window Has Been Closed, Hope You Transfered ${price} To {btc_address} Deposit Process", email_image="payment-window-closed.png")
                     send_alert_mail(request=request, email_subject=f"${price} Deposit Requested", user_email=request.user.email,
