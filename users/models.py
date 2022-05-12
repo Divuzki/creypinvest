@@ -72,7 +72,7 @@ class Transaction(models.Model):
     msg = models.TextField(blank=True)
     transactionId = models.CharField(max_length=17, blank=True)
     hash_id = models.CharField(max_length=17, blank=True, null=True, unique=True)
-    timestamp = models.DateTimeField(default=timezone.now)
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True)
 
     class Meta:
         ordering = ['-timestamp', '-id']
