@@ -95,7 +95,7 @@ class AdminTransaction(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     plan = models.CharField(max_length=100, blank=True)
     amount = models.CharField(max_length=100, blank=True)
-    btc_address = models.TextField(unique=True)
+    btc_address = models.TextField()
     msg = models.TextField(blank=True)
     transactionId = models.CharField(max_length=17, blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
