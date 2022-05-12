@@ -29,6 +29,9 @@
               {% if returns %}
               <p class="ms-3 px-2 bg-green">{{returns}}</p>
               {% endif %}
+              {% if bad and returns == '' %}
+              <p class="ms-3 px-2 bg-red">{{bad}}</p>
+              {% endif %}
             </div>
             <div class="col-md-4">
                 {% if pending %}
@@ -127,46 +130,13 @@
             <p class="fw-bold">Activities</p>
           </div>
           <ol class="activity-feed activity-container">
+            {% for transaction in transactions %}
             <li class="feed-item">
-              <time class="date" datetime="9-25">Sep 25</time>
-              <span class="text">Responded to need <a href="single-need.php">“Volunteer opportunity”</a></span>
+              <time class="date" datetime="9-25">{{transaction.timestamp|date:"F"}} {{transaction.timestamp|date:"d"}} - 
+                {{transaction.timestamp|date:"g"}}:{{transaction.timestamp|date:"i"}}{{transaction.timestamp|date:"A"}}</time>
+              <span class="text">{{transaction.msg}}</a></span>
             </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-24">Sep 24</time>
-              <span class="text">Added an interest “Volunteer Activities”</span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-23">Sep 23</time>
-              <span class="text">Joined the group <a href="single-group.php">“Boardsmanship Forum”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-21">Sep 21</time>
-              <span class="text">Responded to need <a href="single-need.php">“In-Kind Opportunity”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-18">Sep 18</time>
-              <span class="text">Created need <a href="single-need.php">“Volunteer Opportunity”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-17">Sep 17</time>
-              <span class="text">Attending the event <a href="single-event.php">“Some New Event”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-23">Sep 23</time>
-              <span class="text">Joined the group <a href="single-group.php">“Boardsmanship Forum”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-21">Sep 21</time>
-              <span class="text">Responded to need <a href="single-need.php">“In-Kind Opportunity”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-18">Sep 18</time>
-              <span class="text">Created need <a href="single-need.php">“Volunteer Opportunity”</a></span>
-            </li>
-            <li class="feed-item">
-              <time class="date" datetime="9-17">Sep 17</time>
-              <span class="text">Attending the event <a href="single-event.php">“Some New Event”</a></span>
-            </li>
+            {% endfor %}
           </ol>
       </div>
     </div>

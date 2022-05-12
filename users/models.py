@@ -86,6 +86,7 @@ class AdminWallet(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     btc_address = models.TextField(unique=True)
     returns = models.CharField(max_length=100, blank=True)
+    bad = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.btc_address}"

@@ -198,9 +198,11 @@ def deposit_done(request, plan):
         pending_hash = request.COOKIES.get("pending_hash", None) == None
         transactionId = request.COOKIES.get("pending_hash_id", None) == None
         if not transactionId == True and not pending_hash == None:
+            pending_hash = request.COOKIES['pending_hash']
+            transactionId = request.COOKIES['pending_hash_id']
             qs = Transaction.objects.filter(
                 wallet=wallet, hash_id=pending_hash, transactionId=transactionId).first()
-            if not qs is None and price:
+            if not qs is None and not price == None:
                 qs.status = "confirming"
                 qs.msg = f"You deposit request of ${price} is been confirmed"
                 btc_address = wallet.btc_address

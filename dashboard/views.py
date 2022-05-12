@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
 from django_countries import countries
-from users.models import Wallet, Profile
+from users.models import Wallet, Profile, Transaction, AdminWallet
 from users.decorators import update_user_ip
 
 
@@ -15,13 +15,20 @@ def dashboard_home_view(request):
         bal = qs.balance.split(".")
         first_bal = bal[0]
         second_bal = bal[1]
+        transactions = Transaction.objects.filter(wallet=request.user.profile.wallet)
+        admin_wallet = AdminWallet.objects.all().first()
+        returns = admin_wallet.returns
+        bad = admin_wallet.bad
         context = {
             "title": "Dashboard",
             "crumbs": ["Dashboard"],
             "bal": qs.balance,
             "first_bal": first_bal,
             "second_bal": second_bal,
-            "crumbs_count": 1
+            "crumbs_count": 1,
+            "transactions":transactions,
+            "returns":returns,
+            "bad":bad
         }
         return render(request, "dashboard/dashboard_home.html", context)
     else:
