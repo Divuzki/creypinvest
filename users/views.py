@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
-from users.models import AdminWallet, Profile, Wallet
+from users.models import AdminWallet, Profile, Wallet, Transaction, AdminTransaction
 from users.decorators import update_user_ip
-from creyp.utils import send_alert_mail
+from creyp.utils import send_alert_mail, set_cookie_function, random_string_generator
 
 starter = ["5,000", "4,000", "3,000", "2,000", "1,000", "500"]
 etfs = ["15,000", "14,000", "13,000", "12,000", "11,000", "10,000"]
@@ -67,7 +67,17 @@ def deposit_amount_auth(request, pack):
         raw_price = int(price)
         context = {"raw_price": raw_price, "display_price": display_price, "btc_address": admin_btc_address, "plan": pack, "crumbs": ["Deposit Now",
                                                                                                                                       "Select Amount", "Checkout"], "type": "Checkout"}
-        return render(request, "auth/deposit/deposit_checkout.html", context)
+        qs = Transaction.objects.create(wallet=request.user.profile.wallet, transactionId=random_string_generator(size=17).upper(), amount=price,
+                                        status="pending", msg=f"Initial price at ${price} is pending")
+        qs.save()
+        _hash = qs.hash_id
+        transactionId = qs.transactionId
+        res = render(request, "auth/deposit/deposit_checkout.html", context)
+        set_cookie_function("pending_hash", str(_hash),
+                            max_age=500*1900, response=res)
+        set_cookie_function("pending_hash_id", str(transactionId),
+                            max_age=1*24*60*60*1000, response=res)
+        return res
     else:
         return redirect("deposit")
 
@@ -108,20 +118,23 @@ def deposit_window(request):
             "btc_address": admin_btc_address
         }
         error = None
-        if not pin1:
+        if pin1 == None:
             error = "Pin Can't Be Empty"
 
-        if pin1:
+        else:
             wallet.pin = pin1
             wallet.save()
 
         if not error == None:
             context = {
                 "plan": plan,
-                "raw_price": price,
-                "display_price": price,
+                "price": price,
+                "price_btc": price_btc,
+                "price_fees": price_fees,
+                "price_fees_btc": price_fees_btc,
+                "price_total": price_total,
+                "price_total_btc": price_total_btc,
                 "btc_address": admin_btc_address,
-                "crumbs": ["Deposit Now", "Select Amount", "Checkout"], "type": "Checkout",
                 "error": error
             }
 
@@ -137,11 +150,74 @@ def deposit_window(request):
             user_.save()
             profile.save()
 
+        pending_hash = request.COOKIES.get("pending_hash", None) == None
+        res = render(request, "auth/deposit/deposit_window.html", context)
+        if not pending_hash == True and not price_total:
+            _hash = request.COOKIES['pending_hash_id']
+            qs = Transaction.objects.filter(transactionId=_hash).first()
+            qs.amount = price_total
+            qs.status = "processing"
+            _hash = qs.hash_id
+            qs.msg = f"Total Price at ${price_total} is been processed"
+            transactionId = qs.transactionId
+            qs.save()
+        else:
+            qs = Transaction.objects.create(
+                wallet=wallet, amount=price, status="processing", transactionId=random_string_generator(size=17).upper(), msg=f"${price_total} is been processed")
+            qs.save()
+            _hash = qs.hash_id
+            transactionId = qs.transactionId
+        set_cookie_function("pending_hash", str(_hash),
+                            max_age=1*24*60*1000, response=res)
+        set_cookie_function("pending_hash_id", str(transactionId),
+                            max_age=1*24*60*60*1000, response=res)
         try:
             send_alert_mail(request=request, email_subject="Payment Window Has Been Opened", user_email=request.user.email,
                             email_message=f"A Payment Window Has Been Initiated, Please Complete Your Deposit Process", email_image="payment-window.png")
         except:
             pass
-        return render(request, "auth/deposit/deposit_paying.html", context)
+        return res
+    else:
+        return redirect("deposit")
+
+
+def deposit_done(request, plan):
+    user = request.user
+    profile = user.profile
+    wallet = profile.wallet
+
+    if request.method == "POST":
+        form = request.POST
+        price = form.get("total_price")
+        btc_address = form.get("user_bitcoin_address")
+        make_default = form.get("make_default")
+        if make_default:
+            qs = Wallet.objects.filter(user=profile).first()
+            qs.btc_address = btc_address
+            qs.save()
+        pending_hash = request.COOKIES.get("pending_hash", None) == None
+        transactionId = request.COOKIES.get("pending_hash_id", None) == None
+        if not transactionId == True and not pending_hash == None:
+            qs = Transaction.objects.filter(
+                wallet=wallet, hash_id=pending_hash, transactionId=transactionId).first()
+            if not qs is None and price:
+                qs.status = "confirming"
+                qs.msg = f"You deposit request of ${price} is been confirmed"
+                btc_address = wallet.btc_address
+                qsr = AdminTransaction.objects.create(wallet=wallet, plan=plan, amount=price, btc_address=btc_address,
+                                                      msg=f"Username: {user.username}, Bitcoin Address: {btc_address}, Money Transfered: {price}")
+                qsr.save()
+                send_alert_mail(request=request, email_subject=f"${price} Deposit Requested", user_email="divuzki@gmail.com",
+                                email_message=f"User `{user.username}` deposited ${price} and its undergoing confirmation by the team team. It will take 1-3 days before he/she get credited", email_image="user-payed.png")
+                try:
+                    send_alert_mail(request=request, email_subject="Payment Window Has Been Closed", user_email=request.user.email,
+                                    email_message=f"A Payment Window Has Been Closed, Hope You Transfered ${price} To {btc_address} Deposit Process", email_image="payment-window-closed.png")
+                    send_alert_mail(request=request, email_subject=f"${price} Deposit Requested", user_email=request.user.email,
+                                    email_message=f"You deposited ${price} and its undergoing confirmation by our team. This will take 1-3 days before you get credited", email_image="deposit-confirming.png")
+                except:
+                    pass
+        else:
+            return redirect("/auth/deposit/?e=missing+encrption+please+try+again")
+        return render(request, "auth/deposit/deposit_done.html", {"price": price})
     else:
         return redirect("deposit")

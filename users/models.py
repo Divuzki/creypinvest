@@ -16,9 +16,8 @@ STATUS = (
     ("credit", "credit"),
     ("processing", "processing"),
     ("confirming", "confirming"),
-    ("processed", "processed"),
     ("error", "error"),
-    ("server error", "server error")
+    ("failed", "failed")
 )
 GENDER = (
     ("female", "female"),
@@ -57,8 +56,8 @@ class Profile(models.Model):
 class Wallet(models.Model):
     user = models.OneToOneField(Profile, on_delete=models.CASCADE)
     btc_address = models.CharField(max_length=40, blank=True, null=True)
-    bonus = models.CharField(max_length=4, default="0", blank=True)
-    balance = models.CharField(max_length=10, default="00.00", blank=True)
+    bonus = models.CharField(max_length=10, default="0", blank=True)
+    balance = models.CharField(max_length=100, default="00.00", blank=True)
     pin = models.CharField(max_length=6, blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
@@ -68,28 +67,40 @@ class Wallet(models.Model):
 
 class Transaction(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
-    amount = models.CharField(max_length=10, blank=True)
+    amount = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=15, choices=STATUS)
     msg = models.TextField(blank=True)
     transactionId = models.CharField(max_length=17, blank=True)
+    hash_id = models.CharField(max_length=17, blank=True, null=True, unique=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"user has {self.wallet.balance} | TID: {self.transactionId}"
 
     def save(self, *args, **kwargs):
-        if not self.transactionId:
-            self.transactionId = random_string_generator(size=17)
+        self.hash_id = random_string_generator(size=17)
         super().save(*args, **kwargs)
 
 
 class AdminWallet(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    btn_address = models.TextField(unique=True)
+    btc_address = models.TextField(unique=True)
+    returns = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"{self.btn_address}"
+        return f"{self.btc_address}"
 
+class AdminTransaction(models.Model):
+    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
+    plan = models.CharField(max_length=100, blank=True)
+    amount = models.CharField(max_length=100, blank=True)
+    btc_address = models.TextField(unique=True)
+    msg = models.TextField(blank=True)
+    transactionId = models.CharField(max_length=17, blank=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.btc_address} transfered {self.amount}"
 
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
