@@ -68,10 +68,11 @@ textarea:focus {
   content: "Fees are given to the miners who verify your transaction on the blockchain";
   position: absolute;
   margin-left: 5px;
-  background: black;
+  background: rgba(0, 0, 0, 0.8509803922);
   color: white;
+  transform: translate(-100px, 18px);
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 10px;
   min-width: 100px;
   font-size: 13px;
   z-index: 10000;
@@ -101,7 +102,7 @@ input[readonly=readonly] {
 }
 
 .actions {
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid rgba(0, 0, 0, 0.1411764706);
   padding: 2em;
   display: flex;
   justify-content: flex-end;
@@ -133,12 +134,12 @@ input[readonly=readonly] {
 .actions .next.send {
   cursor: pointer;
   padding: 12px 36px;
-  background: linear-gradient(90deg, #26145A, #2b3cff);
+  background: linear-gradient(90deg, #26145a, #2b3cff);
   transition: all 500ms ease;
 }
 .actions .next.send:hover {
   text-decoration: none;
-  background: linear-gradient(270deg, #26145A, #2b3cff);
+  background: linear-gradient(270deg, #26145a, #2b3cff);
 }
 
 button:focus {
@@ -267,7 +268,7 @@ ul {
   background: rgba(12, 11, 11, 0.7882352941);
   color: white;
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 10px;
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
@@ -330,8 +331,7 @@ ul {
   align-items: center;
 }
 .form-title img {
-  width: 40px;
-  height: 40px;
+  width: 50px;
   margin-right: 25px;
 }
 .form-title h2 {
@@ -344,14 +344,19 @@ form {
 
 .form-wrapper {
   box-shadow: 0 5px 1px 0 rgba(0, 40, 68, 0.4);
-  border-radius: 3px;
+  border-radius: 24px;
   background: #f5f7f9;
   position: relative;
   margin: 1em;
 }
 @media screen and (max-width: 425px) {
   .form-wrapper {
-    transform: scale(0.83);
+    transform: scale(0.86);
+  }
+}
+@media screen and (max-width: 320px) {
+  .form-wrapper {
+    transform: scale(0.8);
   }
 }
 

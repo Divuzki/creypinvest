@@ -5,7 +5,7 @@ $light-grey: #f5f7f9;
 $eee: #eeeeee;
 $ccc: #3a4542;
 $black: #595959;
-$send: #26145A;
+$send: #26145a;
 
 .make-default {
   padding-top: 10px;
@@ -75,10 +75,11 @@ textarea {
         content: "Fees are given to the miners who verify your transaction on the blockchain";
         position: absolute;
         margin-left: 5px;
-        background: darken($purple, 25%);
+        background: #000000d9;
         color: white;
+        transform: translate(-100px, 18px);
         padding: 5px;
-        border-radius: 3px;
+        border-radius: 10px;
         min-width: 100px;
         font-size: 13px;
         z-index: 10000;
@@ -110,7 +111,8 @@ input[readonly="readonly"] {
 }
 
 .actions {
-  border-top: 1px solid $eee;
+  border-top: 1px solid #00000024;
+  // border-top: 1px solid $eee;
   padding: 2em;
   display: flex;
   justify-content: flex-end;
@@ -248,16 +250,16 @@ ul {
   margin-left: 0 !important;
 }
 .copy-generated-address {
-    height: 21px;
-    width: 22px;
-    position: absolute;
-    right: 29px;
-    top: 50px;
-    background: #fdfdfd;
-    border: 1px solid #5757ab;
-    border-radius: 0px 5px 5px 0px;
-    padding: 5px;
-    font-size: 21px;
+  height: 21px;
+  width: 22px;
+  position: absolute;
+  right: 29px;
+  top: 50px;
+  background: #fdfdfd;
+  border: 1px solid #5757ab;
+  border-radius: 0px 5px 5px 0px;
+  padding: 5px;
+  font-size: 21px;
   &:hover {
     cursor: pointer;
     background: #efefef;
@@ -265,20 +267,20 @@ ul {
       content: "Copy";
       position: absolute;
       left: -6px;
-      animation: swipeUp .5s ease;
+      animation: swipeUp 0.5s ease;
       bottom: 34px;
       background: #0c0b0bc9;
       color: white;
       padding: 5px;
-      border-radius: 3px;
+      border-radius: 10px;
       min-width: max-content;
       font-size: 13px;
       z-index: 10000;
 
       @keyframes swipeUp {
-          50%{
-            bottom: 38px;
-          }
+        50% {
+          bottom: 38px;
+        }
       }
     }
   }
@@ -326,8 +328,7 @@ ul {
     align-items: center;
   }
   img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
     margin-right: 25px;
   }
   h2 {
@@ -341,13 +342,16 @@ form {
 
 .form-wrapper {
   box-shadow: 0 5px 1px 0 rgba(0, 40, 68, 0.4);
-  border-radius: 3px;
+  border-radius: 24px;
   background: $light-grey;
   position: relative;
   margin: 1em;
 
   @media screen and (max-width: 425px) {
-    transform: scale(0.83);
+    transform: scale(0.86);
+  }
+  @media screen and (max-width: 320px) {
+    transform: scale(0.8);
   }
 }
 

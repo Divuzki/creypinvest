@@ -37,9 +37,15 @@
                 <li class="nav-item">
                   <a href="{% url 'contact-us' %}" aria-label="Toggle navigation">Contact Us</a>
                 </li>
+                {% if not user.profile.deposit_before == True %}
                 <li class="nav-item">
                     <a href="{% url 'deposit' %}"  aria-label="Toggle navigation"> Invest </a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'deposit' %}?u={{user.username}}&deposited=true&route={{user.profile.ip_address}}"  aria-label="Toggle navigation"> Invest </a>
+              </li>
+                {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a href="{% url 'dashboard-profile' %}"  aria-label="Toggle navigation"> Profile </a>

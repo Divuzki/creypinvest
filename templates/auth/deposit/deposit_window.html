@@ -68,8 +68,8 @@
           placeholder="Enter the bitcoin address you are transfering from" id="user_btc" required />
           {% if not user.profile.wallet.btc_address %}
           <div class="make-default note-msg">
-            <label for="defualt" class="why-default">Make Default<span>?</span></label>
-            <input type="checkbox" id="default" name="make_default"/>
+            <input type="checkbox" id="default" name="make_default">
+            <label for="defualt" class="why-default"> Make Default<span>?</span></label></input>
           </div>
           {% endif %}
         </div>
