@@ -25,7 +25,7 @@ def transaction_del_view(request, id):
             url = request.build_absolute_uri('/dashboard/')
             html_msg = f'<a href="{url}" class="rounded-pill border">Dashboard</a>'
             send_alert_mail(request, email_subject="Deposit Request Rejected",
-                            user_email=user_email, email_message=f"Your Deposit Request For ${amount} Has Been Declined", email_image="", html_message=html_msg)
+                            user_email=user_email, email_message=f"Your Deposit Request For ${amount} Has Been Declined", email_image="transaction-declined.png", html_message=html_msg)
         except:
             pass
         qs.delete()
@@ -43,7 +43,7 @@ def transaction_accept_view(request, id):
             html_msg = f'<a href="{url}" class="rounded-pill border">Dashboard</a>'
             send_alert_mail(request, email_subject="Deposit Request Accepted",
                             user_email=user_email, email_message=f"Your Account Has Been Credited ${amount}",
-                            email_image="", html_message=html_msg)
+                            email_image="transaction-accept.png", html_message=html_msg)
         except:
             pass
         qsr.balance = float(qsr.balance) + float(qs.amount)
