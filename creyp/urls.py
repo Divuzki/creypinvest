@@ -11,6 +11,7 @@ urlpatterns = [
     path('', index, name="home"),
     path('r/<str:username>/', referral_view, name="refer"),
     path('admin/', admin.site.urls),
+    path('@admin/', include('site_admin.urls')),
     path('site/', include('core.urls')),
     path('auth/', include('users.urls')),
     path('dashboard/', include('dashboard.urls')),

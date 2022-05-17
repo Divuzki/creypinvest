@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'core',
     'users',
     'dashboard',
+    'site_admin',
 
     'storages',
     "crispy_forms",
