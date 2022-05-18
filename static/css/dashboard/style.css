@@ -12126,6 +12126,7 @@ select.form-select.form-control-line {
 }
 
 .topbar .top-navbar .navbar-nav > .nav-item .nav-link .profile-pic {
+  height: 30px;
   width: 30px;
   border-radius: 50%;
 }

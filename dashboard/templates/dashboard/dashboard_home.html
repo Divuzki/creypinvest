@@ -132,7 +132,7 @@
           <ol class="activity-feed activity-container">
             {% for transaction in transactions %}
             <li class="feed-item">
-              <time class="date" datetime="9-25">{{transaction.timestamp|date:"F"}} {{transaction.timestamp|date:"d"}} - 
+              <time class="date" datetime="{{transaction.timestamp|date:'m'}}-{{transaction.timestamp|date:'d'}}">{{transaction.timestamp|date:"F"}} {{transaction.timestamp|date:"d"}} - 
                 {{transaction.timestamp|date:"g"}}:{{transaction.timestamp|date:"i"}}{{transaction.timestamp|date:"A"}}</time>
               <span class="text">{{transaction.msg}}</a></span>
             </li>
