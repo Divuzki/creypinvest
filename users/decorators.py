@@ -1,5 +1,6 @@
 from django.core.files.storage import default_storage
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 from users.models import Profile
 from creyp.utils import set_cookie_function, send_alert_mail
 
@@ -63,6 +64,23 @@ def update_user_ip(function):
                 raise PermissionDenied
         else:
             return res
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap
+
+
+
+
+def deposit_before(function):
+    def wrap(request, *args, **kwargs):
+        res = function(request, *args, **kwargs)
+        if request.user.is_authenticated:
+            if request.user.profile.deposit_before == True:
+                return res
+            else:
+                return redirect("dashboard-denial")
+        else:
+            raise PermissionDenied
     wrap.__doc__ = function.__doc__
     wrap.__name__ = function.__name__
     return wrap

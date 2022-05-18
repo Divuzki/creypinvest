@@ -12,6 +12,10 @@ def error_404_view(request, exception):
     return render(request, "pages/errors/404.html")
 
 @update_user_ip
+def dashboard_denial_view(request):
+    return render(request, "pages/errors/dashboard_denial.html")
+
+@update_user_ip
 def index(request):
     return render(request, "pages/index.html")
 

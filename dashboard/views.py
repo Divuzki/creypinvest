@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 
 from django_countries import countries
 from users.models import Wallet, Profile, Transaction, AdminWallet
-from users.decorators import update_user_ip
+from users.decorators import update_user_ip, deposit_before
 
 
 @update_user_ip
+@deposit_before
 def dashboard_home_view(request):
     if request.user.is_authenticated:
         if not Wallet.objects.filter(user=request.user.profile):
@@ -15,7 +16,8 @@ def dashboard_home_view(request):
         bal = qs.balance.split(".")
         first_bal = bal[0]
         second_bal = bal[1]
-        transactions = Transaction.objects.filter(wallet=request.user.profile.wallet)
+        transactions = Transaction.objects.filter(
+            wallet=request.user.profile.wallet)
         admin_wallet = AdminWallet.objects.all().first()
         returns = admin_wallet.returns
         bad = admin_wallet.bad
@@ -26,9 +28,9 @@ def dashboard_home_view(request):
             "first_bal": first_bal,
             "second_bal": second_bal,
             "crumbs_count": 1,
-            "transactions":transactions,
-            "returns":returns,
-            "bad":bad
+            "transactions": transactions,
+            "returns": returns,
+            "bad": bad
         }
         return render(request, "dashboard/dashboard_home.html", context)
     else:
@@ -110,6 +112,7 @@ def dashboard_profile_auth_view(request):
 
 
 @update_user_ip
+@deposit_before
 def dashboard_payments_view(request):
     if request.user.is_authenticated:
         if not Wallet.objects.filter(user=request.user.profile):
@@ -125,6 +128,7 @@ def dashboard_payments_view(request):
 
 
 @update_user_ip
+@deposit_before
 def dashboard_referral_view(request):
     if request.user.is_authenticated:
         user = request.user
@@ -140,18 +144,3 @@ def dashboard_referral_view(request):
         return render(request, "dashboard/dashboard_referral.html", context)
     else:
         redirect("/auth/account/login?next=/dashboard/referral/")
-
-
-@update_user_ip
-def dashboard_payments_view(request):
-    if request.user.is_authenticated:
-        if not Wallet.objects.filter(user=request.user.profile):
-            Wallet.objects.create(user=request.user.profile)
-        context = {
-            "title": "Payments",
-            "crumbs": ["Payments"],
-            "crumbs_count": 2
-        }
-        return render(request, "dashboard/dashboard_payments.html", context)
-    else:
-        redirect("/auth/account/login?next=/dashboard/payments/")
