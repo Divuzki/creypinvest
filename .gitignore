@@ -10,7 +10,7 @@ staticfiles/
 
 # Backup files # 
 *.bak 
-
+.env
 ### Django.Python Stack ###
 *.py[cod]
 *$py.class
