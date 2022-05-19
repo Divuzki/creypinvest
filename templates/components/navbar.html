@@ -43,12 +43,12 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                  <a href="{% url 'deposit' %}?u={{user.username}}&deposited=true&route={{user.profile.ip_address}}"  aria-label="Toggle navigation"> Invest </a>
+                  <a href="{% url 'deposit' %}?u={{user.username}}&deposited=true&route={{user.profile.ip_address}}"  aria-label="Toggle navigation"> Deposit </a>
               </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a href="{% url 'dashboard-profile' %}"  aria-label="Toggle navigation"> Profile </a>
+                  <a href="{% url 'dashboard-home' %}"  aria-label="Toggle navigation"> Dashboard </a>
               </li>
               {% else %}
               <li class="nav-item">
@@ -59,7 +59,7 @@
             </div>
             {% if user.is_authenticated %}
             <div class="button">
-              <a href="{% url 'dashboard-home' %}" class="btn">Dashboard</a>
+              <a href="{% url 'dashboard-profile' %}" class="btn">Profile</a>
             </div>
             {% else %}
             <div class="button">

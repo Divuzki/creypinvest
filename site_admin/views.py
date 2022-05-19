@@ -1,25 +1,31 @@
 from django.shortcuts import render, redirect
+from django.core.exceptions import PermissionDenied
 from users.models import AdminTransaction as AT, Wallet, Transaction, Profile
 from creyp.utils import send_alert_mail
 
 
 def index_view(request):
-    return render(request, "site/admin/index.html")
+    user = request.user
+    if user.is_authenticated and user.is_staff == True and user.is_active == True:  
+        return render(request, "site/admin/index.html")
+    else:
+        raise PermissionDenied
 
 
 def transaction_deposit_view(request):
     user = request.user
-    if user.is_authenticated:
+    if user.is_authenticated and user.is_staff == True and user.is_active == True:
         qs = AT.objects.all()
         return render(request, "site/admin/admin-deposit.html", {"objects": qs})
     else:
-        return render(request, "pages/index.html")
+        raise PermissionDenied
 
 
 def transaction_del_view(request, id):
     qs = AT.objects.filter(id=id).first()
     tasc = Transaction.objects.filter(transactionId=qs.transactionId).first()
-    if not qs is None:
+    user = request.user
+    if not qs is None and not tasc is None and user.is_authenticated and user.is_staff == True and user.is_active == True:
         try:
             user_email = qs.wallet.user.user.email
             amount = qs.amount
@@ -35,14 +41,17 @@ def transaction_del_view(request, id):
         tasc.save()
         qs.delete()
         return redirect("admin-transaction-deposit")
+    else:
+        raise PermissionDenied
 
 
 def transaction_accept_view(request, id):
+    user = request.user
     qs = AT.objects.filter(id=id).first()
     qsr = Wallet.objects.filter(user=qs.wallet.user).first()
     tasc = Transaction.objects.filter(transactionId=qs.transactionId).first()
     profile = Profile.objects.filter(user=qs.wallet.user.user).first()
-    if not qs is None and not qsr is None:
+    if not qs is None and not qsr is None and not tasc is None and user.is_authenticated and user.is_staff == True and user.is_active == True:
         try:
             user_email = qs.wallet.user.user.email
             amount = qs.amount
@@ -63,3 +72,5 @@ def transaction_accept_view(request, id):
         profile.save()
         qs.delete()
         return redirect("admin-transaction-deposit")
+    else:
+        raise PermissionDenied
