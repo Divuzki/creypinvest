@@ -129,9 +129,9 @@
         <div class="d-flex mb-2">
             <p class="fw-bold">Activities</p>
           </div>
-          <ol class="activity-feed activity-container">
+          <ol class="activity-feed activity-container" style="{% if transactions.count > 4 %}height: 330px;{% endif %}">
             {% for transaction in transactions %}
-            <li class="feed-item">
+            <li class="feed-item {% if transaction.status == 'credit' %}credit{% elif transaction.status == 'failed' %}failed{% endif %}">
               <time class="date" datetime="{{transaction.timestamp|date:'m'}}-{{transaction.timestamp|date:'d'}}">{{transaction.timestamp|date:"F"}} {{transaction.timestamp|date:"d"}} - 
                 {{transaction.timestamp|date:"g"}}:{{transaction.timestamp|date:"i"}}{{transaction.timestamp|date:"A"}}</time>
               <span class="text">{{transaction.msg}}</a></span>

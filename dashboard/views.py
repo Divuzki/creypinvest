@@ -117,10 +117,25 @@ def dashboard_payments_view(request):
     if request.user.is_authenticated:
         if not Wallet.objects.filter(user=request.user.profile):
             Wallet.objects.create(user=request.user.profile)
+        qs = Wallet.objects.filter(user=request.user.profile).first()
+        bal = qs.balance.split(".")
+        first_bal = bal[0]
+        second_bal = bal[1]
+        transactions = Transaction.objects.filter(
+            wallet=request.user.profile.wallet)
+        admin_wallet = AdminWallet.objects.all().first()
+        returns = admin_wallet.returns
+        bad = admin_wallet.bad
         context = {
             "title": "Payments",
-            "crumbs": ["Payments"],
-            "crumbs_count": 2
+            "crumbs": ["Payment"],
+            "bal": qs.balance,
+            "first_bal": first_bal,
+            "second_bal": second_bal,
+            "crumbs_count": 2,
+            "transactions": transactions,
+            "returns": returns,
+            "bad": bad
         }
         return render(request, "dashboard/dashboard_payments.html", context)
     else:
