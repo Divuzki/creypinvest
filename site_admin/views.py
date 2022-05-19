@@ -24,7 +24,7 @@ def transaction_del_view(request, id):
             user_email = qs.wallet.user.user.email
             amount = qs.amount
             url = request.build_absolute_uri('/dashboard/')
-            html_msg = f'<a href="{url}" class="rounded-pill border">Dashboard</a>'
+            html_msg = f'<a style="border: 1px solid #673ab7;padding: 5px 10px;border-radius: 24px;color: #fff;background: #673ab7;" href="{url}" class="rounded-pill border">Dashboard</a>'
             send_alert_mail(request, email_subject="Deposit Request Rejected",
                             user_email=user_email, email_message=f"Your Deposit Request For ${amount} Has Been Declined", email_image="transaction-declined.png", html_message=html_msg)
         except:
@@ -47,7 +47,7 @@ def transaction_accept_view(request, id):
             user_email = qs.wallet.user.user.email
             amount = qs.amount
             url = request.build_absolute_uri('/dashboard/')
-            html_msg = f'<a href="{url}" class="rounded-pill border">Dashboard</a>'
+            html_msg = f'<a href="{url}" style="border: 1px solid #673ab7;padding: 5px 10px;border-radius: 24px;color: #fff;background: #673ab7;" class="rounded-pill border">Dashboard</a>'
             send_alert_mail(request, email_subject="Deposit Request Accepted",
                             user_email=user_email, email_message=f"Your Account Has Been Credited ${amount}",
                             email_image="transaction-accept.png", html_message=html_msg)
